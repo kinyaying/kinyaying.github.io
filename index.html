@@ -151,6 +151,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-webpack-dashboard使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/16/webpack-dashboard使用/">webpack-dashboard使用三部曲</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/16/webpack-dashboard使用/" class="archive-article-date">
+  	<time datetime="2017-11-16T01:28:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="webpack-dashboard-使用三步曲："><a href="#webpack-dashboard-使用三步曲：" class="headerlink" title="webpack-dashboard 使用三步曲："></a>webpack-dashboard 使用三步曲：</h2><p>这里我只是简单归纳下webpack-dashboard的使用，只需要三步就可以提升控制面板的颜值，赶快试一下吧。（PS: webpack-dashboard需要配合webpack使用）</p>
+<p>1、npm install 一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack-dashboard</span><br></pre></td></tr></table></figure></p>
+<p>2、修改webpack.config.js文件</p>
+<ul>
+<li><p>引入dashboard</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> DashboardPlugin = <span class="built_in">require</span>(<span class="string">'webpack-dashboard/plugin'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加dashboard到plugins</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">   <span class="keyword">new</span> DashboardPlugin()</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>3、修改package.json里的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;webpack-dashboard -- webpack-dev-server --open&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后 <code>npm start</code> 一下，你会看到你的面板变成这样：<br><img src="https://raw.githubusercontent.com/kinyaying/resource/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-11-09%20%E4%B8%8B%E5%8D%888.11.03.png" alt="image"></p>
+<p>–鼓掌–</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/16/webpack-dashboard使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux常用命令行（补充完整英文单词）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
