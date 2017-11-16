@@ -151,6 +151,244 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linux常用命令行（补充完整英文单词）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/16/linux常用命令行（补充完整英文单词）/">linux常用命令行（补充完整英文单词）
+</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/16/linux常用命令行（补充完整英文单词）/" class="archive-article-date">
+  	<time datetime="2017-11-16T01:24:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于我平时不是非常熟悉linux指令，所以想总结一下常用指令。从网上查了下，大部分文章都是介绍指令加上中文含义，没有这个指令的完整的英文单词。本着知其然也要知其所以然的原则，我这里还总结了这些英文缩略词的完整单词，方便理解记忆。（PS：多数单词都是从维基百科里面查的，如果有遗漏欢迎补充）</p>
+<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>参 数</th>
+<th>助记词</th>
+<th>中文含义</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls</td>
+<td></td>
+<td>list</td>
+<td>显示文件或目录</td>
+<td>ls &lt;文件地址&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td><em>-a</em></td>
+<td>all</td>
+<td>列出当前目录下所有文件及目录，包括隐藏的</td>
+<td>ls -a</td>
+</tr>
+<tr>
+<td></td>
+<td><em>-l</em></td>
+<td>long</td>
+<td>列出文件详细信息</td>
+<td>ls -l</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td></td>
+<td>make direction</td>
+<td>创建目录</td>
+<td>mkdir &lt;文件夹&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td><em>-p</em></td>
+<td>parent</td>
+<td>创建目录，若无父目录，则创建</td>
+<td>mkdir -p &lt;文件夹1/文件夹2/文件夹3&gt;</td>
+</tr>
+<tr>
+<td>cd</td>
+<td></td>
+<td>change direction</td>
+<td>切换目录</td>
+<td>cd &lt;文件夹&gt;</td>
+</tr>
+<tr>
+<td>touch</td>
+<td></td>
+<td>touch</td>
+<td>创建空文件</td>
+<td>touch &lt;文件&gt;</td>
+</tr>
+<tr>
+<td>cat</td>
+<td></td>
+<td>concatenate files</td>
+<td>查看文件内容</td>
+<td>cat &lt;文件&gt;</td>
+</tr>
+<tr>
+<td>cp</td>
+<td></td>
+<td>copy</td>
+<td>拷贝</td>
+<td>cp &lt;文件1&gt; &lt;文件2(可以是不存在的)&gt;</td>
+</tr>
+<tr>
+<td>mv</td>
+<td></td>
+<td>move</td>
+<td>移动或重命名</td>
+<td></td>
+</tr>
+<tr>
+<td>rm</td>
+<td></td>
+<td>remove</td>
+<td>删除文件或空的文件夹</td>
+<td>rm -rf &lt;文件&gt;（或文件夹）</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td></td>
+<td>remove direction</td>
+<td>删除空目录</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><em>-r</em></td>
+<td>recursive</td>
+<td>递归删除，可删除子目录及文件</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><em>-f</em></td>
+<td>force</td>
+<td>强制删除</td>
+<td></td>
+</tr>
+<tr>
+<td>find</td>
+<td></td>
+<td>find</td>
+<td>在文件系统中搜索某文件</td>
+<td>find &lt;文件夹&gt;（或文件）</td>
+</tr>
+<tr>
+<td>wc</td>
+<td></td>
+<td>word count</td>
+<td>统计文本中行数、字数、字符数</td>
+<td>wc &lt;文件名&gt;</td>
+</tr>
+<tr>
+<td>grep</td>
+<td></td>
+<td>g/re/p (globally search a regular expression and print)</td>
+<td>在文件中查找某个字符串</td>
+<td>grep “查找的内容” &lt;文件名&gt;</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td></td>
+<td>print working directory</td>
+<td>显示当前目录</td>
+<td>pwd</td>
+</tr>
+<tr>
+<td>tree</td>
+<td></td>
+<td>tree</td>
+<td>树形结构显示目录(需要安装tree包)</td>
+<td>tree</td>
+</tr>
+<tr>
+<td>less</td>
+<td></td>
+<td>less</td>
+<td>分页显示文本文件内容</td>
+<td>less</td>
+</tr>
+<tr>
+<td>head</td>
+<td></td>
+<td>head</td>
+<td>显示文件头部内容</td>
+<td>head</td>
+</tr>
+<tr>
+<td>tail</td>
+<td></td>
+<td>tail</td>
+<td>显示文件尾部内容</td>
+<td>tail</td>
+</tr>
+<tr>
+<td></td>
+<td><em>-n</em></td>
+<td>count</td>
+<td>行数</td>
+<td>head -n 10 &lt;文件名&gt;<br>tail -n 10 &lt;文件名&gt;</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/16/linux常用命令行（补充完整英文单词）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -234,15 +472,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
 
