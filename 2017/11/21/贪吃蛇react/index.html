@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>记一次给react.org提pr的经历 | Kinyaying&#39;s Blog</title>
+  <title>贪吃蛇react | Kinyaying&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是在周五给react官方文档提了pr，然后在下个周二，负责文档的老外给了答复和修改意见。按照他的意见修改后，再次commit，很快就被merge了。在此记录一下这次经历。 我提的问题我提的PR我提的pr主要是给文档补充了另一种声明defaultProps的方式。   You can also put propType">
+  <meta name="description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一次给react.org提pr的经历">
-<meta property="og:url" content="http://yoursite.com/2017/11/21/记一次给react.org提pr的经历/index.html">
+<meta property="og:title" content="贪吃蛇react">
+<meta property="og:url" content="http://yoursite.com/2017/11/21/贪吃蛇react/index.html">
 <meta property="og:site_name" content="Kinyaying&#39;s Blog">
-<meta property="og:description" content="我是在周五给react官方文档提了pr，然后在下个周二，负责文档的老外给了答复和修改意见。按照他的意见修改后，再次commit，很快就被merge了。在此记录一下这次经历。 我提的问题我提的PR我提的pr主要是给文档补充了另一种声明defaultProps的方式。   You can also put propTypes and defaultProps as static props insid">
-<meta property="og:updated_time" content="2017-11-21T09:53:03.000Z">
+<meta property="og:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
+<meta property="og:updated_time" content="2017-11-21T11:29:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一次给react.org提pr的经历">
-<meta name="twitter:description" content="我是在周五给react官方文档提了pr，然后在下个周二，负责文档的老外给了答复和修改意见。按照他的意见修改后，再次commit，很快就被merge了。在此记录一下这次经历。 我提的问题我提的PR我提的pr主要是给文档补充了另一种声明defaultProps的方式。   You can also put propTypes and defaultProps as static props insid">
+<meta name="twitter:title" content="贪吃蛇react">
+<meta name="twitter:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
   
     <link rel="alternative" href="/atom.xml" title="Kinyaying&#39;s Blog" type="application/atom+xml">
   
@@ -153,46 +153,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-记一次给react.org提pr的经历" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-贪吃蛇react" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      记一次给react.org提pr的经历
+      贪吃蛇react
     </h1>
   
 
         
-        <a href="/2017/11/21/记一次给react.org提pr的经历/" class="archive-article-date">
-  	<time datetime="2017-11-21T09:52:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
+        <a href="/2017/11/21/贪吃蛇react/" class="archive-article-date">
+  	<time datetime="2017-11-21T11:29:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我是在周五给react官方文档提了pr，然后在下个周二，负责文档的老外给了答复和修改意见。按照他的意见修改后，再次commit，很快就被merge了。在此记录一下这次经历。</p>
-<h2 id="我提的问题"><a href="#我提的问题" class="headerlink" title="我提的问题"></a>我提的问题</h2><p><a href="https://github.com/reactjs/reactjs.org/pull/239" target="_blank" rel="noopener">我提的PR</a><br>我提的pr主要是给文档补充了另一种声明defaultProps的方式。</p>
-<blockquote>
-<p> You can also put propTypes and defaultProps as static props inside React class.</p>
+        <h2 id="贪吃蛇"><a href="#贪吃蛇" class="headerlink" title="贪吃蛇"></a>贪吃蛇</h2><p><code>react</code> <code>react-canvas</code> <code>webpack</code></p>
+<p>用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。</p>
+<h2 id="分析功能"><a href="#分析功能" class="headerlink" title="分析功能"></a>分析功能</h2><p>首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。</p>
+<p><strong>基础功能:</strong></p>
+<ul>
+<li>1、蛇的运动（包括上下左右四个方向）</li>
+<li>2、出现位置随机的食物</li>
+<li>3、蛇吃食物<ul>
+<li>蛇身体变长</li>
+<li>食物消失，新的位置出现食物</li>
+</ul>
+</li>
+<li>4、边界条件<ul>
+<li>蛇撞墙死了</li>
+<li>蛇把自己咬死了</li>
+</ul>
+</li>
+</ul>
+<p><strong>扩展功能:</strong></p>
+<ul>
+<li>1、速度是否可以用户自己调节？</li>
+<li>2、设置开始、暂停按钮</li>
+<li>3、分数的展示</li>
+<li>4、改变蛇的颜色</li>
+</ul>
+<p><strong>开下脑洞:</strong></p>
+<ul>
+<li>吃蓝色食物变长，吃红色食物速度变快，吃绿色食物变粗</li>
+<li>存在多条蛇，需要躲避多条蛇</li>
+<li>3d的贪吃蛇又该怎么实现？</li>
+</ul>
+<h2 id="整理思路"><a href="#整理思路" class="headerlink" title="整理思路"></a>整理思路</h2><blockquote>
+<p>react的思想是用数据去驱动DOM渲染。那么贪吃蛇中有哪些数据呢？1、作为背景的格子（每个格子的位置信息）2、蛇的位置 3、食物的位置 4、蛇的运动方向</p>
 </blockquote>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Greeting extends Component &#123;</span><br><span class="line">  static defaultProps = &#123;</span><br><span class="line">    name: &apos;stranger&apos;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;Hello, &#123;this.props.name&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>It is considerably more convenient. But non-functional properties are not currently supported for ES2015 classes, you should install extra plugin to support this syntax. If you want to only use strictly ES2015, the former syntax is the better choice.</p>
-</blockquote>
-<h2 id="我是怎么发现的"><a href="#我是怎么发现的" class="headerlink" title="我是怎么发现的"></a>我是怎么发现的</h2><p>在写代码的过程中，我发现平时都是用<code>static defaultProps</code>这种方式来声明defaultProps，当时是对static这个关键字有点好奇。虽然一直是这么写的，但是平时好像真的没怎么关注它的原理。</p>
-<blockquote>
-<p>如果在一个方法前，加上<code>static</code>关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。</p>
-</blockquote>
-<p>static是ES6的语法糖的写法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Test &#123;</span><br><span class="line">	static defaultProps = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>会被babel翻译成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">function _classCallCheck(instance, Constructor) &#123; if (!(instance instanceof Constructor)) &#123; throw new TypeError(&quot;Cannot call a class as a function&quot;); &#125; &#125;</span><br><span class="line"></span><br><span class="line">var Test = function Test() &#123;</span><br><span class="line">	_classCallCheck(this, Test);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Test.defaultProps = 1;</span><br></pre></td></tr></table></figure></p>
-<p>那么react官网关于初始化props是怎么说的呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Greeting extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;/h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Specifies the default values for props:</span><br><span class="line">Greeting.defaultProps = &#123;</span><br><span class="line">  name: &apos;Stranger&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Renders &quot;Hello, Stranger&quot;:</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Greeting /&gt;,</span><br><span class="line">  document.getElementById(&apos;example&apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
-<p>官网上写的用法如上，却没有提到<code>static defaultProps</code> 这种方式。但是平时大家好像更经常使用的是<code>static defaultProps</code>这种方式。所以我就补充上了这种用法，并给react提了pr。</p>
-<h2 id="这次经历的收获"><a href="#这次经历的收获" class="headerlink" title="这次经历的收获"></a>这次经历的收获</h2><p>1、外国人的做事方式还是很严谨的。我在代码里多了一个空行，也被他发现并删除了。所以，平时也要严格要求自己。</p>
-<p>2、平时在有能力的前提下，最好多阅读英文文档，这样不光是可以获得第一手资料，还可以在平时就培养一些语感。因为在跟老外交流的过程中就明显发现自己英文词汇的匮乏。<code>书到用时方恨少</code>是真真的感受到了。</p>
-<p>3、在平时有疑问可以去查看官方文档，然后结合网上的一些资料和自己的理解进行尝试。有些用法哪怕我们已经习以为常了，也要多反问自己，为什么要这么做。</p>
+<p>那么在贪吃蛇这个游戏中什么数据是需要放在state中进行状态管理的？什么是可以通过state进行计算生成的？</p>
+<h2 id="react-canvas"><a href="#react-canvas" class="headerlink" title="react-canvas"></a>react-canvas</h2><ul>
+<li>react-canvas是FlipBoard开发的一个开源库。由于web App 在手机端性能不佳，主要原因是DOM操作太慢，因此，<br>FlipBoard抛弃使用DOM，直接使用canvas和用户进行交互(即用“开发游戏”的思路来做UI组件)。想了解具体内容可以去看阮一峰的<br><a href="http://www.ruanyifeng.com/blog/2015/02/future-of-dom.html" target="_blank" rel="noopener">也许，DOM 不是答案</a>。</li>
+</ul>
 
       
 
@@ -272,7 +290,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/21/记一次给react.org提pr的经历/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/21/贪吃蛇react/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -286,18 +304,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/21/贪吃蛇react/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          贪吃蛇react
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">在ReactJS中setState操作有可能是同步的【译】</div>
+    <a href="/2017/11/21/记一次给react.org提pr的经历/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记一次给react.org提pr的经历</div>
       <i class="icon-circle-right"></i>
     </a>
   
