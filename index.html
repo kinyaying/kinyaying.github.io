@@ -151,6 +151,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-在ReactJS中setState操作有可能是同步的【译】" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/">在ReactJS中setState操作有可能是同步的【译】</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/" class="archive-article-date">
+  	<time datetime="2017-11-21T08:08:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文地址：<a href="https://www.bennadel.com/blog/2893-setstate-state-mutation-operation-may-be-synchronous-in-reactjs.htm" target="_blank" rel="noopener">setState() State Mutation Operation May Be Synchronous In ReactJS</a></p>
+<p>我在做reactJS的项目的时候，总是遇到在一个方法里多次调用setState()的情况。这需要在不同的逻辑代码里使用不同的state.然而，我头脑中却不太清楚在多次调用setState()的间隙，state是怎么变化的。所以我决定深入了解一下内部原理，并发现setState()的调用是否是同步与这个调用最初是如何触发的有关。</p>
+<p><a href="http://bennadel.github.io/JavaScript-Demos/demos/set-state-timing-reactjs/" target="_blank" rel="noopener">点击运行demo</a></p>
+<p>ReactJS官方文档中关于setState()方法的描述有点令人困惑。官方文档如下：</p>
+<blockquote>
+<p>setState() does not immediately mutate this.state but creates a pending state transition. Accessing this.state after calling this method can potentially return the existing value.</p>
+</blockquote>
+<p>这两句话看起来是矛盾的。一方面它说setState不会立刻改变state的值，另一方面又说随后访问state可能返回当前值。 有可能返回和不会马上返回矛盾了。<br>阅读源码后发现，不同的state的变化是由setState事件是如何调用决定的。如果是在被ReactJS监控的事件中调用（比如onClick事件），react会在事件结束的时候分批处理state的更新。如果setState是在定时器里面或者是开发者自己的事件处理方法中调用的，ReactJS就不能分批更新state，只能立刻改变state的值。<br>为了弄清这两种方式的不同，我写了个单个组件的例子。例中我在不同的事件中调用setState方法。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br><span class="line">        setState() State Mutation Operation May Be Synchronous In ReactJS</span><br><span class="line">    <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"./demo.css"</span>&gt;</span><span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        setState() State Mutation Operation May Be Synchronous In ReactJS</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- This content will be replaced with the React rendering. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Load scripts. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../../vendor/reactjs/react-0.13.3.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        // I manage the Demo widget.</span></span><br><span class="line"><span class="undefined">        var Demo = React.createClass(&#123;</span></span><br><span class="line"><span class="undefined">            // I initialize the state of the component, including instance variables.</span></span><br><span class="line"><span class="undefined">            getInitialState: function() &#123;</span></span><br><span class="line"><span class="undefined">                return(&#123;</span></span><br><span class="line"><span class="undefined">                    counter: 0</span></span><br><span class="line"><span class="undefined">                &#125;);</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            // ---</span></span><br><span class="line"><span class="undefined">            // PUBLIC METHODS.</span></span><br><span class="line"><span class="undefined">            // ---</span></span><br><span class="line"><span class="undefined">            // I get called once, on the client, when the component has been rendered.</span></span><br><span class="line"><span class="undefined">            componentDidMount: function() &#123;</span></span><br><span class="line"><span class="undefined">                // Automatically update the state every 3 seconds.</span></span><br><span class="line"><span class="undefined">                setInterval( this.updateState, 3000 );</span></span><br><span class="line"><span class="undefined">                // Update the state on mouse-down.</span></span><br><span class="line"><span class="undefined">                // --</span></span><br><span class="line"><span class="undefined">                // NOTE: We are implementing our own event binding here - not using the</span></span><br><span class="line"><span class="undefined">                // React Element props to manage the event handler.</span></span><br><span class="line"><span class="undefined">                React.findDOMNode( this )</span></span><br><span class="line"><span class="undefined">                    .addEventListener( "mousedown", this.updateState )</span></span><br><span class="line"><span class="undefined">                ;</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            // I render the component based on the current state.</span></span><br><span class="line"><span class="undefined">            render: function() &#123;</span></span><br><span class="line"><span class="undefined">                return(</span></span><br><span class="line"><span class="undefined">                    React.DOM.span(</span></span><br><span class="line"><span class="undefined">                        &#123;</span></span><br><span class="line"><span class="undefined">                            onClick: this.updateState,</span></span><br><span class="line"><span class="undefined">                            className: "button"</span></span><br><span class="line"><span class="undefined">                        &#125;,</span></span><br><span class="line"><span class="undefined">                        ( "Counter at " + this.state.counter )</span></span><br><span class="line"><span class="undefined">                    )</span></span><br><span class="line"><span class="undefined">                );</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            // I update the state and log the existing state value on either side of</span></span><br><span class="line"><span class="undefined">            // the operation in an attempt to see if the state mutation operation is</span></span><br><span class="line"><span class="undefined">            // synchronous or asynchronous.</span></span><br><span class="line"><span class="undefined">            updateState: function( event ) &#123;</span></span><br><span class="line"><span class="undefined">                console.log( "= = = = = = = = = = = =" );</span></span><br><span class="line"><span class="undefined">                console.log( "EVENT:", ( event ? event.type : "timer" ) );</span></span><br><span class="line"><span class="undefined">                console.log( "Pre-setState:", this.state.counter );</span></span><br><span class="line"><span class="undefined">                this.setState(&#123;</span></span><br><span class="line"><span class="undefined">                    counter: ( this.state.counter + 1 )</span></span><br><span class="line"><span class="undefined">                &#125;);</span></span><br><span class="line"><span class="undefined">                console.log( "Post-setState:", this.state.counter );</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">        // --------------------------------------------------------------------------- //</span></span><br><span class="line"><span class="undefined">        // --------------------------------------------------------------------------- //</span></span><br><span class="line"><span class="undefined">        // Render the root Demo and mount it inside the given element.</span></span><br><span class="line"><span class="undefined">        React.render(</span></span><br><span class="line"><span class="undefined">            React.createElement( Demo ),</span></span><br><span class="line"><span class="undefined">            document.getElementById( "content" )</span></span><br><span class="line"><span class="undefined">        );</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如你所见，updateState()方法被三种不同的方式调用：</p>
+<ul>
+<li>setTimeout() - 不受ReactJS控制。</li>
+<li>mousedown - 不受ReactJS控制。</li>
+<li>onClick - 受ReactJS控制。</li>
+</ul>
+<p>由于受ReactJS控制的调用中state会是异步的。上面的例子运行后的结果如下图：</p>
+<p><img src="https://www.bennadel.com/resources/uploads/2015/set-state-timing-in-reactjs.png" alt="image"></p>
+<p>可以看到只有onClick事件里输出的state值在setState()运行前后没有变化。这就是因为ReactJS会在事件执行结束的时候批量处理改变state的操作。</p>
+<p>由于改变state的操作有可能是也有可能不是同步的，最好假设它是不确定的。就算你非常确定它的工作流程，改变state是在strategy component 中完成的，而这个是异步的。所以，最好不要做任何假设。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-webpack-dashboard使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -436,140 +516,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/11/16/linux常用命令行（补充完整英文单词）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/test/">test</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/test/" class="archive-article-date">
-  	<time datetime="2017-11-15T13:23:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>测试内容</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/test/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/15/hello-world/" class="archive-article-date">
-  	<time datetime="2017-11-15T12:41:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/15/hello-world/">展开全文 >></a>
         </p>
       
 
