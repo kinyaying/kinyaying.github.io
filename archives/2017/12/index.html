@@ -6,18 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>贪吃蛇react | Kinyaying&#39;s Blog</title>
+  <title>Archives: 2017/12 | Kinyaying&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善">
-<meta property="og:type" content="article">
-<meta property="og:title" content="贪吃蛇react">
-<meta property="og:url" content="http://yoursite.com/2017/11/21/贪吃蛇react/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Kinyaying&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/archives/2017/12/index.html">
 <meta property="og:site_name" content="Kinyaying&#39;s Blog">
-<meta property="og:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
-<meta property="og:updated_time" content="2017-11-21T11:29:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="贪吃蛇react">
-<meta name="twitter:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
+<meta name="twitter:title" content="Kinyaying&#39;s Blog">
   
     <link rel="alternative" href="/atom.xml" title="Kinyaying&#39;s Blog" type="application/atom+xml">
   
@@ -153,202 +149,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-贪吃蛇react" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      贪吃蛇react
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/12/01/从零搭建vue脚手架/" class="archive-article-date">
+  	<time datetime="2017-12-01T15:55:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-01</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/12/01/从零搭建vue脚手架/">从零搭建vue脚手架</a>
     </h1>
   
 
-        
-        <a href="/2017/11/21/贪吃蛇react/" class="archive-article-date">
-  	<time datetime="2017-11-21T11:29:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="贪吃蛇"><a href="#贪吃蛇" class="headerlink" title="贪吃蛇"></a>贪吃蛇</h2><p><code>react</code> <code>react-canvas</code> <code>webpack</code></p>
-<p>用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。</p>
-<h2 id="分析功能"><a href="#分析功能" class="headerlink" title="分析功能"></a>分析功能</h2><p>首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。</p>
-<p><strong>基础功能:</strong></p>
-<ul>
-<li>1、蛇的运动（包括上下左右四个方向）</li>
-<li>2、出现位置随机的食物</li>
-<li>3、蛇吃食物<ul>
-<li>蛇身体变长</li>
-<li>食物消失，新的位置出现食物</li>
-</ul>
-</li>
-<li>4、边界条件<ul>
-<li>蛇撞墙死了</li>
-<li>蛇把自己咬死了</li>
-</ul>
-</li>
-</ul>
-<p><strong>扩展功能:</strong></p>
-<ul>
-<li>1、速度是否可以用户自己调节？</li>
-<li>2、设置开始、暂停按钮</li>
-<li>3、分数的展示</li>
-<li>4、改变蛇的颜色</li>
-</ul>
-<p><strong>开下脑洞:</strong></p>
-<ul>
-<li>吃蓝色食物变长，吃红色食物速度变快，吃绿色食物变粗</li>
-<li>存在多条蛇，需要躲避多条蛇</li>
-<li>3d的贪吃蛇又该怎么实现？</li>
-</ul>
-<h2 id="整理思路"><a href="#整理思路" class="headerlink" title="整理思路"></a>整理思路</h2><blockquote>
-<p>react的思想是用数据去驱动DOM渲染。那么贪吃蛇中有哪些数据呢？1、作为背景的格子（每个格子的位置信息）2、蛇的位置 3、食物的位置 4、蛇的运动方向</p>
-</blockquote>
-<p>那么在贪吃蛇这个游戏中什么数据是需要放在state中进行状态管理的？什么是可以通过state进行计算生成的？</p>
-<h2 id="react-canvas"><a href="#react-canvas" class="headerlink" title="react-canvas"></a>react-canvas</h2><ul>
-<li>react-canvas是FlipBoard开发的一个开源库。由于web App 在手机端性能不佳，主要原因是DOM操作太慢，因此，<br>FlipBoard抛弃使用DOM，直接使用canvas和用户进行交互(即用“开发游戏”的思路来做UI组件)。想了解具体内容可以去看阮一峰的<br><a href="http://www.ruanyifeng.com/blog/2015/02/future-of-dom.html" target="_blank" rel="noopener">也许，DOM 不是答案</a>。</li>
-</ul>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/21/贪吃蛇react/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/12/01/从零搭建vue脚手架/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          从零搭建vue脚手架
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/11/21/记一次给react.org提pr的经历/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">记一次给react.org提pr的经历</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -371,8 +214,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

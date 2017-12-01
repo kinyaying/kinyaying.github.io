@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>贪吃蛇react | Kinyaying&#39;s Blog</title>
+  <title>从零搭建vue脚手架 | Kinyaying&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善">
+  <meta name="description" content="最近正在折腾vue，就尝试着使用webpack+vue+vue-router+vuex从零搭建脚手架。 首先是完成webpack的配置。 webpack的配置基本配置1npm install webpack webpack-dev-server --save  babel的配置babel-loaderbabel-cor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="贪吃蛇react">
-<meta property="og:url" content="http://yoursite.com/2017/11/21/贪吃蛇react/index.html">
+<meta property="og:title" content="从零搭建vue脚手架">
+<meta property="og:url" content="http://yoursite.com/2017/12/01/从零搭建vue脚手架/index.html">
 <meta property="og:site_name" content="Kinyaying&#39;s Blog">
-<meta property="og:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
-<meta property="og:updated_time" content="2017-11-21T11:29:52.000Z">
+<meta property="og:description" content="最近正在折腾vue，就尝试着使用webpack+vue+vue-router+vuex从零搭建脚手架。 首先是完成webpack的配置。 webpack的配置基本配置1npm install webpack webpack-dev-server --save  babel的配置babel-loaderbabel-corebabel-preset-es2015babel-preset-stage-0">
+<meta property="og:updated_time" content="2017-12-01T15:55:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="贪吃蛇react">
-<meta name="twitter:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
+<meta name="twitter:title" content="从零搭建vue脚手架">
+<meta name="twitter:description" content="最近正在折腾vue，就尝试着使用webpack+vue+vue-router+vuex从零搭建脚手架。 首先是完成webpack的配置。 webpack的配置基本配置1npm install webpack webpack-dev-server --save  babel的配置babel-loaderbabel-corebabel-preset-es2015babel-preset-stage-0">
   
     <link rel="alternative" href="/atom.xml" title="Kinyaying&#39;s Blog" type="application/atom+xml">
   
@@ -153,64 +153,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-贪吃蛇react" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-从零搭建vue脚手架" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      贪吃蛇react
+      从零搭建vue脚手架
     </h1>
   
 
         
-        <a href="/2017/11/21/贪吃蛇react/" class="archive-article-date">
-  	<time datetime="2017-11-21T11:29:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
+        <a href="/2017/12/01/从零搭建vue脚手架/" class="archive-article-date">
+  	<time datetime="2017-12-01T15:55:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="贪吃蛇"><a href="#贪吃蛇" class="headerlink" title="贪吃蛇"></a>贪吃蛇</h2><p><code>react</code> <code>react-canvas</code> <code>webpack</code></p>
-<p>用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。</p>
-<h2 id="分析功能"><a href="#分析功能" class="headerlink" title="分析功能"></a>分析功能</h2><p>首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。</p>
-<p><strong>基础功能:</strong></p>
+        <p>最近正在折腾vue，就尝试着使用webpack+vue+vue-router+vuex从零搭建脚手架。</p>
+<p>首先是完成webpack的配置。</p>
+<h2 id="webpack的配置"><a href="#webpack的配置" class="headerlink" title="webpack的配置"></a>webpack的配置</h2><p><strong>基本配置</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-dev-server --save</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>1、蛇的运动（包括上下左右四个方向）</li>
-<li>2、出现位置随机的食物</li>
-<li>3、蛇吃食物<ul>
-<li>蛇身体变长</li>
-<li>食物消失，新的位置出现食物</li>
-</ul>
+<li><p>babel的配置<br>babel-loader<br>babel-core<br>babel-preset-es2015<br>babel-preset-stage-0</p>
 </li>
-<li>4、边界条件<ul>
-<li>蛇撞墙死了</li>
-<li>蛇把自己咬死了</li>
-</ul>
+<li><p>vue的配置<br>vue<br>vue-loader<br>vue-template-compiler (为什么要装这个？)</p>
+</li>
+<li><p>less<br>style-loader css-loader less-loader</p>
+</li>
+<li><p>图片的配置<br>file-loader url-loader</p>
 </li>
 </ul>
-<p><strong>扩展功能:</strong></p>
-<ul>
-<li>1、速度是否可以用户自己调节？</li>
-<li>2、设置开始、暂停按钮</li>
-<li>3、分数的展示</li>
-<li>4、改变蛇的颜色</li>
-</ul>
-<p><strong>开下脑洞:</strong></p>
-<ul>
-<li>吃蓝色食物变长，吃红色食物速度变快，吃绿色食物变粗</li>
-<li>存在多条蛇，需要躲避多条蛇</li>
-<li>3d的贪吃蛇又该怎么实现？</li>
-</ul>
-<h2 id="整理思路"><a href="#整理思路" class="headerlink" title="整理思路"></a>整理思路</h2><blockquote>
-<p>react的思想是用数据去驱动DOM渲染。那么贪吃蛇中有哪些数据呢？1、作为背景的格子（每个格子的位置信息）2、蛇的位置 3、食物的位置 4、蛇的运动方向</p>
-</blockquote>
-<p>那么在贪吃蛇这个游戏中什么数据是需要放在state中进行状态管理的？什么是可以通过state进行计算生成的？</p>
-<h2 id="react-canvas"><a href="#react-canvas" class="headerlink" title="react-canvas"></a>react-canvas</h2><ul>
-<li>react-canvas是FlipBoard开发的一个开源库。由于web App 在手机端性能不佳，主要原因是DOM操作太慢，因此，<br>FlipBoard抛弃使用DOM，直接使用canvas和用户进行交互(即用“开发游戏”的思路来做UI组件)。想了解具体内容可以去看阮一峰的<br><a href="http://www.ruanyifeng.com/blog/2015/02/future-of-dom.html" target="_blank" rel="noopener">也许，DOM 不是答案</a>。</li>
-</ul>
+<p>HtmlWebpackPlugin html-webpack-plugin</p>
+<p><strong>附加配置</strong><br>devtool: ‘source-map’</p>
+<p>添加.babelrc配置</p>
+<p>修改package.json文件</p>
+<h2 id="开始写代码了"><a href="#开始写代码了" class="headerlink" title="开始写代码了"></a>开始写代码了</h2><h2 id="搭建入口文件"><a href="#搭建入口文件" class="headerlink" title="搭建入口文件"></a>搭建入口文件</h2><p>新建index.js，引入vue，new Vue()实例，渲染页面。<br>此处有坑<br>如果使用模板的方式渲染页面，那么会有报错提示提示<br>不支持template, 只支持render<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue/dist/vue.js&apos;;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  template: &apos;&lt;div&gt;test&lt;/div&gt;&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>报错的提示是必须使用render方法才行。所以把app.index改成这样：<br>方式一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import App from &apos;./index.vue&apos;;</span><br><span class="line"></span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  render: (h) =&gt; h(App)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>当然也可以使用template这种方式，但是我们引入的路径需要进行修改。<br>方式二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue/dist/vue.js&apos;;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  template: &apos;&lt;div&gt;test&lt;/div&gt;&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这两种方式有什么区别呢？ <code>import Vue from &#39;vue/dist/vue.js&#39;;</code>这种引入方式最后的大小会大6kb。所以我这里就使用方式一了。这里我们就实现了根组件挂载在根实例上。</p>
+<h2 id="搭建vue路由"><a href="#搭建vue路由" class="headerlink" title="搭建vue路由"></a>搭建vue路由</h2><p>作为单页面结构，路由是实现页面跳转等不可缺少的东西。<br>1、安装router<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-router</span><br></pre></td></tr></table></figure></p>
+<p>2、配置vue-router<br>新建一个Router文件夹，在目录下新建index.js文件，然后内部引入react-router，并设置相关配置项如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import VueRouter from &apos;vue-router&apos;;</span><br><span class="line">import Home from &apos;../Containers/Home.vue&apos;;</span><br><span class="line">import List from &apos;../Containers/List.vue&apos;;</span><br><span class="line"></span><br><span class="line">const routes = [</span><br><span class="line">  &#123;path: &apos;/home&apos;, component: Home&#125;,</span><br><span class="line">  &#123;path: &apos;/list&apos;, component: List&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">const router = new VueRouter(&#123;routes&#125;);</span><br><span class="line">export default router;</span><br></pre></td></tr></table></figure></p>
+<p>其中Home和List都是容器组件，routes是路径的配置，path代表 component代表<br>我们创建VueRouter的实例，然后把routes作为参数传入，最后导出配置好的router<br>3、引入Router，此处分为3步：<br>1）在入口文件app.js文件夹下，引入我们配置好的router文件<code>import router from &#39;./Router/index.js&#39;</code>，<br>2）Vue.use(VueRouter);<br>use的功能是注册一些全局的内容，这么做就是把我们的VueRouter注册成了全局组件。具体是Vue.use会调用react-router里面的install方法，这个方法里面注册了两个全局组件<code>router-view</code>和<code>router-link</code>。<br>那么在app.vue里面就可以使用<router-view>了<br>3) Vue的实例里插入router;<br>app.js里的代码变成这样了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import VueRouter from &apos;vue-router&apos;;</span><br><span class="line">import router from &apos;./Router/index.js&apos;</span><br><span class="line">import App from &apos;./index.vue&apos;;</span><br><span class="line"></span><br><span class="line">console.log(&apos;router::&apos;, router)</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line"></span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  render: (h) =&gt; h(App),</span><br><span class="line">  router</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></router-view></p>
+<p>4、我们还缺少router-view<br>把index.vue里面的模板做如下修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>好了，让我们来试一下吧。在浏览器的输入框里输入/home /list，是不是页面跳转到对应的Home页面和List页面了呢？<br>接下来我们再添加一下router-link吧。继续修改index.vue:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">    &lt;router-link to=&apos;/&apos;&gt;首页&lt;/router-link&gt;</span><br><span class="line">    &lt;router-link to=&apos;/list&apos;&gt;列表&lt;/router-link&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这样就出现了两个能够切换页面的按钮了。点击按钮就实现了页面的来回切换。</p>
+<h2 id="添加一个UI库吧"><a href="#添加一个UI库吧" class="headerlink" title="添加一个UI库吧"></a>添加一个UI库吧</h2><p>貌似这个脚手架已经完成一半了，为了变得更加的高大上，我引入Element-UI这个组件库。官网地址：<a href="http://element-cn.eleme.io/" target="_blank" rel="noopener">http://element-cn.eleme.io/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install element-ui -S</span><br></pre></td></tr></table></figure></p>
+<p>Element-UI有两种引入方式：完整引入和按需引入。这里我选择按需引入。这块的步骤我就不写了，官网有详细的介绍【官网传送门】。</p>
+<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p>视图层的工作弄完了，我们再搭建一下数据层。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vuex -S</span><br></pre></td></tr></table></figure></p>
+<h2 id="补充-优化"><a href="#补充-优化" class="headerlink" title="补充/优化"></a>补充/优化</h2><p>1、写vue的全局插件<br>其实，像navbar loading tip(提示框) alert这种具有通用性的组件，可能多个页面都需要用到。如果我们在每个页面都挂载这些组件，就会增加一些多余的重复代码。所以实现全局的组件是一个不错的选择。<br>那么我就以loading为例，把它挂载到全局组件上。</p>
+<p>当然除了这种方式还有其他的实现机制。比如如果我们的h5的包是以hybird的形式嵌入到一个原生App中的话，我们可以考虑使用cordova去调用原生App实现的Alert, Navbar组件。这种方式有一个好处，就是如果h5页面内部逻辑出错，导致页面白板，至少能够保证Navbar上的退出按钮是可用的。用户可以进行退出操作，不用强制把应用关闭。(这可是我在项目中亲身经历过的，说多了都是泪~)<br>2、</p>
 
       
 
@@ -290,7 +284,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/21/贪吃蛇react/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/01/从零搭建vue脚手架/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +298,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/01/从零搭建vue脚手架/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          从零搭建vue脚手架
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/21/记一次给react.org提pr的经历/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">记一次给react.org提pr的经历</div>
+    <a href="/2017/11/21/贪吃蛇react/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">贪吃蛇react</div>
       <i class="icon-circle-right"></i>
     </a>
   
