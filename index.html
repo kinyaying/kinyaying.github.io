@@ -171,12 +171,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近正在折腾vue，就尝试着使用webpack+vue+vue-router+vuex从零搭建脚手架。</p>
-<p>首先是完成webpack的配置。</p>
-<h2 id="webpack的配置"><a href="#webpack的配置" class="headerlink" title="webpack的配置"></a>webpack的配置</h2><p><strong>基本配置</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-dev-server --save</span><br></pre></td></tr></table></figure></p>
+        <p>最近正在折腾vue，就尝试着使用webpack+vue+vue-router+vuex从零搭建脚手架。让我们一步一步来实现这个脚手架的搭建吧。</p>
+<h2 id="webpack的配置"><a href="#webpack的配置" class="headerlink" title="webpack的配置"></a>webpack的配置</h2><p>首先新建一个文件，文件名为webpack.config.js，然后对package.json里的script做如下修改。这样在终端上执行<code>npm start</code>命令就相当于执行了<code>webpack-dev-server --port 8080</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;webpack-dev-server --port 8080&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>基本配置</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-dev-server --save</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><p>babel的配置<br>babel-loader<br>babel-core<br>babel-preset-es2015<br>babel-preset-stage-0</p>
+<li>1、babel的配置，需要安装如下的库。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-loader babel-core babel-preset-es2015 babel-preset-stage-0 --save-dev</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<p>然后新建并配置下</p>
+<ul>
 <li><p>vue的配置<br>vue<br>vue-loader<br>vue-template-compiler (为什么要装这个？)</p>
 </li>
 <li><p>less<br>style-loader css-loader less-loader</p>
@@ -200,9 +203,12 @@
 <p>这样就出现了两个能够切换页面的按钮了。点击按钮就实现了页面的来回切换。</p>
 <h2 id="添加一个UI库吧"><a href="#添加一个UI库吧" class="headerlink" title="添加一个UI库吧"></a>添加一个UI库吧</h2><p>貌似这个脚手架已经完成一半了，为了变得更加的高大上，我引入Element-UI这个组件库。官网地址：<a href="http://element-cn.eleme.io/" target="_blank" rel="noopener">http://element-cn.eleme.io/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install element-ui -S</span><br></pre></td></tr></table></figure></p>
 <p>Element-UI有两种引入方式：完整引入和按需引入。这里我选择按需引入。这块的步骤我就不写了，官网有详细的介绍【官网传送门】。</p>
-<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><p>视图层的工作弄完了，我们再搭建一下数据层。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vuex -S</span><br></pre></td></tr></table></figure></p>
-<h2 id="补充-优化"><a href="#补充-优化" class="headerlink" title="补充/优化"></a>补充/优化</h2><p>1、写vue的全局插件<br>其实，像navbar loading tip(提示框) alert这种具有通用性的组件，可能多个页面都需要用到。如果我们在每个页面都挂载这些组件，就会增加一些多余的重复代码。所以实现全局的组件是一个不错的选择。<br>那么我就以loading为例，把它挂载到全局组件上。</p>
-<p>当然除了这种方式还有其他的实现机制。比如如果我们的h5的包是以hybird的形式嵌入到一个原生App中的话，我们可以考虑使用cordova去调用原生App实现的Alert, Navbar组件。这种方式有一个好处，就是如果h5页面内部逻辑出错，导致页面白板，至少能够保证Navbar上的退出按钮是可用的。用户可以进行退出操作，不用强制把应用关闭。(这可是我在项目中亲身经历过的，说多了都是泪~)<br>2、</p>
+<h2 id="数据层vuex"><a href="#数据层vuex" class="headerlink" title="数据层vuex"></a>数据层vuex</h2><p>视图层的工作弄完了，我们再搭建一下数据层。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vuex -S</span><br></pre></td></tr></table></figure></p>
+<p>vue里面的数据传递可以通过找共同的父组件通过属性一层层的传递来进行。<br>另一种方式可以通过eventbus来传递。但是eventbus的本质是事件的发布订阅模式，比较混乱，如果项目大了，需要监听多个事件，还可能造成命名冲突等问题。<br>vuex解决可以解决平级组件以及跨组件的数据传递问题。vuex主要用在大型项目中，来将数据进行统一管理。</p>
+<h2 id="添加nodejs模块"><a href="#添加nodejs模块" class="headerlink" title="添加nodejs模块"></a>添加nodejs模块</h2><p>其实这个部分已经不属于脚手架的部分了，只是在开发的过程中，前端和后台的开发工作会同时进行。所以前端需要先利用假数据进行开发，完成后再跟后台进行数据联调。这时就需要我们在本地利用nodejs搭建一个本地的服务，读取假数据，返回给前端。<br>vuex不能直接修改状态，虽然这么做是不会报错的，但是<br>vuex的理念是单项数据流，不允许组件直接修改状态</p>
+<h2 id="更多的思考"><a href="#更多的思考" class="headerlink" title="更多的思考"></a>更多的思考</h2><p>虽然脚手架搭建完毕了，但是还有些可以优化的地方。<br>1、将某些公用的组件变成vue的全局插件<br>其实，像loading、message(消息框) alert这种具有通用性的组件，可能多个页面都需要用到。如果我们在每个页面都挂载这些组件，就会增加一些多余的重复代码。所以实现全局的组件是一个不错的选择。<br>那么我就以loading为例，把它挂载到全局组件上。</p>
+<p>2、当然我们还可以结合原生APP做其他优化。比如如果我们的h5的包是以hybird的形式嵌入到一个原生App中的话，我们可以考虑将Navbar变成原生的组件。也就是说在浏览器里顶部导航条是h5导航条，而在手机里顶部的导航条是原生的，下面的容器才是webview浏览器。这种方式有一个好处，就是如果h5页面内部逻辑出错，导致页面白板，至少能够保证Navbar上的退出按钮是可用的。用户可以进行退出操作，不用强制把应用关闭。(这可是我在项目中亲身经历过的，说多了都是泪~)。</p>
+<p>3、其实我上面的webpack的配置还是很粗糙的，只是实现的基本的配置，还可以进一步的优化。</p>
 
       
 
