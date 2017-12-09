@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Kinyaying&#39;s Blog">
 <meta property="og:description" content="原文地址：setState() State Mutation Operation May Be Synchronous In ReactJS 我在做reactJS的项目的时候，总是遇到在一个方法里多次调用setState()的情况。这需要在不同的逻辑代码里使用不同的state.然而，我头脑中却不太清楚在多次调用setState()的间隙，state是怎么变化的。所以我决定深入了解一下内部原理，并发">
 <meta property="og:image" content="https://www.bennadel.com/resources/uploads/2015/set-state-timing-in-reactjs.png">
-<meta property="og:updated_time" content="2017-11-21T08:09:16.000Z">
+<meta property="og:updated_time" content="2017-12-09T13:37:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在ReactJS中setState操作有可能是同步的【译】">
 <meta name="twitter:description" content="原文地址：setState() State Mutation Operation May Be Synchronous In ReactJS 我在做reactJS的项目的时候，总是遇到在一个方法里多次调用setState()的情况。这需要在不同的逻辑代码里使用不同的state.然而，我头脑中却不太清楚在多次调用setState()的间隙，state是怎么变化的。所以我决定深入了解一下内部原理，并发">
@@ -43,7 +43,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -95,8 +95,7 @@
         <!-- Table of Contents -->
         
         <p>原文地址：<a href="https://www.bennadel.com/blog/2893-setstate-state-mutation-operation-may-be-synchronous-in-reactjs.htm" target="_blank" rel="noopener">setState() State Mutation Operation May Be Synchronous In ReactJS</a></p>
-<p>我在做reactJS的项目的时候，总是遇到在一个方法里多次调用setState()的情况。这需要在不同的逻辑代码里使用不同的state.然而，我头脑中却不太清楚在多次调用setState()的间隙，state是怎么变化的。所以我决定深入了解一下内部原理，并发现setState()的调用是否是同步与这个调用最初是如何触发的有关。</p>
-<p><a href="http://bennadel.github.io/JavaScript-Demos/demos/set-state-timing-reactjs/" target="_blank" rel="noopener">点击运行demo</a></p>
+<p>我在做reactJS的项目的时候，总是遇到在一个方法里多次调用setState()的情况。这需要在不同的逻辑代码里使用不同的state.然而，我头脑中却不太清楚在多次调用setState()的间隙，state是怎么变化的。所以我决定深入了解一下内部原理，并发现setState()的调用是否是同步与这个调用最初是如何触发的有关。<br><a id="more"></a><br><a href="http://bennadel.github.io/JavaScript-Demos/demos/set-state-timing-reactjs/" target="_blank" rel="noopener">点击运行demo</a></p>
 <p>ReactJS官方文档中关于setState()方法的描述有点令人困惑。官方文档如下：</p>
 <blockquote>
 <p>setState() does not immediately mutate this.state but creates a pending state transition. Accessing this.state after calling this method can potentially return the existing value.</p>
@@ -116,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/" data-id="cjazdbnwv00036613rhbva7jv" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/" data-id="cjazdyho70004g113zpsm39lk" class="article-share-link">Delen</a>
       
       
       
@@ -126,7 +125,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -169,7 +168,7 @@
 <nav id="article-nav">
   
     <a href="/2017/11/21/记一次给react.org提pr的经历/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
           记一次给react.org提pr的经历
@@ -179,7 +178,7 @@
   
   
     <a href="/2017/11/16/webpack-dashboard使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">webpack-dashboard使用三部曲</div>
     </a>
   
@@ -218,7 +217,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
+    <h3 class="widget-title recent-posts">Recente berichten</h3>
     <div class="widget">
       <ul>
         
@@ -264,10 +263,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2017 Kinyaying&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;youemail@outlook.com
+      Contact&nbsp;|&nbsp;youemail@outlook.com
     </div>
   </div>
 </footer>

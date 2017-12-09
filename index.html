@@ -37,7 +37,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -97,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/01/从零搭建vue脚手架/" data-id="cjazdbnw70000661309gjj4ks" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/12/01/从零搭建vue脚手架/" data-id="cjazdyho10002g113vvudtmcj" class="article-share-link">Delen</a>
       
       
       
@@ -131,51 +131,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <h2 id="贪吃蛇"><a href="#贪吃蛇" class="headerlink" title="贪吃蛇"></a>贪吃蛇</h2><p><code>react</code> <code>react-canvas</code> <code>webpack</code></p>
 <p>用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。</p>
-<h2 id="分析功能"><a href="#分析功能" class="headerlink" title="分析功能"></a>分析功能</h2><p>首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。</p>
-<p><strong>基础功能:</strong></p>
-<ul>
-<li>1、蛇的运动（包括上下左右四个方向）</li>
-<li>2、出现位置随机的食物</li>
-<li>3、蛇吃食物<ul>
-<li>蛇身体变长</li>
-<li>食物消失，新的位置出现食物</li>
-</ul>
-</li>
-<li>4、边界条件<ul>
-<li>蛇撞墙死了</li>
-<li>蛇把自己咬死了</li>
-</ul>
-</li>
-</ul>
-<p><strong>扩展功能:</strong></p>
-<ul>
-<li>1、速度是否可以用户自己调节？</li>
-<li>2、设置开始、暂停按钮</li>
-<li>3、分数的展示</li>
-<li>4、改变蛇的颜色</li>
-</ul>
-<p><strong>开下脑洞:</strong></p>
-<ul>
-<li>吃蓝色食物变长，吃红色食物速度变快，吃绿色食物变粗</li>
-<li>存在多条蛇，需要躲避多条蛇</li>
-<li>3d的贪吃蛇又该怎么实现？</li>
-</ul>
-<h2 id="整理思路"><a href="#整理思路" class="headerlink" title="整理思路"></a>整理思路</h2><blockquote>
-<p>react的思想是用数据去驱动DOM渲染。那么贪吃蛇中有哪些数据呢？1、作为背景的格子（每个格子的位置信息）2、蛇的位置 3、食物的位置 4、蛇的运动方向</p>
-</blockquote>
-<p>那么在贪吃蛇这个游戏中什么数据是需要放在state中进行状态管理的？什么是可以通过state进行计算生成的？</p>
-<h2 id="react-canvas"><a href="#react-canvas" class="headerlink" title="react-canvas"></a>react-canvas</h2><ul>
-<li>react-canvas是FlipBoard开发的一个开源库。由于web App 在手机端性能不佳，主要原因是DOM操作太慢，因此，<br>FlipBoard抛弃使用DOM，直接使用canvas和用户进行交互(即用“开发游戏”的思路来做UI组件)。想了解具体内容可以去看阮一峰的<br><a href="http://www.ruanyifeng.com/blog/2015/02/future-of-dom.html" target="_blank" rel="noopener">也许，DOM 不是答案</a>。</li>
-</ul>
-
+<h2 id="分析功能"><a href="#分析功能" class="headerlink" title="分析功能"></a>分析功能</h2><p>首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/11/21/贪吃蛇react/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/21/贪吃蛇react/" data-id="cjazdbnwz000566136te9h2w0" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/21/贪吃蛇react/" data-id="cjazdyho90005g113v3deb4hj" class="article-share-link">Delen</a>
       
       
       
@@ -209,33 +176,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
+        <p>我是在周五给react官方文档提了pr，然后在下个周二，负责文档的老外给了答复和修改意见。按照他的意见修改后，再次commit，很快就被merge了。在此记录一下这次经历。<br>
         
-        <p>我是在周五给react官方文档提了pr，然后在下个周二，负责文档的老外给了答复和修改意见。按照他的意见修改后，再次commit，很快就被merge了。在此记录一下这次经历。</p>
-<h2 id="我提的问题"><a href="#我提的问题" class="headerlink" title="我提的问题"></a>我提的问题</h2><p><a href="https://github.com/reactjs/reactjs.org/pull/239" target="_blank" rel="noopener">我提的PR</a><br>我提的pr主要是给文档补充了另一种声明defaultProps的方式。</p>
-<blockquote>
-<p> You can also put propTypes and defaultProps as static props inside React class.</p>
-</blockquote>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Greeting extends Component &#123;</span><br><span class="line">  static defaultProps = &#123;</span><br><span class="line">    name: &apos;stranger&apos;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;Hello, &#123;this.props.name&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>It is considerably more convenient. But non-functional properties are not currently supported for ES2015 classes, you should install extra plugin to support this syntax. If you want to only use strictly ES2015, the former syntax is the better choice.</p>
-</blockquote>
-<h2 id="我是怎么发现的"><a href="#我是怎么发现的" class="headerlink" title="我是怎么发现的"></a>我是怎么发现的</h2><p>在写代码的过程中，我发现平时都是用<code>static defaultProps</code>这种方式来声明defaultProps，当时是对static这个关键字有点好奇。虽然一直是这么写的，但是平时好像真的没怎么关注它的原理。</p>
-<blockquote>
-<p>如果在一个方法前，加上<code>static</code>关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。</p>
-</blockquote>
-<p>static是ES6的语法糖的写法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Test &#123;</span><br><span class="line">	static defaultProps = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>会被babel翻译成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">function _classCallCheck(instance, Constructor) &#123; if (!(instance instanceof Constructor)) &#123; throw new TypeError(&quot;Cannot call a class as a function&quot;); &#125; &#125;</span><br><span class="line"></span><br><span class="line">var Test = function Test() &#123;</span><br><span class="line">	_classCallCheck(this, Test);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Test.defaultProps = 1;</span><br></pre></td></tr></table></figure></p>
-<p>那么react官网关于初始化props是怎么说的呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Greeting extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;/h1&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Specifies the default values for props:</span><br><span class="line">Greeting.defaultProps = &#123;</span><br><span class="line">  name: &apos;Stranger&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Renders &quot;Hello, Stranger&quot;:</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Greeting /&gt;,</span><br><span class="line">  document.getElementById(&apos;example&apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
-<p>官网上写的用法如上，却没有提到<code>static defaultProps</code> 这种方式。但是平时大家好像更经常使用的是<code>static defaultProps</code>这种方式。所以我就补充上了这种用法，并给react提了pr。</p>
-<h2 id="这次经历的收获"><a href="#这次经历的收获" class="headerlink" title="这次经历的收获"></a>这次经历的收获</h2><p>1、外国人的做事方式还是很严谨的。我在代码里多了一个空行，也被他发现并删除了。所以，平时也要严格要求自己。</p>
-<p>2、平时在有能力的前提下，最好多阅读英文文档，这样不光是可以获得第一手资料，还可以在平时就培养一些语感。因为在跟老外交流的过程中就明显发现自己英文词汇的匮乏。<code>书到用时方恨少</code>是真真的感受到了。</p>
-<p>3、在平时有疑问可以去查看官方文档，然后结合网上的一些资料和自己的理解进行尝试。有些用法哪怕我们已经习以为常了，也要多反问自己，为什么要这么做。</p>
-
+          <p class="article-more-link">
+            <a href="/2017/11/21/记一次给react.org提pr的经历/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/21/记一次给react.org提pr的经历/" data-id="cjazdbnwx000466139kpf46il" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/21/记一次给react.org提pr的经历/" data-id="cjazdyho40003g1131859gz9m" class="article-share-link">Delen</a>
       
       
       
@@ -269,31 +219,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <p>原文地址：<a href="https://www.bennadel.com/blog/2893-setstate-state-mutation-operation-may-be-synchronous-in-reactjs.htm" target="_blank" rel="noopener">setState() State Mutation Operation May Be Synchronous In ReactJS</a></p>
-<p>我在做reactJS的项目的时候，总是遇到在一个方法里多次调用setState()的情况。这需要在不同的逻辑代码里使用不同的state.然而，我头脑中却不太清楚在多次调用setState()的间隙，state是怎么变化的。所以我决定深入了解一下内部原理，并发现setState()的调用是否是同步与这个调用最初是如何触发的有关。</p>
-<p><a href="http://bennadel.github.io/JavaScript-Demos/demos/set-state-timing-reactjs/" target="_blank" rel="noopener">点击运行demo</a></p>
-<p>ReactJS官方文档中关于setState()方法的描述有点令人困惑。官方文档如下：</p>
-<blockquote>
-<p>setState() does not immediately mutate this.state but creates a pending state transition. Accessing this.state after calling this method can potentially return the existing value.</p>
-</blockquote>
-<p>这两句话看起来是矛盾的。一方面它说setState不会立刻改变state的值，另一方面又说随后访问state可能返回当前值。 有可能返回和不会马上返回矛盾了。<br>阅读源码后发现，不同的state的变化是由setState事件是如何调用决定的。如果是在被ReactJS监控的事件中调用（比如onClick事件），react会在事件结束的时候分批处理state的更新。如果setState是在定时器里面或者是开发者自己的事件处理方法中调用的，ReactJS就不能分批更新state，只能立刻改变state的值。<br>为了弄清这两种方式的不同，我写了个单个组件的例子。例中我在不同的事件中调用setState方法。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br><span class="line">        setState() State Mutation Operation May Be Synchronous In ReactJS</span><br><span class="line">    <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"./demo.css"</span>&gt;</span><span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        setState() State Mutation Operation May Be Synchronous In ReactJS</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- This content will be replaced with the React rendering. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Load scripts. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../../vendor/reactjs/react-0.13.3.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">// I manage the Demo widget.</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> Demo = React.createClass(&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// I initialize the state of the component, including instance variables.</span></span></span><br><span class="line"><span class="javascript">            getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span>(&#123;</span></span><br><span class="line"><span class="undefined">                    counter: 0</span></span><br><span class="line"><span class="undefined">                &#125;);</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// ---</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// PUBLIC METHODS.</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// ---</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// I get called once, on the client, when the component has been rendered.</span></span></span><br><span class="line"><span class="javascript">            componentDidMount: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// Automatically update the state every 3 seconds.</span></span></span><br><span class="line"><span class="javascript">                setInterval( <span class="keyword">this</span>.updateState, <span class="number">3000</span> );</span></span><br><span class="line"><span class="javascript">                <span class="comment">// Update the state on mouse-down.</span></span></span><br><span class="line"><span class="javascript">                <span class="comment">// --</span></span></span><br><span class="line"><span class="javascript">                <span class="comment">// <span class="doctag">NOTE:</span> We are implementing our own event binding here - not using the</span></span></span><br><span class="line"><span class="javascript">                <span class="comment">// React Element props to manage the event handler.</span></span></span><br><span class="line"><span class="javascript">                React.findDOMNode( <span class="keyword">this</span> )</span></span><br><span class="line"><span class="javascript">                    .addEventListener( <span class="string">"mousedown"</span>, <span class="keyword">this</span>.updateState )</span></span><br><span class="line"><span class="undefined">                ;</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// I render the component based on the current state.</span></span></span><br><span class="line"><span class="javascript">            render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span>(</span></span><br><span class="line"><span class="undefined">                    React.DOM.span(</span></span><br><span class="line"><span class="undefined">                        &#123;</span></span><br><span class="line"><span class="javascript">                            onClick: <span class="keyword">this</span>.updateState,</span></span><br><span class="line"><span class="javascript">                            className: <span class="string">"button"</span></span></span><br><span class="line"><span class="undefined">                        &#125;,</span></span><br><span class="line"><span class="javascript">                        ( <span class="string">"Counter at "</span> + <span class="keyword">this</span>.state.counter )</span></span><br><span class="line"><span class="undefined">                    )</span></span><br><span class="line"><span class="undefined">                );</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="comment">// I update the state and log the existing state value on either side of</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// the operation in an attempt to see if the state mutation operation is</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// synchronous or asynchronous.</span></span></span><br><span class="line"><span class="javascript">            updateState: <span class="function"><span class="keyword">function</span>(<span class="params"> event </span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log( <span class="string">"= = = = = = = = = = = ="</span> );</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log( <span class="string">"EVENT:"</span>, ( event ? event.type : <span class="string">"timer"</span> ) );</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log( <span class="string">"Pre-setState:"</span>, <span class="keyword">this</span>.state.counter );</span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.setState(&#123;</span></span><br><span class="line"><span class="javascript">                    counter: ( <span class="keyword">this</span>.state.counter + <span class="number">1</span> )</span></span><br><span class="line"><span class="undefined">                &#125;);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log( <span class="string">"Post-setState:"</span>, <span class="keyword">this</span>.state.counter );</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="javascript">        <span class="comment">// --------------------------------------------------------------------------- //</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// --------------------------------------------------------------------------- //</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// Render the root Demo and mount it inside the given element.</span></span></span><br><span class="line"><span class="undefined">        React.render(</span></span><br><span class="line"><span class="undefined">            React.createElement( Demo ),</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById( <span class="string">"content"</span> )</span></span><br><span class="line"><span class="undefined">        );</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>如你所见，updateState()方法被三种不同的方式调用：</p>
-<ul>
-<li>setTimeout() - 不受ReactJS控制。</li>
-<li>mousedown - 不受ReactJS控制。</li>
-<li>onClick - 受ReactJS控制。</li>
-</ul>
-<p>由于受ReactJS控制的调用中state会是异步的。上面的例子运行后的结果如下图：</p>
-<p><img src="https://www.bennadel.com/resources/uploads/2015/set-state-timing-in-reactjs.png" alt="image"></p>
-<p>可以看到只有onClick事件里输出的state值在setState()运行前后没有变化。这就是因为ReactJS会在事件执行结束的时候批量处理改变state的操作。</p>
-<p>由于改变state的操作有可能是也有可能不是同步的，最好假设它是不确定的。就算你非常确定它的工作流程，改变state是在strategy component 中完成的，而这个是异步的。所以，最好不要做任何假设。</p>
-
+<p>我在做reactJS的项目的时候，总是遇到在一个方法里多次调用setState()的情况。这需要在不同的逻辑代码里使用不同的state.然而，我头脑中却不太清楚在多次调用setState()的间隙，state是怎么变化的。所以我决定深入了解一下内部原理，并发现setState()的调用是否是同步与这个调用最初是如何触发的有关。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/" data-id="cjazdbnwv00036613rhbva7jv" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/21/在ReactJS中setState操作有可能是同步的【译】/" data-id="cjazdyho70004g113zpsm39lk" class="article-share-link">Delen</a>
       
       
       
@@ -327,27 +263,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
+        <p>这里我只是简单归纳下webpack-dashboard的使用，只需要三步就可以提升控制面板的颜值，赶快试一下吧。（PS: webpack-dashboard需要配合webpack使用）<br>
         
-        <p>这里我只是简单归纳下webpack-dashboard的使用，只需要三步就可以提升控制面板的颜值，赶快试一下吧。（PS: webpack-dashboard需要配合webpack使用）</p>
-<p>1、npm install 一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack-dashboard</span><br></pre></td></tr></table></figure></p>
-<p>2、修改webpack.config.js文件</p>
-<ul>
-<li><p>引入dashboard</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> DashboardPlugin = <span class="built_in">require</span>(<span class="string">'webpack-dashboard/plugin'</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加dashboard到plugins</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">   <span class="keyword">new</span> DashboardPlugin()</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>3、修改package.json里的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;webpack-dashboard -- webpack-dev-server --open&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>最后 <code>npm start</code> 一下，你会看到你的面板变成这样：<br><img src="https://raw.githubusercontent.com/kinyaying/resource/master/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-11-09%20%E4%B8%8B%E5%8D%888.11.03.png" alt="image"></p>
-<p>–鼓掌–</p>
-
+          <p class="article-more-link">
+            <a href="/2017/11/16/webpack-dashboard使用/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/16/webpack-dashboard使用/" data-id="cjazdbnwe00026613p9nkkw8g" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/16/webpack-dashboard使用/" data-id="cjazdyhnt0000g113vchapb54" class="article-share-link">Delen</a>
       
       
       
@@ -373,7 +298,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/16/linux常用命令行（补充完整英文单词）/">linux常用命令行（补充完整英文单词）
+      <a class="article-title" href="/2017/11/16/linux常用命令行（补充完整英文单词）/">linux常用命令行
 </a>
     </h1>
   
@@ -382,188 +307,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
+        <p>由于我平时不是非常熟悉linux指令，所以想总结一下常用指令。从网上查了下，大部分文章都是介绍指令加上中文含义，没有这个指令的完整的英文单词。本着知其然也要知其所以然的原则，我这里还总结了这些英文缩略词的完整单词，方便理解记忆。（PS：多数单词都是从维基百科里面查的，如果有遗漏欢迎补充）<br>
         
-        <p>由于我平时不是非常熟悉linux指令，所以想总结一下常用指令。从网上查了下，大部分文章都是介绍指令加上中文含义，没有这个指令的完整的英文单词。本着知其然也要知其所以然的原则，我这里还总结了这些英文缩略词的完整单词，方便理解记忆。（PS：多数单词都是从维基百科里面查的，如果有遗漏欢迎补充）</p>
-<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><table>
-<thead>
-<tr>
-<th>指令</th>
-<th>参 数</th>
-<th>助记词</th>
-<th>中文含义</th>
-<th>用法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ls</td>
-<td></td>
-<td>list</td>
-<td>显示文件或目录</td>
-<td>ls &lt;文件地址&gt;</td>
-</tr>
-<tr>
-<td></td>
-<td><em>-a</em></td>
-<td>all</td>
-<td>列出当前目录下所有文件及目录，包括隐藏的</td>
-<td>ls -a</td>
-</tr>
-<tr>
-<td></td>
-<td><em>-l</em></td>
-<td>long</td>
-<td>列出文件详细信息</td>
-<td>ls -l</td>
-</tr>
-<tr>
-<td>mkdir</td>
-<td></td>
-<td>make direction</td>
-<td>创建目录</td>
-<td>mkdir &lt;文件夹&gt;</td>
-</tr>
-<tr>
-<td></td>
-<td><em>-p</em></td>
-<td>parent</td>
-<td>创建目录，若无父目录，则创建</td>
-<td>mkdir -p &lt;文件夹1/文件夹2/文件夹3&gt;</td>
-</tr>
-<tr>
-<td>cd</td>
-<td></td>
-<td>change direction</td>
-<td>切换目录</td>
-<td>cd &lt;文件夹&gt;</td>
-</tr>
-<tr>
-<td>touch</td>
-<td></td>
-<td>touch</td>
-<td>创建空文件</td>
-<td>touch &lt;文件&gt;</td>
-</tr>
-<tr>
-<td>cat</td>
-<td></td>
-<td>concatenate files</td>
-<td>查看文件内容</td>
-<td>cat &lt;文件&gt;</td>
-</tr>
-<tr>
-<td>cp</td>
-<td></td>
-<td>copy</td>
-<td>拷贝</td>
-<td>cp &lt;文件1&gt; &lt;文件2(可以是不存在的)&gt;</td>
-</tr>
-<tr>
-<td>mv</td>
-<td></td>
-<td>move</td>
-<td>移动或重命名</td>
-<td></td>
-</tr>
-<tr>
-<td>rm</td>
-<td></td>
-<td>remove</td>
-<td>删除文件或空的文件夹</td>
-<td>rm -rf &lt;文件&gt;（或文件夹）</td>
-</tr>
-<tr>
-<td>rmdir</td>
-<td></td>
-<td>remove direction</td>
-<td>删除空目录</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><em>-r</em></td>
-<td>recursive</td>
-<td>递归删除，可删除子目录及文件</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><em>-f</em></td>
-<td>force</td>
-<td>强制删除</td>
-<td></td>
-</tr>
-<tr>
-<td>find</td>
-<td></td>
-<td>find</td>
-<td>在文件系统中搜索某文件</td>
-<td>find &lt;文件夹&gt;（或文件）</td>
-</tr>
-<tr>
-<td>wc</td>
-<td></td>
-<td>word count</td>
-<td>统计文本中行数、字数、字符数</td>
-<td>wc &lt;文件名&gt;</td>
-</tr>
-<tr>
-<td>grep</td>
-<td></td>
-<td>g/re/p (globally search a regular expression and print)</td>
-<td>在文件中查找某个字符串</td>
-<td>grep “查找的内容” &lt;文件名&gt;</td>
-</tr>
-<tr>
-<td>pwd</td>
-<td></td>
-<td>print working directory</td>
-<td>显示当前目录</td>
-<td>pwd</td>
-</tr>
-<tr>
-<td>tree</td>
-<td></td>
-<td>tree</td>
-<td>树形结构显示目录(需要安装tree包)</td>
-<td>tree</td>
-</tr>
-<tr>
-<td>less</td>
-<td></td>
-<td>less</td>
-<td>分页显示文本文件内容</td>
-<td>less</td>
-</tr>
-<tr>
-<td>head</td>
-<td></td>
-<td>head</td>
-<td>显示文件头部内容</td>
-<td>head</td>
-</tr>
-<tr>
-<td>tail</td>
-<td></td>
-<td>tail</td>
-<td>显示文件尾部内容</td>
-<td>tail</td>
-</tr>
-<tr>
-<td></td>
-<td><em>-n</em></td>
-<td>count</td>
-<td>行数</td>
-<td>head -n 10 &lt;文件名&gt;<br>tail -n 10 &lt;文件名&gt;</td>
-</tr>
-</tbody>
-</table>
-
+          <p class="article-more-link">
+            <a href="/2017/11/16/linux常用命令行（补充完整英文单词）/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/16/linux常用命令行（补充完整英文单词）/" data-id="cjazdbnwc00016613dk2d67dx" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/16/linux常用命令行（补充完整英文单词）/" data-id="cjazdyhny0001g113qan38546" class="article-share-link">Delen</a>
       
       
       
@@ -587,7 +340,7 @@
      
     <div class="widget follow">
       
-              <a class="github" aria-hidden="true" href="https://github.com/giscafer" target="_blank" title="Github"></a>
+              <a class="github" aria-hidden="true" href="https://github.com/kinyaying" target="_blank" title="Github"></a>
       
       
             <a class="weibo" aria-hidden="true"  href="http://weibo.com/laohoubin" target="_blank" title="微博"></a>
@@ -596,7 +349,7 @@
               <a class="zhihu" aria-hidden="true"  href="http://www.zhihu.com/people/giscafer" target="_blank" title="知乎"></a>
       
       
-            <a class="email" aria-hidden="true"  href="mailto:youemail@outlook.com" target="_blank" title="邮箱"></a>
+            <a class="email" aria-hidden="true"  href="mailto:kinyaying@gmail.com" target="_blank" title="邮箱"></a>
       
     </div>
   </div>
@@ -612,7 +365,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
+    <h3 class="widget-title recent-posts">Recente berichten</h3>
     <div class="widget">
       <ul>
         
@@ -643,7 +396,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
+    <h3 class="widget-title archive">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">5</span></li></ul>
     </div>
@@ -658,11 +411,11 @@
         <ul>
             
             <li>
-                <a href="http://blog.giscafer.com">giscafer&#39;s blog</a>
+                <a href="https://jiankafei.github.io/">jiankafei&#39;s blog</a>
             </li>
             
             <li>
-                <a href="http://www.gis520.com">GIS520社区</a>
+                <a href="http://s0urcec0der.github.io/">s0urcec0der&#39;s blog</a>
             </li>
             
         </ul>
@@ -675,7 +428,7 @@
   <div class="widget-wrap">
     <h3 class="follow-title ">WeChat</h3>
     <div class="widget wechat-widget">
-        <img src="http://blog.giscafer.com/static/images/qrcode_giscafer.jpg" alt="扫码关注" width="250"/>
+        <img src="https://github.com/kinyaying/resource/blob/master/Wechat.jpeg?raw=true" alt="扫码关注" width="250"/>
     </div>
   </div>
 
@@ -689,10 +442,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2017 Kinyaying&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;youemail@outlook.com
+      Contact&nbsp;|&nbsp;youemail@outlook.com
     </div>
   </div>
 </footer>

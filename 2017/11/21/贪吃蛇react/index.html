@@ -5,16 +5,16 @@
   
   <title>贪吃蛇react | Kinyaying&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
+  <meta name="description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贪吃蛇react">
 <meta property="og:url" content="http://yoursite.com/2017/11/21/贪吃蛇react/index.html">
 <meta property="og:site_name" content="Kinyaying&#39;s Blog">
-<meta property="og:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
-<meta property="og:updated_time" content="2017-11-21T11:29:52.000Z">
+<meta property="og:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。">
+<meta property="og:updated_time" content="2017-12-09T13:37:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贪吃蛇react">
-<meta name="twitter:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。 基础功能:  1、蛇的运动（包括上下左右四个方向） 2、出现位置随机的食物">
+<meta name="twitter:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。">
   
     <link rel="alternate" href="/atom.xml" title="Kinyaying&#39;s Blog" type="application/atom+xml">
   
@@ -41,7 +41,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -94,8 +94,7 @@
         
         <h2 id="贪吃蛇"><a href="#贪吃蛇" class="headerlink" title="贪吃蛇"></a>贪吃蛇</h2><p><code>react</code> <code>react-canvas</code> <code>webpack</code></p>
 <p>用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。</p>
-<h2 id="分析功能"><a href="#分析功能" class="headerlink" title="分析功能"></a>分析功能</h2><p>首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。</p>
-<p><strong>基础功能:</strong></p>
+<h2 id="分析功能"><a href="#分析功能" class="headerlink" title="分析功能"></a>分析功能</h2><p>首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。<br><a id="more"></a><br><strong>基础功能:</strong></p>
 <ul>
 <li>1、蛇的运动（包括上下左右四个方向）</li>
 <li>2、出现位置随机的食物</li>
@@ -134,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/21/贪吃蛇react/" data-id="cjazdbnwz000566136te9h2w0" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/21/贪吃蛇react/" data-id="cjazdyho90005g113v3deb4hj" class="article-share-link">Delen</a>
       
       
       
@@ -144,7 +143,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -187,7 +186,7 @@
 <nav id="article-nav">
   
     <a href="/2017/12/01/从零搭建vue脚手架/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
           从零搭建vue脚手架
@@ -197,7 +196,7 @@
   
   
     <a href="/2017/11/21/记一次给react.org提pr的经历/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">记一次给react.org提pr的经历</div>
     </a>
   
@@ -232,7 +231,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#贪吃蛇"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x8D2A;&#x5403;&#x86C7;" class="headerlink" title="&#x8D2A;&#x5403;&#x86C7;"></a>&#x8D2A;&#x5403;&#x86C7;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析功能"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5206;&#x6790;&#x529F;&#x80FD;" class="headerlink" title="&#x5206;&#x6790;&#x529F;&#x80FD;"></a>&#x5206;&#x6790;&#x529F;&#x80FD;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整理思路"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x6574;&#x7406;&#x601D;&#x8DEF;" class="headerlink" title="&#x6574;&#x7406;&#x601D;&#x8DEF;"></a>&#x6574;&#x7406;&#x601D;&#x8DEF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-canvas"><span class="toc-number">4.</span> <span class="toc-text"><a href="#react-canvas" class="headerlink" title="react-canvas"></a>react-canvas</span></a></li></ol>
           </div>
@@ -264,10 +263,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2017 Kinyaying&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;youemail@outlook.com
+      Contact&nbsp;|&nbsp;youemail@outlook.com
     </div>
   </div>
 </footer>
