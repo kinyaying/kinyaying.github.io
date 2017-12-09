@@ -6,12 +6,13 @@
   <title>贪吃蛇react | Kinyaying&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。">
+<meta name="keywords" content="react,react-canvas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贪吃蛇react">
 <meta property="og:url" content="http://yoursite.com/2017/11/21/贪吃蛇react/index.html">
 <meta property="og:site_name" content="Kinyaying&#39;s Blog">
 <meta property="og:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。">
-<meta property="og:updated_time" content="2017-12-09T13:37:05.000Z">
+<meta property="og:updated_time" content="2017-12-09T13:41:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贪吃蛇react">
 <meta name="twitter:description" content="贪吃蛇react react-canvas webpack 用react做一个贪吃蛇，顺便研究下react-canvas，把用react实现的dom渲染改成canvas渲染。下面我们就一步一步来实现吧。 分析功能首先分析下这个游戏要完成哪些功能?哪些是基础功能，哪些是扩展功能，我是优先完成基础功能，然后再进一步的去完善。">
@@ -41,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -64,6 +65,10 @@
       </h1>
       
     </div>
+    <span id="busuanzi_container_site_uv">
+      本站访客数<span id="busuanzi_value_site_uv"></span>人次
+    </span>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   </div>
 </header>
 
@@ -86,6 +91,9 @@
     </h1>
   
 
+        <span id="busuanzi_container_page_pv">
+           本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
@@ -133,10 +141,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/21/贪吃蛇react/" data-id="cjazdyho90005g113v3deb4hj" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/11/21/贪吃蛇react/" data-id="cjazfwkil0005b313xjbd2m8s" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-canvas/">react-canvas</a></li></ul>
+
     </footer>
   </div>
   
@@ -186,7 +196,7 @@
 <nav id="article-nav">
   
     <a href="/2017/12/01/从零搭建vue脚手架/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           从零搭建vue脚手架
@@ -196,7 +206,7 @@
   
   
     <a href="/2017/11/21/记一次给react.org提pr的经历/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">记一次给react.org提pr的经历</div>
     </a>
   
@@ -218,7 +228,6 @@
   </div>
  
   
-
 </section>
            
     <aside id="sidebar">

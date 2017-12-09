@@ -5,16 +5,16 @@
   
   <title>从零搭建vue脚手架 | Kinyaying&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近正在学习vue，为了更好的了解整个技术栈，我尝试着使用webpack+vue+vue-router+vuex从零搭建一个脚手架。下面我会一步步的介绍整个过程，最后生成的代码会放在github上。">
+  <meta name="description" content="最近正在学习vue，虽然vue会提供一个官方的脚手架，但是为了更好的了解整个技术栈，我尝试着自己从零搭建一个脚手架。我使用是vue的全家桶，包括webpack、vue、vue-router、vuex。下面我会一步步的介绍整个过程，最后生成的代码会放在github上。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从零搭建vue脚手架">
 <meta property="og:url" content="http://yoursite.com/2017/12/01/从零搭建vue脚手架/index.html">
 <meta property="og:site_name" content="Kinyaying&#39;s Blog">
-<meta property="og:description" content="最近正在学习vue，为了更好的了解整个技术栈，我尝试着使用webpack+vue+vue-router+vuex从零搭建一个脚手架。下面我会一步步的介绍整个过程，最后生成的代码会放在github上。">
-<meta property="og:updated_time" content="2017-12-09T13:11:49.000Z">
+<meta property="og:description" content="最近正在学习vue，虽然vue会提供一个官方的脚手架，但是为了更好的了解整个技术栈，我尝试着自己从零搭建一个脚手架。我使用是vue的全家桶，包括webpack、vue、vue-router、vuex。下面我会一步步的介绍整个过程，最后生成的代码会放在github上。">
+<meta property="og:updated_time" content="2017-12-09T14:23:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零搭建vue脚手架">
-<meta name="twitter:description" content="最近正在学习vue，为了更好的了解整个技术栈，我尝试着使用webpack+vue+vue-router+vuex从零搭建一个脚手架。下面我会一步步的介绍整个过程，最后生成的代码会放在github上。">
+<meta name="twitter:description" content="最近正在学习vue，虽然vue会提供一个官方的脚手架，但是为了更好的了解整个技术栈，我尝试着自己从零搭建一个脚手架。我使用是vue的全家桶，包括webpack、vue、vue-router、vuex。下面我会一步步的介绍整个过程，最后生成的代码会放在github上。">
   
     <link rel="alternate" href="/atom.xml" title="Kinyaying&#39;s Blog" type="application/atom+xml">
   
@@ -41,7 +41,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -64,6 +64,10 @@
       </h1>
       
     </div>
+    <span id="busuanzi_container_site_uv">
+      本站访客数<span id="busuanzi_value_site_uv"></span>人次
+    </span>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   </div>
 </header>
 
@@ -86,32 +90,37 @@
     </h1>
   
 
+        <span id="busuanzi_container_page_pv">
+           本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
         <!-- Table of Contents -->
         
-        <p>最近正在学习vue，为了更好的了解整个技术栈，我尝试着使用webpack+vue+vue-router+vuex从零搭建一个脚手架。下面我会一步步的介绍整个过程，最后生成的代码会放在github上。<br><a id="more"></a></p>
-<h2 id="新建工程文件夹，进入文件夹，项目初始化。这一步我使用命令行操作了，不太熟悉linux操作的可以看我写的另一篇博客【传送门】。"><a href="#新建工程文件夹，进入文件夹，项目初始化。这一步我使用命令行操作了，不太熟悉linux操作的可以看我写的另一篇博客【传送门】。" class="headerlink" title="新建工程文件夹，进入文件夹，项目初始化。这一步我使用命令行操作了，不太熟悉linux操作的可以看我写的另一篇博客【传送门】。"></a>新建工程文件夹，进入文件夹，项目初始化。这一步我使用命令行操作了，不太熟悉linux操作的可以看我写的另一篇博客【传送门】。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir &lt;文件夹&gt;</span><br><span class="line">cd &lt;文件夹&gt;</span><br><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
-<h2 id="webpack的配置"><a href="#webpack的配置" class="headerlink" title="webpack的配置"></a>webpack的配置</h2><ul>
-<li>1、安装webpack，为了避免webpack的版本差异，最好选择本地安装，而不是全局安装。由于webpack上线的时候就不再需要，所以保存成开发依赖（–save-dev）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-dev-server --save-dev</span><br></pre></td></tr></table></figure>
+        <p>最近正在学习vue，虽然vue会提供一个官方的脚手架，但是为了更好的了解整个技术栈，我尝试着自己从零搭建一个脚手架。我使用是vue的全家桶，包括webpack、vue、vue-router、vuex。下面我会一步步的介绍整个过程，最后生成的代码会放在github上。<br><a id="more"></a></p>
+<h2 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h2><p>新建工程文件夹<code>my-vue</code>，进入文件夹，项目初始化。这一步我使用命令行操作了，不太熟悉linux操作的可以看我写的另一篇博客。<strong><a href="https://kinyaying.github.io/2017/11/16/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%88%E8%A1%A5%E5%85%85%E5%AE%8C%E6%95%B4%E8%8B%B1%E6%96%87%E5%8D%95%E8%AF%8D%EF%BC%89/" target="_blank" rel="noopener">传送门</a></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir my-vue</span><br><span class="line">cd my-vue</span><br><span class="line">npm init -y</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置webpack"><a href="#配置webpack" class="headerlink" title="配置webpack"></a>配置webpack</h2><ul>
+<li><p>1、安装webpack<br>为了避免webpack的版本差异，最好选择本地安装，而不是全局安装。由于webpack上线的时候就不再需要，所以保存成开发依赖即可（–save-dev）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack webpack-dev-server --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2、配置npm脚本<br>在package.json中配置<code>scripts</code>字段来定义脚本命令，这样当在终端上执行<code>npm start</code>，会在当前目录下找webpack.config.js文件，并执行<code>webpack-dev-server --port 8080</code>。<code>webpack-dev-server</code>是一个小型的node.js的express服务，<code>--port</code>是端口号的指向。而在终端上运行<code>npm run build</code>，则是使用webpack的打包功能，目标文件夹(webpack.config.js中会配置)下会出现打包后的文件。</p>
 </li>
 </ul>
-<p>在package.json中配置脚本<code>scripts</code>，在终端上执行<code>npm start</code>，会在当前目录下找webpack.config.js，并运行<code>webpack-dev-server --port 8080</code>。<code>webpack-dev-server</code>是一个小型的node.js的express服务，<code>--port</code>是端口号的指向，我把它设置为8080。而在终端上运行<code>npm run build</code>，则是使用webpack的打包功能，目标文件夹下会出现打包后的文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;webpack-dev-server --port 8080&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;webpack&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">  "start": "webpack-dev-server --port 8080",</span><br><span class="line">  "build": "webpack"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>2、根目录下新建一个文件，文件名为webpack.config.js，这就是webpack的配置文件。编辑这个文件，添加<code>entry</code>和<code>output</code>，并导出配置项。<code>entry</code>是指项目的入口，一般是src目录下的mian.js文件。webpack会自动查找相关的依赖，进行打包。<code>output</code>是指打包后文件的相关配置，其中path是打包后文件的存放路径，此路径必须是绝对路径，所以需要使用path这个内置模块将相对路径解析出绝对路径。filename是打包后的文件名。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">let config = &#123;</span><br><span class="line">  entry: &apos;./src/main.js&apos;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, &apos;./dist&apos;),</span><br><span class="line">    filename: &apos;bundle.js&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">module.exports = config;</span><br></pre></td></tr></table></figure>
-</li>
+<li>3、配置webpack.config.js<br>根目录下新建一个文件，文件名为webpack.config.js，这就是webpack的配置文件。编辑这个文件，添加<code>entry</code>和<code>output</code>，并导出配置项。<code>entry</code>是指项目的入口，一般是src目录下的mian.js文件。webpack会自动查找相关的依赖，进行打包。<code>output</code>是指打包后文件的相关配置，其中path是打包后文件的存放路径，此路径必须是绝对路径(webpack API的规定)，所以需要使用<code>path</code>这个内置模块将相对路径解析出绝对路径。<code>filename</code>是打包后的文件名。</li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">  entry: <span class="string">'./src/main.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.join(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
 <p>设置完配置项后，新建src目录，并添加main.js文件，此文件必须和配置里的<code>entry</code>字段相一致，否则webpack找不到入口文件会报错。</p>
 <ul>
-<li>2、安装babel，并配置.babelrc文件。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-loader babel-core babel-preset-es2015 babel-preset-stage-0 --save-dev</span><br></pre></td></tr></table></figure>
+<li>4、安装babel，并配置文件.babelrc<br>使用命令行执行如下代码，安装babel的相关配置。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-loader babel-core babel-preset-es2015 babel-preset-stage-0 --save-dev</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>然后新建.babelrc，并添加配置项。其中<code>es2015</code>实现的是ES6转ES5，<code>stage-0</code>实现的是ES7转ES5。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;es2015&quot;, &quot;stage-0&quot; ],</span><br><span class="line">  &quot;plugins&quot;: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后新建.babelrc，并添加配置项。其中<code>es2015</code>实现的是ES6转ES5，<code>stage-0</code>实现的是ES7转ES5。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;es2015&quot;, &quot;stage-0&quot;],</span><br><span class="line">  &quot;plugins&quot;: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>vue<br>vue-loader<br>vue-template-compiler (为什么要装这个？)</p>
 <ul>
-<li><p>3、安装vue<br>vue<br>vue-loader<br>vue-template-compiler (为什么要装这个？)</p>
-</li>
 <li><p>4、安装转义css模块的包<br>style-loader css-loader less-loader</p>
 </li>
 <li><p>图片的配置<br>file-loader url-loader</p>
@@ -145,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/01/从零搭建vue脚手架/" data-id="cjazdyho10002g113vvudtmcj" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/12/01/从零搭建vue脚手架/" data-id="cjazfwki00003b313rt4t5k15" class="article-share-link">Share</a>
       
       
       
@@ -199,7 +208,7 @@
   
   
     <a href="/2017/11/21/贪吃蛇react/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">贪吃蛇react</div>
     </a>
   
@@ -221,7 +230,6 @@
   </div>
  
   
-
 </section>
            
     <aside id="sidebar">
@@ -236,7 +244,7 @@
       
         <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#新建工程文件夹，进入文件夹，项目初始化。这一步我使用命令行操作了，不太熟悉linux操作的可以看我写的另一篇博客【传送门】。"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x65B0;&#x5EFA;&#x5DE5;&#x7A0B;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x8FDB;&#x5165;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;&#x3002;&#x8FD9;&#x4E00;&#x6B65;&#x6211;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x64CD;&#x4F5C;&#x4E86;&#xFF0C;&#x4E0D;&#x592A;&#x719F;&#x6089;linux&#x64CD;&#x4F5C;&#x7684;&#x53EF;&#x4EE5;&#x770B;&#x6211;&#x5199;&#x7684;&#x53E6;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3010;&#x4F20;&#x9001;&#x95E8;&#x3011;&#x3002;" class="headerlink" title="&#x65B0;&#x5EFA;&#x5DE5;&#x7A0B;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x8FDB;&#x5165;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;&#x3002;&#x8FD9;&#x4E00;&#x6B65;&#x6211;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x64CD;&#x4F5C;&#x4E86;&#xFF0C;&#x4E0D;&#x592A;&#x719F;&#x6089;linux&#x64CD;&#x4F5C;&#x7684;&#x53EF;&#x4EE5;&#x770B;&#x6211;&#x5199;&#x7684;&#x53E6;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3010;&#x4F20;&#x9001;&#x95E8;&#x3011;&#x3002;"></a>&#x65B0;&#x5EFA;&#x5DE5;&#x7A0B;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x8FDB;&#x5165;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;&#x3002;&#x8FD9;&#x4E00;&#x6B65;&#x6211;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x64CD;&#x4F5C;&#x4E86;&#xFF0C;&#x4E0D;&#x592A;&#x719F;&#x6089;linux&#x64CD;&#x4F5C;&#x7684;&#x53EF;&#x4EE5;&#x770B;&#x6211;&#x5199;&#x7684;&#x53E6;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3010;&#x4F20;&#x9001;&#x95E8;&#x3011;&#x3002;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的配置"><span class="toc-number">2.</span> <span class="toc-text"><a href="#webpack&#x7684;&#x914D;&#x7F6E;" class="headerlink" title="webpack&#x7684;&#x914D;&#x7F6E;"></a>webpack&#x7684;&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始写代码了"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5F00;&#x59CB;&#x5199;&#x4EE3;&#x7801;&#x4E86;" class="headerlink" title="&#x5F00;&#x59CB;&#x5199;&#x4EE3;&#x7801;&#x4E86;"></a>&#x5F00;&#x59CB;&#x5199;&#x4EE3;&#x7801;&#x4E86;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建入口文件"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x642D;&#x5EFA;&#x5165;&#x53E3;&#x6587;&#x4EF6;" class="headerlink" title="&#x642D;&#x5EFA;&#x5165;&#x53E3;&#x6587;&#x4EF6;"></a>&#x642D;&#x5EFA;&#x5165;&#x53E3;&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建vue路由"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x642D;&#x5EFA;vue&#x8DEF;&#x7531;" class="headerlink" title="&#x642D;&#x5EFA;vue&#x8DEF;&#x7531;"></a>&#x642D;&#x5EFA;vue&#x8DEF;&#x7531;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加一个UI库吧"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;UI&#x5E93;&#x5427;" class="headerlink" title="&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;UI&#x5E93;&#x5427;"></a>&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;UI&#x5E93;&#x5427;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据层vuex"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x6570;&#x636E;&#x5C42;vuex" class="headerlink" title="&#x6570;&#x636E;&#x5C42;vuex"></a>&#x6570;&#x636E;&#x5C42;vuex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加nodejs模块"><span class="toc-number">8.</span> <span class="toc-text"><a href="#&#x6DFB;&#x52A0;nodejs&#x6A21;&#x5757;" class="headerlink" title="&#x6DFB;&#x52A0;nodejs&#x6A21;&#x5757;"></a>&#x6DFB;&#x52A0;nodejs&#x6A21;&#x5757;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多的思考"><span class="toc-number">9.</span> <span class="toc-text"><a href="#&#x66F4;&#x591A;&#x7684;&#x601D;&#x8003;" class="headerlink" title="&#x66F4;&#x591A;&#x7684;&#x601D;&#x8003;"></a>&#x66F4;&#x591A;&#x7684;&#x601D;&#x8003;</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#项目初始化"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;" class="headerlink" title="&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;"></a>&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置webpack"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;webpack" class="headerlink" title="&#x914D;&#x7F6E;webpack"></a>&#x914D;&#x7F6E;webpack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始写代码了"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5F00;&#x59CB;&#x5199;&#x4EE3;&#x7801;&#x4E86;" class="headerlink" title="&#x5F00;&#x59CB;&#x5199;&#x4EE3;&#x7801;&#x4E86;"></a>&#x5F00;&#x59CB;&#x5199;&#x4EE3;&#x7801;&#x4E86;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建入口文件"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x642D;&#x5EFA;&#x5165;&#x53E3;&#x6587;&#x4EF6;" class="headerlink" title="&#x642D;&#x5EFA;&#x5165;&#x53E3;&#x6587;&#x4EF6;"></a>&#x642D;&#x5EFA;&#x5165;&#x53E3;&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建vue路由"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x642D;&#x5EFA;vue&#x8DEF;&#x7531;" class="headerlink" title="&#x642D;&#x5EFA;vue&#x8DEF;&#x7531;"></a>&#x642D;&#x5EFA;vue&#x8DEF;&#x7531;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加一个UI库吧"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;UI&#x5E93;&#x5427;" class="headerlink" title="&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;UI&#x5E93;&#x5427;"></a>&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;UI&#x5E93;&#x5427;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据层vuex"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x6570;&#x636E;&#x5C42;vuex" class="headerlink" title="&#x6570;&#x636E;&#x5C42;vuex"></a>&#x6570;&#x636E;&#x5C42;vuex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加nodejs模块"><span class="toc-number">8.</span> <span class="toc-text"><a href="#&#x6DFB;&#x52A0;nodejs&#x6A21;&#x5757;" class="headerlink" title="&#x6DFB;&#x52A0;nodejs&#x6A21;&#x5757;"></a>&#x6DFB;&#x52A0;nodejs&#x6A21;&#x5757;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多的思考"><span class="toc-number">9.</span> <span class="toc-text"><a href="#&#x66F4;&#x591A;&#x7684;&#x601D;&#x8003;" class="headerlink" title="&#x66F4;&#x591A;&#x7684;&#x601D;&#x8003;"></a>&#x66F4;&#x591A;&#x7684;&#x601D;&#x8003;</span></a></li></ol>
           </div>
       </div>
     </div>
