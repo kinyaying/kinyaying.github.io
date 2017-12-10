@@ -3,14 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017/12 | Kinyaying&#39;s Blog</title>
+  <title>tcpip协议族 | Kinyaying&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kinyaying&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/12/index.html">
+  <meta name="description" content="做前端的一定要了解HTTP和TCP，我研究了一阵子这个协议，并整理出了TCP/IP协议模型的脑图，方便理解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tcpip协议族">
+<meta property="og:url" content="http://yoursite.com/2017/12/10/tcpip协议族/index.html">
 <meta property="og:site_name" content="Kinyaying&#39;s Blog">
+<meta property="og:description" content="做前端的一定要了解HTTP和TCP，我研究了一阵子这个协议，并整理出了TCP/IP协议模型的脑图，方便理解。">
+<meta property="og:image" content="https://github.com/kinyaying/resource/blob/master/tcpip%E5%8D%8F%E8%AE%AE%E6%97%8F.png?raw=true">
+<meta property="og:updated_time" content="2017-12-10T07:17:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kinyaying&#39;s Blog">
+<meta name="twitter:title" content="tcpip协议族">
+<meta name="twitter:description" content="做前端的一定要了解HTTP和TCP，我研究了一阵子这个协议，并整理出了TCP/IP协议模型的脑图，方便理解。">
+<meta name="twitter:image" content="https://github.com/kinyaying/resource/blob/master/tcpip%E5%8D%8F%E8%AE%AE%E6%97%8F.png?raw=true">
   
     <link rel="alternate" href="/atom.xml" title="Kinyaying&#39;s Blog" type="application/atom+xml">
   
@@ -65,61 +71,111 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-         <span class="archive-year-post">7 post  this year</span>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/12/10/tcpip协议族/" class="archive-article-date">
-  <time datetime="2017-12-10T07:11:57.000Z" itemprop="datePublished">12-10</time>
+        <section id="main"><article id="post-tcpip协议族" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/10/tcpip协议族/" class="article-date">
+  <time datetime="2017-12-10T07:11:57.000Z" itemprop="datePublished">2017-12-10</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/10/tcpip协议族/">tcpip协议族</a>
+    <h1 class="article-title" itemprop="name">
+      tcpip协议族
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/12/01/从零搭建vue脚手架/" class="archive-article-date">
-  <time datetime="2017-12-01T15:55:08.000Z" itemprop="datePublished">12-01</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/01/从零搭建vue脚手架/">从零搭建vue脚手架</a>
-    </h1>
-  
+        <!-- Table of Contents -->
+        
+        <p>做前端的一定要了解HTTP和TCP，我研究了一阵子这个协议，并整理出了TCP/IP协议模型的脑图，方便理解。<br><a id="more"></a><br><img src="https://github.com/kinyaying/resource/blob/master/tcpip%E5%8D%8F%E8%AE%AE%E6%97%8F.png?raw=true" alt="tcpip协议族"></p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/10/tcpip协议族/" data-id="cjb0fmqz30002lv13ntpxtru3" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
   </div>
-</article>
   
-  
-    </div></section>
-  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
 
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/01/从零搭建vue脚手架/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">从零搭建vue脚手架</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
 </section>
            
     <aside id="sidebar">
@@ -166,13 +222,6 @@
 
   
     
-  <div class="widget-wrap">
-    <h3 class="widget-title archive">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">5</span></li></ul>
-    </div>
-  </div>
-
 
   
     
