@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+<style>
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+</style>
+<script src="/lib/font/iconfont.js"></script>
+  <meta name="description" content="1. symbolSymbol 的基本用法Symbol 能够创建独一无二的类型 123let s1 &#x3D; Symbol(&amp;#x27;kin&amp;#x27;)let s2 &#x3D; Symbol(&amp;#x27;kin&amp;#x27;)s1 &#x3D;&#x3D;&#x3D; s2 &#x2F;&#x2F; 结果是false">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试必知必会1——ES6基础">
+<meta property="og:url" content="http://example.com/2021/02/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A1%E2%80%94%E2%80%94ES6%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="前端花园">
+<meta property="og:description" content="1. symbolSymbol 的基本用法Symbol 能够创建独一无二的类型 123let s1 &#x3D; Symbol(&amp;#x27;kin&amp;#x27;)let s2 &#x3D; Symbol(&amp;#x27;kin&amp;#x27;)s1 &#x3D;&#x3D;&#x3D; s2 &#x2F;&#x2F; 结果是false">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fb10e569e05b4e77b5e4edcb805efcb8~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/67ee097c845d452fafa8b63b38501b7e~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d0243106a9874c599e27de1c3e3376e2~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f471553e23a74db3a64073b4a73bf8b6~tplv-k3u1fbpfcp-watermark.image">
+<meta property="article:published_time" content="2021-02-09T13:58:06.000Z">
+<meta property="article:modified_time" content="2021-03-10T01:16:46.293Z">
+<meta property="article:author" content="前端小叶子">
+<meta property="article:tag" content="Js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fb10e569e05b4e77b5e4edcb805efcb8~tplv-k3u1fbpfcp-watermark.image">
+
+<link rel="canonical" href="http://example.com/2021/02/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A1%E2%80%94%E2%80%94ES6%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>前端面试必知必会1——ES6基础 | 前端花园</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端花园</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A1%E2%80%94%E2%80%94ES6%E5%9F%BA%E7%A1%80/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="data:image/jpg;base64,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">
+      <meta itemprop="name" content="前端小叶子">
+      <meta itemprop="description" content="因上努力，果上随缘。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端花园">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-cornflower"></use>
+            </svg>前端面试必知必会1——ES6基础
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-cornflower"></use>
+          </svg>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-09 13:58:06" itemprop="dateCreated datePublished" datetime="2021-02-09T13:58:06+00:00">2021-02-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-10 01:16:46" itemprop="dateModified" datetime="2021-03-10T01:16:46+00:00">2021-03-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-symbol"><a href="#1-symbol" class="headerlink" title="1. symbol"></a>1. symbol</h1><h3 id="Symbol-的基本用法"><a href="#Symbol-的基本用法" class="headerlink" title="Symbol 的基本用法"></a>Symbol 的基本用法</h3><p>Symbol 能够创建独一无二的类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>(<span class="string">&#x27;kin&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">&#x27;kin&#x27;</span>)</span><br><span class="line">s1 === s2 <span class="comment">// 结果是false</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>可以作为对象的 key 使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Lucy&#x27;</span>,</span><br><span class="line">  say: <span class="string">&#x27;hello world&#x27;</span>,</span><br><span class="line">  [s1]: <span class="string">&#x27;ok&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Symbol 作为 key 时，Symbol 属性不能被 for in 枚举，能够通过 Reflect.ownKeys(obj)获取</p>
+<h3 id="Symbol-for"><a href="#Symbol-for" class="headerlink" title="Symbol.for"></a>Symbol.for</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s3 = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;kin&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> s4 = <span class="built_in">Symbol</span>.for(<span class="string">&#x27;kin&#x27;</span>)</span><br><span class="line">s3 === s4 <span class="comment">// 复用</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Symbol-可以做元编程"><a href="#Symbol-可以做元编程" class="headerlink" title="Symbol 可以做元编程"></a>Symbol 可以做元编程</h3><p>元编程即可以改写 js 语法本身</p>
+<p><strong>Symbol.toStringTag: 修改数据类型</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toStringTag]: <span class="string">&#x27;kin&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(obj) <span class="comment">// 结果 &quot;[object kin]&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Symbol.toPrimitive: 隐式类型转化</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj + <span class="number">1</span>) <span class="comment">// [object Object]1</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive](type) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;123&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj + <span class="number">1</span>) <span class="comment">// 1231</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Symbol.hasInstance: 改写 instanceof 的功能</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> instance = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.hasInstance](value) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;name&#x27;</span> <span class="keyword">in</span> value</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(&#123; <span class="attr">name</span>: <span class="string">&#x27;kin&#x27;</span> &#125; <span class="keyword">instanceof</span> instance) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-set、map-与-weakSet、weakMap"><a href="#2-set、map-与-weakSet、weakMap" class="headerlink" title="2. set、map 与 weakSet、weakMap"></a>2. set、map 与 weakSet、weakMap</h1><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set"><code>Set</code></a>对象是值的集合，Set 中的元素只会<strong>出现一次</strong>，即 Set 中的元素是唯一的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用方法</strong></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/add"><code>Set.prototype.add(*value*)</code></a></p>
+<p>在<code>Set</code>对象尾部添加一个元素。返回该<code>Set</code>对象。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/entries"><code>Set.prototype.entries()</code></a></p>
+<p>返回一个新的迭代器对象，该对象包含<code>Set</code>对象中的按插入顺序排列的所有元素的值的<code>[value, value]</code>数组。为了使这个方法和<code>Map</code>对象保持相似， 每个值的键和值相等。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/has"><code>Set.prototype.has(*value*)</code></a></p>
+<p>返回一个布尔值，表示该值在<code>Set</code>中存在与否。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set/forEach"><code>Set.prototype.forEach(*callbackFn*[, *thisArg*])</code></a></p>
+<p>按照插入顺序，为 Set 对象中的每一个值调用一次 callBackFn。如果提供了<code>thisArg</code>参数，回调中的<code>this</code>会是这个参数。</p>
+</li>
+</ul>
+<p><strong>处理交集、并集、差集</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Map</span>()) <span class="comment">// &quot;[object Map]&quot;</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Set</span>()) <span class="comment">// &quot;[object Set]&quot;</span></span><br><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="comment">// 求并集</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">union</span>(<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([...arr1, ...arr2])</span><br><span class="line">  <span class="keyword">return</span> [...s]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 求交集</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">intersection</span>(<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> s2 = <span class="keyword">new</span> <span class="built_in">Set</span>(arr2)</span><br><span class="line">  <span class="keyword">return</span> arr1.filter(<span class="function">(<span class="params">one</span>) =&gt;</span> s2.has(one))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p><strong><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map"><code>Map</code></a></strong> 对象保存键值对，并且能够记住键的原始插入顺序。任何值(对象或者<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Primitive">原始值</a>) 都可以作为一个键或一个值。</p>
+<p><strong>常用方法</strong></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/get"><code>Map.prototype.get(key)</code></a></p>
+<p>返回键对应的值，如果不存在，则返回 undefined。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/set"><code>Map.prototype.set(key, value)</code></a></p>
+<p>设置 Map 对象中键的值。返回该 Map 对象。</p>
+</li>
+</ul>
+<p><strong>WeakMap 与 Map</strong></p>
+<ul>
+<li>WeakMap 的 key 只能是对象，Map 的 key 可以是任意类型</li>
+<li>key 被置为 null 时，WeakMap 会被垃圾回收，Map 则不会被垃圾回收。举例如下：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> my = <span class="keyword">new</span> Test()</span><br><span class="line"><span class="keyword">let</span> newMap = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">newMap.set(my, <span class="number">1</span>)</span><br><span class="line">my = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>此处使用 Map，当 my 变成 null 时，newMap 中仍然保留 Test 实例，class Test 仍然在内存中，没被销毁。<br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fb10e569e05b4e77b5e4edcb805efcb8~tplv-k3u1fbpfcp-watermark.image"><br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/67ee097c845d452fafa8b63b38501b7e~tplv-k3u1fbpfcp-watermark.image"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> my = <span class="keyword">new</span> Test()</span><br><span class="line"><span class="keyword">let</span> newMap = <span class="keyword">new</span> <span class="built_in">WeakMap</span>()</span><br><span class="line">newMap.set(my, <span class="number">1</span>)</span><br><span class="line">my = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>而使用 WeakMap 时，当 my 被置为 null 后，newMap 中 Test 实例也不存在，class Test 被垃圾回收机制销毁了。<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d0243106a9874c599e27de1c3e3376e2~tplv-k3u1fbpfcp-watermark.image"><br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f471553e23a74db3a64073b4a73bf8b6~tplv-k3u1fbpfcp-watermark.image"></p>
+<h1 id="3-Reflect"><a href="#3-Reflect" class="headerlink" title="3. Reflect"></a>3. Reflect</h1><p>Es6 后续新增的方法放 Reflect 上</p>
+<h3 id="Reflect-ownKeys-obj"><a href="#Reflect-ownKeys-obj" class="headerlink" title="Reflect.ownKeys(obj)"></a>Reflect.ownKeys(obj)</h3><p>获取对象的属性列表</p>
+<h3 id="Reflect-apply"><a href="#Reflect-apply" class="headerlink" title="Reflect.apply"></a>Reflect.apply</h3><p>我们在源码中经常看到<code>Function.prototype.apply.call</code>的写法，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...argvs</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;sum&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">sum.apply = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;apply&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.apply.call(sum, <span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+
+<p>因为直接调用函数的 apply 方法没法确保调用的是原生的 apply，可能已经被改写了。所以通过<code>Function.prototype.apply.call</code>来确保调用到原生的 apply。</p>
+<p>可以这样理解 call 的功能：1. 改变 apply 中的 this 为 sum，2. 让 apply 执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.apply.call(sum, <span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="built_in">Function</span>.prototype.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>]) <span class="comment">// 等价于apply执行，并且apply内的this是sum</span></span><br><span class="line">sum([<span class="number">1</span>, <span class="number">2</span>]) <span class="comment">// 等价于sum执行，并且this是null</span></span><br></pre></td></tr></table></figure>
+
+<p>Reflect 上也有 apply 方法，并且写法更加简单：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Reflect</span>.apply(sum, <span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-reduce"><a href="#4-reduce" class="headerlink" title="4. reduce"></a>4. reduce</h1><p>数组上提供的方法，能够收敛数组，把数组转化成其他类型数据</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>数组不能为空，若为空则 reduce 第二个参数必须填，否则报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].reduce(<span class="function">(<span class="params">prev, current, index, array</span>) =&gt;</span> &#123;&#125;, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">[].reduce(<span class="function">(<span class="params">prev, current, index, array</span>) =&gt;</span> &#123;&#125;, <span class="string">&#x27;&#x27;</span>) <span class="comment">// 数组不能空，若为空则reduce第二个参数必须填，否则报错</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="reduce-实现"><a href="#reduce-实现" class="headerlink" title="reduce 实现"></a>reduce 实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.reduce = <span class="function"><span class="keyword">function</span> (<span class="params">callback, prev</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!prev) &#123;</span><br><span class="line">      prev = callback(<span class="built_in">this</span>[i], <span class="built_in">this</span>[i + <span class="number">1</span>], i + <span class="number">1</span>, <span class="built_in">this</span>)</span><br><span class="line">      i++</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      prev = callback(prev, <span class="built_in">this</span>[i], i, <span class="built_in">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> prev</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用-reduce-实现-map"><a href="#用-reduce-实现-map" class="headerlink" title="用 reduce 实现 map"></a>用 reduce 实现 map</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.map = <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.reduce(<span class="function">(<span class="params">prev, next, index</span>) =&gt;</span> &#123;</span><br><span class="line">    prev.push(cb(next, index, <span class="built_in">this</span>))</span><br><span class="line">    <span class="keyword">return</span> prev</span><br><span class="line">  &#125;, [])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用-reduce-实现拍平多维数组-flat"><a href="#用-reduce-实现拍平多维数组-flat" class="headerlink" title="用 reduce 实现拍平多维数组 flat"></a>用 reduce 实现拍平多维数组 flat</h3><p>数组有一个自带的<code>flat</code>方法，能够拍平多维数组。比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">4</span>]]].flat(<span class="number">2</span>) <span class="comment">// [1, 2, 3, 1, 2, 4]</span></span><br></pre></td></tr></table></figure>
+
+<p>用 reduce 也能够实现拍平多维数组的功能：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.flat = <span class="function"><span class="keyword">function</span> (<span class="params">level</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.reduce(<span class="function">(<span class="params">prev, next, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(next)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (level &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        next = next.flat(--level)</span><br><span class="line">      &#125;</span><br><span class="line">      prev = [...prev, ...next]</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      prev.push(next)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prev</span><br><span class="line">  &#125;, [])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用-reduce-实现-compose"><a href="#用-reduce-实现-compose" class="headerlink" title="用 reduce 实现 compose"></a>用 reduce 实现 compose</h3><p><code>compose</code>即组合函数，用来把多个函数组合起来，常用在中间件中。比如有 3 个函数，<code>sum</code>，<code>len</code>，<code>addPrefix</code>，需要一层层的去调用这三个函数<code>addPrefix(len(sum(&#39;a&#39;, &#39;b&#39;)))</code>。我们也可以通过<code>compose(sum, len, addPrefix)</code>来实现这个功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">len</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.length</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addPrefix</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;￥&#x27;</span> + str</span><br><span class="line">&#125;</span><br><span class="line">addPrefix(len(sum(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>通过执行<code>compose(sum, len, addPrefix)</code>产生一个新函数 fn，再调用<code>fn(&#39;a&#39;, &#39;b&#39;)</code>实现 3 个函数的组合调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">...fns</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> fns.reduce(<span class="function">(<span class="params">prev, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">...argvs</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> prev(next(...argvs))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> fn = compose(addPrefix, len, sum)</span><br><span class="line">fn(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>为了更好的理解 compose 的实际执行结果，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fn = compose(addPrefix, len, sum) <span class="comment">//等价于</span></span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params">...argvs2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="function"><span class="keyword">function</span> (<span class="params">...argvs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> addPrefix(len(...argvs))</span><br><span class="line">  &#125;)(sum(...argvs2))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-defineProperty"><a href="#5-defineProperty" class="headerlink" title="5. defineProperty"></a>5. defineProperty</h1><p>作用：对 object 的每个属性用此方法定义，可以使用 get 和 set 拦截对象的取值和设置值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;,</span><br><span class="line">  _a = <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">&#x27;a&#x27;</span>, &#123;</span><br><span class="line">  enumerable: <span class="literal">true</span>,</span><br><span class="line">  configurable: <span class="literal">true</span>,</span><br><span class="line">  <span class="function"><span class="title">get</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> _a</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">set</span>(<span class="params">value</span>)</span> &#123;</span><br><span class="line">    _a = value</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">obj.a = <span class="string">&#x27;aaa&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>可添加描述符</p>
+<p><code>enumerable</code> 和<code>configurable</code>都是描述符</p>
+<ul>
+<li><code>enumerable</code> 表示 obj 是否可以被 for in 或 Object.keys 枚举</li>
+<li><code>configurable</code>表示 obj 是否可以被删除，例如<code>delete obj.a </code></li>
+</ul>
+</li>
+<li><p>使用 set 和 get 时需要借助第三方变量实现对<code>a</code>属性的监控</p>
+</li>
+<li><p>缺点：如果要把对象的属性全部转化成 getter + setter，需要遍历所有对象，用 defineProperty 重新定义属性，性能不高</p>
+<ul>
+<li><p>数组采用这种方式，索引很多，性能很差</p>
+</li>
+<li><p>对象中嵌套对象，需要递归处理</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="6-proxy"><a href="#6-proxy" class="headerlink" title="6. proxy"></a>6. proxy</h1><p>作用：使用 get 和 set 拦截对象属性的取值和设置值。</p>
+<p>优点：proxy 是不用改写原对象，不用对 object 的属性进行重新定义，性能高。如果访问到的属性是对象时，再代理即可，不用递归。</p>
+<p>缺点：proxy 是 es6 的 api, 但是兼容性差</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-next">vue3</a> 中对数据的拦截就改用了 proxy。</p>
+<p>常用的 api:</p>
+<ul>
+<li>get：获取属性时触发，例如 proxy.xxx</li>
+<li>set：设置 proxy 属性时触发，proxy.a = 1</li>
+<li>ownKeys：获取 proxy 的 key 触发，Object.getOwnPropertyNames(proxy)或 Reflect.ownKeys 或 Object.keys 都会触发</li>
+<li>deleteProperty：删除 proxy 上的属性时触发，eg. delete proxy.xxx 触发</li>
+<li>has：使用 in 语法时触发，eg. ‘a’ in proxy</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">xxx</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">  <span class="function"><span class="title">get</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Proxy get&#x27;</span>, <span class="built_in">arguments</span>, <span class="built_in">Reflect</span>.get(...arguments))</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(...arguments)</span><br><span class="line">  &#125;, <span class="comment">// proxy.xxx</span></span><br><span class="line">  <span class="function"><span class="title">set</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Proxy set&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(...arguments)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">ownKeys</span>(<span class="params">target</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// Object.getOwnPropertyNames(proxy) 或Reflect.ownKeys 或 Object.keys</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Proxy ownKeys&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.ownKeys(target)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">deleteProperty</span>(<span class="params">target, key</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// delete proxy.xxx 触发</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Proxy deleteProperty&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (key <span class="keyword">in</span> target) &#123;</span><br><span class="line">      <span class="keyword">delete</span> target[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">has</span>(<span class="params">target, key</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Proxy has&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> key <span class="keyword">in</span> target</span><br><span class="line">  &#125;, <span class="comment">// &#x27;a&#x27; in proxy</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-深拷贝和浅拷贝"><a href="#7-深拷贝和浅拷贝" class="headerlink" title="7. 深拷贝和浅拷贝"></a>7. 深拷贝和浅拷贝</h1><ul>
+<li><p><strong>… 展开运算符</strong></p>
+<p>… 等价于 Object.assign 都是浅拷贝</p>
+</li>
+<li><p><strong>实现一个深拷贝</strong></p>
+</li>
+</ul>
+<ol>
+<li><p>JSON.string + JSON.parse</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(&#123; <span class="attr">a</span>: <span class="number">2</span>, <span class="attr">b</span>: <span class="literal">undefined</span> &#125;))</span><br></pre></td></tr></table></figure>
+
+<p>缺陷： 正则，函数，日期， undefined 这些类型不支持</p>
+</li>
+<li><p>递归对象，把对象属性都进行拷贝</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj, hash = <span class="keyword">new</span> <span class="built_in">WeakMap</span>()</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 记录拷贝后的结果</span></span><br><span class="line">  <span class="keyword">if</span> (obj == <span class="literal">null</span>) <span class="keyword">return</span> obj</span><br><span class="line">  <span class="comment">// 正则 日期 函数 set map</span></span><br><span class="line">  <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">RegExp</span>(obj)</span><br><span class="line">  <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> <span class="built_in">Date</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(obj)</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span>) <span class="keyword">return</span> obj</span><br><span class="line">  <span class="keyword">if</span> (hash.has(obj)) <span class="keyword">return</span> hash.get(obj) <span class="comment">// 返回上次拷贝的结果</span></span><br><span class="line">  <span class="comment">// 数组 || 对象</span></span><br><span class="line">  <span class="keyword">let</span> newObj = <span class="keyword">new</span> obj.constructor()</span><br><span class="line">  hash.set(obj, newObj)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">      <span class="comment">// 不拷贝原型上的方法</span></span><br><span class="line">      newObj[key] = deepClone(obj[key], hash)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>其中增加<code>if (hash.has(obj)) return hash.get(obj) </code> 是为了避免循环引用。每次拷贝完对象的属性后都存储在 hash 里，在下次拷贝属性前先看一下是否有，如果有就直接返回。循环引用的测试例子如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line">obj.b = &#123;&#125;</span><br><span class="line">obj.b.a = obj.b</span><br><span class="line"><span class="built_in">console</span>.log(deepClone(obj))</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Js/" rel="tag"># Js</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/09/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E5%AE%9E%E7%8E%B0JSX%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" rel="prev" title="有限状态机实现JSX词法分析">
+      <i class="fa fa-chevron-left"></i> 有限状态机实现JSX词法分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/09/wokoo%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%88%E6%90%AD%E5%BB%BA%E7%AF%87%EF%BC%89/" rel="next" title="wokoo脚手架（搭建篇）">
+      wokoo脚手架（搭建篇） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-symbol"><span class="nav-number">1.</span> <span class="nav-text">1. symbol</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">1.0.1.</span> <span class="nav-text">Symbol 的基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-for"><span class="nav-number">1.0.2.</span> <span class="nav-text">Symbol.for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol-%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%85%83%E7%BC%96%E7%A8%8B"><span class="nav-number">1.0.3.</span> <span class="nav-text">Symbol 可以做元编程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-set%E3%80%81map-%E4%B8%8E-weakSet%E3%80%81weakMap"><span class="nav-number">2.</span> <span class="nav-text">2. set、map 与 weakSet、weakMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">2.0.1.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">2.0.2.</span> <span class="nav-text">Map</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Reflect"><span class="nav-number">3.</span> <span class="nav-text">3. Reflect</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflect-ownKeys-obj"><span class="nav-number">3.0.1.</span> <span class="nav-text">Reflect.ownKeys(obj)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reflect-apply"><span class="nav-number">3.0.2.</span> <span class="nav-text">Reflect.apply</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-reduce"><span class="nav-number">4.</span> <span class="nav-text">4. reduce</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">4.0.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.0.2.</span> <span class="nav-text">reduce 实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8-reduce-%E5%AE%9E%E7%8E%B0-map"><span class="nav-number">4.0.3.</span> <span class="nav-text">用 reduce 实现 map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8-reduce-%E5%AE%9E%E7%8E%B0%E6%8B%8D%E5%B9%B3%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84-flat"><span class="nav-number">4.0.4.</span> <span class="nav-text">用 reduce 实现拍平多维数组 flat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8-reduce-%E5%AE%9E%E7%8E%B0-compose"><span class="nav-number">4.0.5.</span> <span class="nav-text">用 reduce 实现 compose</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-defineProperty"><span class="nav-number">5.</span> <span class="nav-text">5. defineProperty</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-proxy"><span class="nav-number">6.</span> <span class="nav-text">6. proxy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-number">7.</span> <span class="nav-text">7. 深拷贝和浅拷贝</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="前端小叶子"
+      src="data:image/jpg;base64,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">
+  <p class="site-author-name" itemprop="name">前端小叶子</p>
+  <div class="site-description" itemprop="description">因上努力，果上随缘。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kinyaying" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kinyaying" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kinyaying@gmail.com" title="E-Mail → mailto:kinyaying@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.cn/user/1011206430400600" title="掘  金 → https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;1011206430400600" rel="noopener" target="_blank"><i class="fa fa-fw fa-question-circle fa-fw"></i>掘  金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/jade-66-17-18" title="知  乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;jade-66-17-18" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe fa-fw"></i>知  乎</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端小叶子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

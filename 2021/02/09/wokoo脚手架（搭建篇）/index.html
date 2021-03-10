@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+<style>
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+</style>
+<script src="/lib/font/iconfont.js"></script>
+  <meta name="description" content="油猴插件 &amp; wokoo 脚手架使用说明一款油猴插件的脚手架。如果直接开发油猴插件，开发者需要费时搭建 vue 或 react 基础项目，还需要对油猴脚本区域做对应的配置，开发体验差。 wokoo 可以一键式生成基础项目，并且提供基础 Tampermonkey 配置。主要提供的功能有：  命令行式创建脚手架初始项目 根据用户选择，生成 vue、react 的基本项目 tampermonke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wokoo脚手架（搭建篇）">
+<meta property="og:url" content="http://example.com/2021/02/09/wokoo%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%88%E6%90%AD%E5%BB%BA%E7%AF%87%EF%BC%89/index.html">
+<meta property="og:site_name" content="前端花园">
+<meta property="og:description" content="油猴插件 &amp; wokoo 脚手架使用说明一款油猴插件的脚手架。如果直接开发油猴插件，开发者需要费时搭建 vue 或 react 基础项目，还需要对油猴脚本区域做对应的配置，开发体验差。 wokoo 可以一键式生成基础项目，并且提供基础 Tampermonkey 配置。主要提供的功能有：  命令行式创建脚手架初始项目 根据用户选择，生成 vue、react 的基本项目 tampermonke">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1dc027500896430f9b13bf72d400f256~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf77f0701b274c7483a0d6aaba207640~tplv-k3u1fbpfcp-watermark.image?imageslim">
+<meta property="article:published_time" content="2021-02-09T13:58:06.000Z">
+<meta property="article:modified_time" content="2021-03-10T01:16:46.293Z">
+<meta property="article:author" content="前端小叶子">
+<meta property="article:tag" content="node">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1dc027500896430f9b13bf72d400f256~tplv-k3u1fbpfcp-watermark.image">
+
+<link rel="canonical" href="http://example.com/2021/02/09/wokoo%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%88%E6%90%AD%E5%BB%BA%E7%AF%87%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>wokoo脚手架（搭建篇） | 前端花园</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端花园</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/09/wokoo%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%88%E6%90%AD%E5%BB%BA%E7%AF%87%EF%BC%89/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAIYAAAAAAIQAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANv/bAEMAAwICAwICAwMDAwQDAwQFCAUFBAQFCgcHBggMCgwMCwoLCw0OEhANDhEOCwsQFhARExQVFRUMDxcYFhQYEhQVFP/bAEMBAwQEBQQFCQUFCRQNCw0UFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFP/AABEIAHgAeAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAHAAQFBggJAwL/xAA6EAABAwIEBQIEAwYGAwAAAAABAgMEBREABhIhBxMxQVEiYQgUFXEygZEjM1KhwdEWF0JigrEkQ3L/xAAaAQACAwEBAAAAAAAAAAAAAAADBAECBQYA/8QALREAAgEDAwIFAwQDAAAAAAAAAQIAAxEhBBIxQVETImFxkTKBoQXR4fAUscH/2gAMAwEAAhEDEQA/AMPx6c+1ClvM2F1E+k2sNrA774ipEZYTzpCTraTZSBbb++PuiylNy5tPeUFsm6Tc274c1dlpDslMR1pF3LA6r2HjFdoHEVKECQriC5HdW0AUOAA7dLYfU0B+TD0LLPKbKXAOihff+mG0UcqA+3zEEkki/bBE4VZHqWeZzaqbFVNkU9lchxtkXOgFNyfHW33IHUjEOQFuTiECqBYzQHww5dhvVWbArdFbl0WuxEx6a8+tLhS82CXNG5KL6gdwL2GIrizlVrL2UqVPpkNtFZbW61IJGpbiUlSbk3tbbpiy5TyH/hR9yqU5j5F4FhyP6vUXCDzSq+w1XA/47YrFS4i1DJCa7FjQ0LLlTeZUl+6SjUCq36k4PUVWTaxzzAUzZrDMg+F8CvQ+HEqp0tlMOqsNsGMUCwWhJVZShexNld8N8m1Wq1yrzI2YkQac9UGtlojNhSkKvbZG24HjFs4e8YqzDyLMpbaGkrpdOCGiFDf1BP8A0cVfI9ReqNbolfmIYkVeI0Y6FkkAIFwEn8lYQenR2jc0MFbccS65TyPQeFTn1ejVV35tLSy4hxKlXdvdu21hYg4s+Shm7Pldj5gRNBlLjpdUwpgWcC0XKldASb/zwzbmfQ25zw5a4jjLpfhj92HVEkKSrc3B9++Cbw64hrar+W8thyP9LNCZk/OcyxK+WlIa8eT52wRdJTqC5YmFffTIUgAygT+FM3O2bKq9UoQnzKMtpJSXdJbBQFAD1WHU4mXcqSMt53p1TVl6oU6cpbMAT/nGnA62tQCkhO5F06hc/riS4R01FLzTxWqdonNq1WAjWk/tHwhr8Kh/pTckg23ufGCVxKkR0TcqQltpdU/PWtLZVskojOrB97KAwwmlpCxW+JRnYA36z1/zQ4X0CJH59LmtNKuGy+6V6rdex84j5dYydxKee+gzJ0WW22FkuqJbSi4H4dIv2GM9cUINWpcuI/UMutVWlw2QxEJWUh1xYSSAkHVf023HbFXlcQ8wUHLdQkRKG3ldbrAZcZWsFTQ/0ne/U3O+GXCojKVFvQRFfM4Yf7hxzzwNdztRG1RczttB1jUweUoDe5BPTbcbe2FjN8LPtbzFQvp5dDMeGgNA8waUX2Jv43HnCxkb9OuNsO1zkzMUpic1KL7zKmecsqSEnVsT7YfCO4X22kIVqWLgEYIlPpaHVrUY6lNJ3KW7ggf29sPF0NxC25rsUuONgpb33R98U/ytpyJ7xsWMHEWmBuA67KcuSbJTbSR741Z8E3EijUyFUMt1BEeNUw8HYUvlELdQoEuIUsJ6JKEmylb6tumBplrJtC4j1yNTHjyJklpYbdUkqbDqUqUhC7eoBSgEkgG172Nsadyv8A86hZadqubJzFFLkZwoptKRzXAOWopPPPoCtQFwEqFjcKvthSsw1dNqRBF/xLLVzci8Mea4kdEOm1CDHRy347sCUhyyxe6FINj4sTf39sZwznwNzHPqzRpLKXKfI+adLzoR+zWhy6AQpQK1L5th3Gn9DplnJ+buHXCynSc4LVUoCGW5yJgK1vgb3Q+koSEKGoWIJ1A9BpN7vluK9n2ZQYkRRapUJ5M1wk2C3exP2B/ljjN+o/TtcAmSQQOx/vM0DTp1E3JzMNZfyeqJGrUF9CmZjkZSA7rCdSgpKyNF/TbbrgU/Pvx0cmlMypHLfUHeWwtSm/V0Nhv9x4x0+onwj8Pcj5lerdQl1DMFelyJL0pE5adDxeJ/eAWAA1Ena5JvsNsM6FRIOTs61ePlmiSKZUHSWZKIpCtSiAsEnUdlJUkixPQ3sbgd01ek5WmWF/xftFLWJJ4MFGReDzMaI7SZzjkhTYCDMS6W0uepQUSCeibWset74lsz8J6RlCZR1U5DZC0IiKDrQWU6VtBpQJ8G5NuuDHOy19JlKaq0dc2jv2YlLKNKQoixGxPT8seOcKPGcb5mhElLDhUyCCApQIKDbv5xz1TX1U0T0mxUBFvXP7RplaowuenMFeXeAEWkTXKvJHJqDzi3VFBBT1IHQkfhtt7nHlnfKhcmRqrKfUs0tDzsdpHo1qKNNiQfHnBXprbzNLbYAV6Gi7ykJJSVJSAf+RFtvb2xXplQiVKjuPzYnLhEaV/NJ0be9/tjr9BVepp1NQWbqP39esVdRe15mfOvEqqZgepbRy4toRZAk6BMQrmWSQBewA64qebVSc7UaqxZcKRTY9WS38w6h9L6YqmiQk6U/i2uSB1v7YPGZ85ZBylAcdfeg3AUhtjmfiXY2T7X98Ztc4mypdPa+mOyKE0pu8qK0oFCnjfUrcdCAnbGh4u42YwHggDyiUtnLlZyv8ypqU1WKa8uzMhtkNFwDoSgkqT+YwsWNOcYSgROaNPlFsoFThbXT4cR49x+hwsItpUY3V7e8sGbtBc3WW2p+phSmoygdQO5Qe43/F98RmaM5qiuqEeQtaVW9QTYC22K8cwyLfLOupfLTQs62N0fyw3y7UzUJ0hh9vU08oElKQrljvYHbxjP8IA7iOIttmk/g2p6ahxrp+YpsqOxTqVHdedjSVBJkqdaU0EJFwdgsruAbaPe+OjTtUzFCzJFoMMPrdfiGa1djnRw2FBJu6QUg3PQm9u2OU3w58SqLwq4nIlT5i1U6oRX6e/MUQPk0qspKkXSd9TYT/yOOkuQc+SaXRIVJYzDJ+jOxgtiTIKVFxJOoqKkpBJ36AAe2KvYAf8AMRimDbEvdcmzs2U16ku1UKEtpbL74iJ0spKSNkdFb2GxFuvbDTLLCcuZjh0SmJMKnQYuhRvzFqQsFKVkne90E2vcfniwUfMEGq0iLPdeTKjrQUGQ2NKboUUpVa2yiDv5vhk/Adr7cl+nuIbeAKLtJspKQAUFR31eoEE7bKAA2uc7VU1qEOuTj4/mMUwftLpVW6Ll6nP1ZptUmTFZ5pQp5R1WBJVuTuR/pt1xVcrZRepeXIyGlpmVNiKhh2S4oIKgkC6tydyO3UecOjRpUyjSASn5hwctDJ62HU4i6FOW6XqXLkvIYbUFLS2rS4og7i/g9DgLUVa90wRgesLm9wZaH6ih2my2qpCW0y2lkKWi7mtTiwlNrDrc9umA7Ezyik8a5+VarDRMptPjCaykyOWFgqAICrEmxVq6nZJFsT+aq0WBAhQHZSmLhKeYu4ISQQLDvgducIKfTuIUnOFUq0+Y+6koiQW1BDbTailpeo7qUBzgdinfzjJqIzNcjzL/AH2MI17AqeZo+HnDK8h6SVU9lhuS0UOOiSokA9gmw/UWxSM5opOZa40zCLaKQxEWG2dO8uRdATfUboCEBY3uFFy5F0jHm/lSLTEpbaaltJRYfMTihYNwT2Tfe2GTUdijVqSpySpyOiMlxK2CNKFE+o7gkkdLdPY43FfV1SADbiDIRMiZx4iZXpcKU99QishLq9Sm1H8ISCbgjqbeOuB9UZ1E5DMWDT23WFkpSQTc22uSRfv38YvuaswozBmWWzmPTQlw5a20sSXeY6bbDUUoA6eAMMqxkaDLaLrTbY5yfRIbJFhb2/tjUcrfyxpdzqCOYMsz1GiUJRQ1S2FxnTdLgf1EED+G2FhpWcliJMcsjnoOw5yQrp4OFiAB3lb1PaSuVONdJ4WQ0w8qU+PHYAJHLgNyCQOvrdQonr5w4zD8UTWfYCqdXYzEmI76VtfS2UXHstDYI+4OMwzeJDb1UbU5TVSEFdkWDY2ANiDa4Nz5xdcm59RWob1PiUVxysybpYZXJUG9TadV1WUCoXA2J7Yk1qo5lhp6Rhiy7wj4F8WkUmnUqnHINWbkJc+tRJcmemUvV+7Wy87pQknfUnp4waKZQ643nCVRqvHjR3ITi0z3ESBymGtylSCQNQuEDta5PbGauG3CbMtez9liGGUorM19t5BjqsUpJuqxKjsEA9T2OOh/GZvL1JzdQ20SI8SqrjLS7oaPMkpZ0BTiiBayAvSb7nmp622swOopF7ZU/MTq0xQcAdfxK/ScsOUiUGGXFqpK16USmvWT6RdRTcgeonv2w7p8+Xl+ay/AmNfMpCucmV+zSFA+bG98UvOWZnmqYxEpkdluzul1agQlaLHcgEG/vhimlrnVinsSA+1Q1xtaksulKk6bBSdQN+pB+x++OeqUWZr0xGlwMmWuPxapeaGaIqnLFTixXlO1BOso1Gxugkbpsd7j+HwcSS89prE9azGUl4qKiGfWEjsOg6C25xnmkVNrhHxFqlOjRHmsuSZSFsvFdwgqTqIHe1/6Y1lRabBqVGj1NXy4joaDq5K0q06fGkEC477b4tpqFV9wD57e0puVQCRISfFZqVOfKXSZIstKgN0BJBG3TqOvvgYqz6l2vQJdTafVOgtvtJURpLSlFKVEp2CkqCTuQbaQR1wXKlmqKYvNiOMRWdwpTUcJSLK9KyABfyO4xi/idnqqK4l1h0zluU0TilC3vUpKNCQUk9SNV7ff2w9WoALzmUVs26TT8HimZ7oQgrjR1gWWlOq+3uO/8sez+d4lGp5fMtpqQpxCXHnyElJJ2ABFjcnbzjNOS+NMKLmSoUiWwtqbBYS+xdV0upt1A7Gx74uiM701xKl1SzUV1YShK06lKXZKvSQDaxIF/IwTTUdoxzKv5jgSq8W5tKlZ8mSYq3FszW0PusvIKdLqh69Kr3INtV+l1EdsVluvPUptIpcr5dZFgSAsW6W9V8R/EWRDVmiO7GAjIf5lyr1KNiADf7YYRGXo7nMuXQ56k72+xwy31EQijYbS0wuJFVpyiiW41LaJOoqbQm36JwsVJuqrdklJGtKVG56Dr0wsRaFDsesGA4Tw6LLaQ1Gfq0khLTjB9CUgncAjqdN+/wB7b2OPDf4VK/xQUKgltdIg85K3KhLultsBJ0kKOyz1FkA2JF7DfBqjr4V8OqxEqVPhSapU2GwjTUJCnWHF2trLSkab/wDWITP/AMRlUzUn5Zh1LCAotclsEBtIFhYgAW9hh6noTe9Z/sIKrrRa1FPmFPh9QMncCJspnKDSarmupp+Xk1VZKfSSklAF7BOpIPS+JzigzmnKNB+XrcqAYc93nIS3cLdUAm9yRYbW6ePvgQcLHFvV2nvOOaiXAFk98F34tc3x6OxEkaESI7TCYbbbouFvrUjbcf7h122JvjQqqFpFFFhM5WJcu5uTBI585Ukh9IKojCglbq1BKE26JB7mx6C53w6VneUzCEZiYW2idOwB2FxbpgaTJbjzLjMdZ+W1X0pJAO+xt+WPiZXHUw22XHVLS0r0gqJ7DHMNgXGJqDMKrldpWd40qFNlIZBbaYlsupUEOaUjSu4F77J6bXFuxxYqJmJjLlCaotPXzeQ8paHRfTpsLAX389cA/LOcICZ9QMFYlSWm0MrdU2pIQblVrKG/XqNsT0DMBfWsPKs6sXFvP2x5bA7rZnitxCeau87LW42sIlLIUncbm3Qj8sc9vim4tP1rOFWpTAlNSGpYTKeltctx1xCr/h7IFkkGwJsPJxpbidxKj8PKAxW5Lyg2ZTLCbBV1LKwSNgbWQFHcdrXuRjGvG/OtKztxHzLWW2OW5MeG+orBUkadYNhYK03/ADw4g2qARAshc4MtrvFGNRY8OsNMR6hmWTDbYLrTmoJCVK1Xt0vte4vsLd8FvhjxORnWjKhuRJDZjp1TITCOYCk7Ffm1/wCnkYyjSp4Gn5ZLfNQr0RlDdQNgDrO3fHRD4RuCNYy1SaNxBodWadrFXhKZVEDGhIaJupJJXZW6Um9u2DolQt5B7+0AQ1NgG4gorjcaZU4UhhaoSGk8sBxsp2FgFG+PFFaixlct1ZDtxZdtlY21muoZ9W2hqo5HpdUjk6A+4mMv89JJPbA/rETJmY6c2vM2QkxbnQHqS38uokG3/rQe+BmnY33fiH84JIHPaZdlVWOpSuYuzbpuE9ifvhY0Mvh9wcjkQjliuBZuog1JxJ9+rWFiNnqPn+JG5+izMSqnKqLyHZLynlAaQVdhj1fzNCo7Tr7xUstpJOlJ038FVrJvcDfzgYUxFezC6WZkz5SMhSeYykJ1FSVi41CxsR398SE/Lk+qyWaTCK4VOW4pMhxa+cbWuDvYm9htfbHSKihsmZ00DwZ4gScw55hMx3PlYiEJdDalhRUAU9LDve2x29X5WD4peILdXrWVKTOU5KhMrdlzGkqCQ4pSw22L9fSG3b//AEMVXh7Ah5ZqUdVMY1zFIDLDVydP8Sio3sLDv498VD4hJscZ5deiqVIqCY4iqSHtSEblRAHS/Q37YW1VZDdE7SChC7jJHMmdpUCZVIFEpj0t2nNNKSkdHAsEgAn2B/Q+MSKKuusZZgz3orsFxQHOYe2U0T1vgIVPOtao9Iu5LTHS0jSVltKlEDpc2urrjw4acd25EifAzHUNbTziW4yeTYKv3Kkp9O9uuMM09wwI9SqEzQ0QLisgpQAlYCkrBBKh1GHUKoLdla1cpoNAqtclavAHkk4BfEfiwvIr0CPBUipByK7pUh8WZNwEk7HVvq226YrmR/iql5ei8msZfTWppXdUkShH27ekNqG2ISgYwWxiFLOfEfJ+eI9UoWYw6iLAdXGfcQojluA21oJFioEbDfpuMZ94v8PouWqgmt5eeE7JFRVogS21lSm1BI1NOpV6krBvse3QnEA5LgzH35DUhxtp1xTvIXqWU73AKj+IjyeuJ9rKtXznCgxKOh+oIekJbQyi4bQ4R1IJsNu5wZTY7bRTewYbsStZLo7+aqpGocNvmzJ76WWLm1lEi2Oy/wAPtATllrJmVIz37OBGDalEm6tLaioj7nGM/hs4BQeF4TmKtBEnMSgUJQRdMUbXSLKKVEFN9Vgd7Y6D8DMlSfoc+vy3/pc+akMQluNhZaaG6l6SRurpYgEBP+7GtSXwkJPJlKjGqwA4EKkWntPzVoTrS60AVaCQARuL363uf0OJIwWW2dbiUnTfe23U4gKrWW6I0000+EGQ6ENPqFykm53B6jtviTgKecbSnnB5AuFAAWO3W+FkIODzDsGGZVKnkWFmDNUWs/OymBEQUJiJUEtOk7qKk2ue1t8LE5Uw5DfW8lV2UgakWCQLdVX7bYWJ2r2ns9DOHTeZINNbDiQp9y3UWKz+eJShZpqVdkNx4MJTC3VBCVuG/XvYYZM5cQ2hr0fgANt97fngm5LpJYMcsxtLr10t363sT3+2BNXJkCkLQycOYMLh9RlOyJiHavITdSnRdazY2SAfcWttiOyl8PLGZ33nJiJc2bIfc/8AJiuJS2wVFSgVXSSpP4dhYjycWPLVHXLbiCdFJcZSr9mCSFKI2udrbA/rgm5FojFCdJhxDCRYlbXOUsE3uOpNh13wJgajDtLbKZWxGZjjilwNqeTZy2K5T3ENLWptl5X7p7Ta5T7bjx1wEa9wsiLka2mVxm7EqWybBPfcf2x1L4iVqmUzJlakTYQnKlN6HEqV3ICQB43I6b4xhmanopcyQ38t6216FtLNiO/9cMmmpwIIErxM2Hg1KWQpFQUW7ekFq5t166sOVcI5tTf5j0tLB22bY7fe4wbxJbUPTHQN9/V0GHTUtq9xHTe/8WI8I3lvEEGuSeDkCNUmUTmTULELUXVFKCAfA6+98afoEmBQYLMalRmoGhIQlqKnSFC4vcdD0tv0ubWwPW6iyw0p10txmm91OrVYAfniSZzWkwof01CZi5bnKQoK3v5Fgb4ZpU2QGAdg5E1jwGyFCqpGZswt84NSQmFACvQtaUFalKFvUQBe17bG9+mDtUJT+bGJSY09URCVFAdQgFLe1zbp2Iv98VfguW8vcNKbT3nA7LS3zXbptYq6749cxzpLkiJHihDrroJUEqASb2sdu1hhDUc5N49RsOBaSOWswsJpTclboqbERxbLkl0bqKQLqBvsN9h464v9IcL0Vma0UqjvIukI3Gnsb4GbuUYdJoVQVDZVT25zrXzK1OFaAgKVqUnUTuUkiwt19sPaXxRptFjhhiKpmkMA8t0LKidyVAg7ixv3xRG8L68QjDefLCfIiIWwWXAHEODSpKvBG/8A3hYgcsZzpOcKcmdTJrchAJB0qBKCNiCPuDhYfUgi4iDXBtOUUKhtsTUc5rWAbg36YIGXcwxI61Msxwy84UoakL3SvcakjuNibdsLCxnlyDiHKg4Mt1AiyImaoSlVZpVMmtqaTDS2TzFEglStrbWA/PBvjx3I7QUVlSgLb4WFh2gASYGqTYSk8U61TqdlyTNqsYTIjASVsKAIVv8A3sfyxlbOGao+ZqqmcmK5CLqOSWXlBSvQRYkj2UMLCwJmIrWEIqg07mV9FkrNjcHDOsSpjEVYgM8yTpUpKttrbhO/np+eFhYfXkRU8xplTLC6jJ+bq81U+Qlxt1DIUrlsrACj6TcdQOna+Cbk+JHj5vhSZbqHak/ZMRCxs2APXsNjscLCx6vUYA2llFzNkZerSWnGFRkFTxTpdSeyANh+pw8TmtUutRYshKYr2ohGpAOv1D8Oxt1AN+uFhYwqjHd95qUlB57S7Zjrjn+Ea4wg3XFWmzKNiU6Qo7+51YFSX/rFDK2EOR0vuKUptawvTubeRYpAIHa/3wsLFtQdxAPaRRxe3eV/h3mWr5br9nJamENvhMhlRKgtk3G5uTrJ2v2sfOFhYWJokhbCEqKGa5n/2Q==">
+      <meta itemprop="name" content="前端小叶子">
+      <meta itemprop="description" content="因上努力，果上随缘。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端花园">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-flower11"></use>
+            </svg>wokoo脚手架（搭建篇）
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-flower11"></use>
+          </svg>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-09 13:58:06" itemprop="dateCreated datePublished" datetime="2021-02-09T13:58:06+00:00">2021-02-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-10 01:16:46" itemprop="dateModified" datetime="2021-03-10T01:16:46+00:00">2021-03-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="油猴插件-amp-wokoo-脚手架使用说明"><a href="#油猴插件-amp-wokoo-脚手架使用说明" class="headerlink" title="油猴插件 &amp; wokoo 脚手架使用说明"></a>油猴插件 &amp; wokoo 脚手架使用说明</h2><p>一款油猴插件的脚手架。如果直接开发油猴插件，开发者需要费时搭建 vue 或 react 基础项目，还需要对油猴脚本区域做对应的配置，开发体验差。</p>
+<p>wokoo 可以一键式生成基础项目，并且提供基础 Tampermonkey 配置。主要提供的功能有：</p>
+<ul>
+<li>命令行式创建脚手架初始项目</li>
+<li>根据用户选择，生成 vue、react 的基本项目</li>
+<li>tampermonkey.js 文件中提供 Tampermonkey 配置</li>
+</ul>
+<p>关于油猴插件和 wokoo 的具体使用可以阅读 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6922815205575491597">5 分钟上手开发浏览器插件——油猴脚手架 wokoo</a></p>
+<p>这里是 wokoo 脚手架代码：<a target="_blank" rel="noopener" href="https://github.com/kinyaying/wokoo">wokoo 脚手架 github 仓库</a></p>
+<p>我使用 wokoo 开发了<a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/421189-movesearch">MoveSearch</a>（划词搜索插件），欢迎大家使用</p>
+<span id="more"></span>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1dc027500896430f9b13bf72d400f256~tplv-k3u1fbpfcp-watermark.image"></p>
+<p>wokoo 脚手架的设计参考了<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">create-react-app</a>，我也曾经写过一篇分析 cra 源码的文章，感兴趣的同学可以阅读这篇 👉<a target="_blank" rel="noopener" href="https://juejin.cn/post/6916531902773985294">create-react-app 核心源码解读</a>。</p>
+<h2 id="手把手教搭建过程"><a href="#手把手教搭建过程" class="headerlink" title="手把手教搭建过程"></a>手把手教搭建过程</h2><ul>
+<li>lerna: 进行项目管理</li>
+<li>wokoo-scripts: 和用户交互，拉取 wokoo-template，生成对应的初始项目</li>
+<li>wokoo-template: 提供模板来初始化一个有基础配置的油猴项目。模板有两种：react 和 vue</li>
+</ul>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf77f0701b274c7483a0d6aaba207640~tplv-k3u1fbpfcp-watermark.image?imageslim" alt="img"></p>
+<ol>
+<li>安装 lerna</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i lerna -g</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建项目目录，初始化</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir wokoo</span><br><span class="line">cd wokoo</span><br><span class="line">lerna init</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>开启 workspace，在 package.json 中增加<code>workspaces</code>配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;workspaces&quot;: [</span><br><span class="line">	&quot;packages&#x2F;*&quot;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>创建子项目</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lerna create wokoo-scripts</span><br><span class="line">lerna create wokoo-template</span><br></pre></td></tr></table></figure>
+
+<h2 id="wokoo-scripts-编写"><a href="#wokoo-scripts-编写" class="headerlink" title="wokoo-scripts 编写"></a>wokoo-scripts 编写</h2><p>wokoo-scripts 的主要功能有：</p>
+<ul>
+<li>commander 获取 shell 中用户键入的 projectName</li>
+<li>fs.writeFile 创建文件路径</li>
+<li>安装 wokoo-template 模板</li>
+<li>读取模板指定后缀文件.md, .js，将 ejs 语法进行替换</li>
+<li>删除多余内容</li>
+<li>卸载模板</li>
+</ul>
+<p><strong>1.创建入口</strong></p>
+<p>进入<code>packages/wokoo-scripts</code>，创建<code>bin/www</code>文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /usr/bin/env node</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;../index.js&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>修改 package.json，增加<code>bin</code>字段配置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;bin&quot;: &#123;</span><br><span class="line">   &quot;wokoo&quot;: &quot;./bin/www&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 wokoo-scripts 下创建 index.js 文件作为项目入口。</p>
+<p><strong>2.安装依赖模块</strong></p>
+<p>介绍下用到的第三方模块：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/chalk">chalk</a> 粉笔，丰富控制台显示的字颜色</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/cross-spawn">cross-spawn</a> 开启子线程</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/commander">commander</a> 解析命令行中的命令</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/fs-extra">fs-extra</a> 操作文件</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/inquirer">inquirer</a> 交互式命令行工具，有他就可以实现命令行的选择功能</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/metalsmith">metalsmith</a> 读取所有文件,实现模板渲染</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/consolidate">consolidate</a> 统一模板引擎</p>
+</li>
+</ul>
+<p>安装依赖，添加软链</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install chalk cross-spawn commander fs-extra inquirer metalsmith consolidate ejs  -S</span><br><span class="line">npm link</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.实现 init 方法，读取命令行指令</strong></p>
+<p>主要使用<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/commander">commander</a>来读取命令行中用户输入的项目名，此时在命令行执行<code>wokoo my-app</code>，能够在代码中获取到项目名 my-app</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">&#x27;chalk&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> spawn = <span class="built_in">require</span>(<span class="string">&#x27;cross-spawn&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; Command &#125; = <span class="built_in">require</span>(<span class="string">&#x27;commander&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs-extra&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> inquirer = <span class="built_in">require</span>(<span class="string">&#x27;inquirer&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> packageJson = <span class="built_in">require</span>(<span class="string">&#x27;./package.json&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> program = <span class="keyword">new</span> Command()</span><br><span class="line">init()</span><br><span class="line"><span class="comment">// 程序入口，读取命令行脚本，获得项目名称</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> projectName</span><br><span class="line">  program</span><br><span class="line">    .version(packageJson.version)</span><br><span class="line">    .arguments(<span class="string">&#x27;&lt;project-directory&gt;&#x27;</span>) <span class="comment">// 项目目录名 参数格式：&lt;必选&gt; [可选]</span></span><br><span class="line">    .usage(<span class="string">`<span class="subst">$&#123;chalk.green(<span class="string">`&lt;project-directory&gt;`</span>)&#125;</span>`</span>)</span><br><span class="line">    .action(<span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">      projectName = name</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;projectName:&#x27;</span>, projectName)</span><br><span class="line">    &#125;)</span><br><span class="line">    .parse(process.argv) <span class="comment">// [node路径，脚本路径，参数]</span></span><br><span class="line">  <span class="keyword">await</span> createApp(projectName)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.createApp 方法，根据项目名生成项目</strong></p>
+<p>在 run 方法中调 createApp 方法，传入 projectName。createApp 主要实现了创建文件夹，写入 package.json 的功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">createApp</span>(<span class="params">appName</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> root = path.resolve(appName) <span class="comment">// 要生成的项目的绝对路径</span></span><br><span class="line">  fs.ensureDirSync(appName) <span class="comment">// 没有则创建文件夹</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`create a new app in <span class="subst">$&#123;chalk.green(root)&#125;</span>`</span>)</span><br><span class="line">  <span class="comment">// 初始化package.json</span></span><br><span class="line">  <span class="keyword">const</span> packageJson = &#123;</span><br><span class="line">    name: appName,</span><br><span class="line">    version: <span class="string">&#x27;0.0.1&#x27;</span>,</span><br><span class="line">    private: <span class="literal">true</span>,</span><br><span class="line">    scripts: &#123;</span><br><span class="line">      start: <span class="string">&#x27;cross-env NODE_ENV=development webpack serve&#x27;</span>,</span><br><span class="line">      build: <span class="string">&#x27;webpack&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 写入package.json</span></span><br><span class="line">  fs.writeFileSync(</span><br><span class="line">    path.join(root, <span class="string">&#x27;package.json&#x27;</span>),</span><br><span class="line">    <span class="built_in">JSON</span>.stringify(packageJson, <span class="literal">null</span>, <span class="number">2</span>)</span><br><span class="line">  )</span><br><span class="line">  <span class="comment">// 改变工作目录，进入项目目录</span></span><br><span class="line">  process.chdir(root)</span><br><span class="line">  <span class="comment">// 复制项目模板，安装项目依赖等</span></span><br><span class="line">  <span class="keyword">await</span> run(root, appName)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>5. run：复制项目模板到当前项目下，生成基础项目</strong></p>
+<p>createApp 最后要调用 run 方法。run 主要做了以下几点 👇：</p>
+<ol>
+<li>安装 wokoo-template</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> templateName = <span class="string">&#x27;wokoo-template&#x27;</span> <span class="comment">// 对应的wokoo模板</span></span><br><span class="line"><span class="keyword">const</span> allDependencies = [templateName]</span><br><span class="line"><span class="comment">// 安装wokoo-template包</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Installing packages. This might take a couple of minutes&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Installing <span class="subst">$&#123;chalk.cyan(templateName)&#125;</span> ...`</span>)</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">await</span> doAction(root, allDependencies)</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Installing <span class="subst">$&#123;chalk.red(templateName)&#125;</span> failed ...`</span>, e)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>根据用户选择的模板类型复制相应模板文件到临时文件夹 temp，替换其中的 ejs 模板，然后删除临时文件夹 temp</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择模板</span></span><br><span class="line"><span class="keyword">const</span> repos = [<span class="string">&#x27;vue&#x27;</span>, <span class="string">&#x27;react&#x27;</span>]</span><br><span class="line"><span class="keyword">const</span> &#123; targetTemplate &#125; = <span class="keyword">await</span> inquirer.prompt(&#123;</span><br><span class="line">  name: <span class="string">&#x27;targetTemplate&#x27;</span>,</span><br><span class="line">  type: <span class="string">&#x27;list&#x27;</span>,</span><br><span class="line">  message: <span class="string">&#x27;which template do you prefer?&#x27;</span>,</span><br><span class="line">  choices: repos, <span class="comment">// 选择模式</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> templatePath = path.dirname(</span><br><span class="line">  <span class="built_in">require</span>.resolve(<span class="string">`<span class="subst">$&#123;templateName&#125;</span>/package.json`</span>, &#123; <span class="attr">paths</span>: [root] &#125;)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 复制文件到项目目录</span></span><br><span class="line"><span class="keyword">const</span> scriptsConfigDir = path.join(templatePath, <span class="string">&#x27;webpack.config.js&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> gitIgnoreDir = path.join(templatePath, <span class="string">&#x27;.npmignore&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> publicDir = path.join(templatePath, <span class="string">&#x27;public&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> tempDir = path.join(root, <span class="string">&#x27;temp&#x27;</span>) <span class="comment">// 临时模板路径</span></span><br><span class="line"><span class="keyword">const</span> templateDir = path.join(templatePath, <span class="string">`<span class="subst">$&#123;targetTemplate&#125;</span>-template`</span>)</span><br><span class="line"><span class="comment">// 从wokoo-template中拷贝模板到项目目录</span></span><br><span class="line"><span class="keyword">if</span> (fs.existsSync(templatePath)) &#123;</span><br><span class="line">  <span class="comment">// 将templateDir内模板拷贝到temp文件，并修改模板文件中的ejs配置项</span></span><br><span class="line">  <span class="keyword">await</span> modifyTemplate(templateDir, <span class="string">&#x27;temp&#x27;</span>, &#123;</span><br><span class="line">    projectName: appName,</span><br><span class="line">    basicProject: targetTemplate,</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  fs.copySync(tempDir, root) <span class="comment">// 源 目标</span></span><br><span class="line">  fs.copySync(publicDir, root + <span class="string">&#x27;/public&#x27;</span>)</span><br><span class="line">  fs.copyFileSync(scriptsConfigDir, root + <span class="string">&#x27;/webpack.config.js&#x27;</span>)</span><br><span class="line">  fs.copyFileSync(gitIgnoreDir, root + <span class="string">&#x27;/.gitignore&#x27;</span>)</span><br><span class="line">  deleteFolder(tempDir)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.error(</span><br><span class="line">    <span class="string">`Could not locate supplied template: <span class="subst">$&#123;chalk.green(templatePath)&#125;</span>`</span></span><br><span class="line">  )</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处，我将复制的功能封装到 modifyTemplate.js 中。利用 MetalSmith 提供的方法遍历源路径下文件，利用 consolidate.ejs 将文件中的 ejs 语法替换后，将内容写入新的临时文件夹 temp 中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MetalSmith = <span class="built_in">require</span>(<span class="string">&#x27;metalsmith&#x27;</span>) <span class="comment">// 遍历文件夹</span></span><br><span class="line"><span class="keyword">let</span> &#123; render &#125; = <span class="built_in">require</span>(<span class="string">&#x27;consolidate&#x27;</span>).ejs</span><br><span class="line"><span class="keyword">const</span> &#123; promisify &#125; = <span class="built_in">require</span>(<span class="string">&#x27;util&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">render = promisify(render) <span class="comment">// 包装渲染方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>fromPath 源路径</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>toPath 目标路径</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">handleTemplate</span>(<span class="params">fromPath, toPath, config</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resovle, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    MetalSmith(__dirname)</span><br><span class="line">      .source(fromPath) <span class="comment">// 遍历下载的目录</span></span><br><span class="line">      .destination(path.join(path.resolve(), toPath)) <span class="comment">// 输出渲染后的结果</span></span><br><span class="line">      .use(<span class="keyword">async</span> (files, metal, done) =&gt; &#123;</span><br><span class="line">        <span class="comment">// result 替换模板内数据</span></span><br><span class="line">        <span class="keyword">let</span> result = &#123;</span><br><span class="line">          license: <span class="string">&#x27;MIT&#x27;</span>,</span><br><span class="line">          version: <span class="string">&#x27;0.0.1&#x27;</span>,</span><br><span class="line">          ...config,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> data = metal.metadata()</span><br><span class="line">        <span class="built_in">Object</span>.assign(data, result) <span class="comment">// 将询问的结果放到metadata中保证在下一个中间件中可以获取到</span></span><br><span class="line">        done()</span><br><span class="line">      &#125;)</span><br><span class="line">      .use(<span class="function">(<span class="params">files, metal, done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">Reflect</span>.ownKeys(files).forEach(<span class="keyword">async</span> (file) =&gt; &#123;</span><br><span class="line">          <span class="keyword">let</span> content = files[file].contents.toString() <span class="comment">// 获取文件中的内容</span></span><br><span class="line">          <span class="keyword">if</span> (</span><br><span class="line">            file.includes(<span class="string">&#x27;.js&#x27;</span>) ||</span><br><span class="line">            file.includes(<span class="string">&#x27;.json&#x27;</span>) ||</span><br><span class="line">            file.includes(<span class="string">&#x27;.txt&#x27;</span>) ||</span><br><span class="line">            file.includes(<span class="string">&#x27;.md&#x27;</span>)</span><br><span class="line">          ) &#123;</span><br><span class="line">            <span class="comment">// 如果是md或者txt才有可能是模板</span></span><br><span class="line">            <span class="keyword">if</span> (content.includes(<span class="string">&#x27;&lt;%&#x27;</span>)) &#123;</span><br><span class="line">              <span class="comment">// 文件中用&lt;% 我才需要编译</span></span><br><span class="line">              content = <span class="keyword">await</span> render(content, metal.metadata()) <span class="comment">// 用数据渲染模板</span></span><br><span class="line">              files[file].contents = Buffer.from(content) <span class="comment">// 渲染好的结果替换即可</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        done()</span><br><span class="line">      &#125;)</span><br><span class="line">      .build(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 执行中间件</span></span><br><span class="line">        <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">          resovle()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = handleTemplate</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>合并 template.json 和 package.json，生成新的 package.json 并再次执行<code>npm install</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 合并template.json和package.json</span></span><br><span class="line"><span class="keyword">let</span> tempPkg = fs.readFileSync(root + <span class="string">&#x27;/template.json&#x27;</span>).toString()</span><br><span class="line"><span class="keyword">let</span> pkg = fs.readFileSync(root + <span class="string">&#x27;/package.json&#x27;</span>).toString()</span><br><span class="line"><span class="keyword">const</span> tempPkgJson = <span class="built_in">JSON</span>.parse(tempPkg)</span><br><span class="line"><span class="keyword">const</span> pkgJson = <span class="built_in">JSON</span>.parse(pkg)</span><br><span class="line"></span><br><span class="line">pkgJson.dependencies = &#123;</span><br><span class="line">  ...pkgJson.dependencies,</span><br><span class="line">  ...tempPkgJson.package.dependencies,</span><br><span class="line">&#125;</span><br><span class="line">pkgJson.devDependencies = &#123;</span><br><span class="line">  ...tempPkgJson.package.devDependencies,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 编写package.json</span></span><br><span class="line">fs.writeFileSync(</span><br><span class="line">  path.join(root, <span class="string">&#x27;package.json&#x27;</span>),</span><br><span class="line">  <span class="built_in">JSON</span>.stringify(pkgJson, <span class="literal">null</span>, <span class="number">2</span>)</span><br><span class="line">)</span><br><span class="line">fs.unlinkSync(path.join(root, <span class="string">&#x27;template.json&#x27;</span>)) <span class="comment">// 删除template.json文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 再次根据dependenciesToInstall执行npm install</span></span><br><span class="line"><span class="keyword">const</span> dependenciesToInstall = <span class="built_in">Object</span>.entries(&#123;</span><br><span class="line">  ...pkgJson.dependencies,</span><br><span class="line">  ...pkgJson.devDependencies,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> newDependencies = []</span><br><span class="line"><span class="keyword">if</span> (dependenciesToInstall.length) &#123;</span><br><span class="line">  newDependencies = newDependencies.concat(</span><br><span class="line">    dependenciesToInstall.map(<span class="function">(<span class="params">[dependency, version]</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;dependency&#125;</span>@<span class="subst">$&#123;version&#125;</span>`</span></span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">await</span> doAction(root, newDependencies)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;chalk.cyan(<span class="string">&#x27;Installing succeed!&#x27;</span>)&#125;</span>`</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>卸载 wokoo-template</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> doAction(root, <span class="string">&#x27;wokoo-template&#x27;</span>, <span class="string">&#x27;uninstall&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>流程上的实现介绍完了，下面两个方法是我封装的功能性方法</p>
+<p><strong>doAction：使用 npm 安装或卸载项目依赖</strong></p>
+<p>使用<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/cross-spawn">cross-spawn</a>开启子线程，在子线程中执行<code>npm install</code> 或 <code>npm uninstall</code>的命令</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">doAction</span>(<span class="params">root, allDependencies, action = <span class="string">&#x27;install&#x27;</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">typeof</span> allDependencies === <span class="string">&#x27;string&#x27;</span></span><br><span class="line">    ? (allDependencies = [allDependencies])</span><br><span class="line">    : <span class="literal">null</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> command = <span class="string">&#x27;npm&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> args = [</span><br><span class="line">      action,</span><br><span class="line">      <span class="string">&#x27;--save&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;--save-exact&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;--loglevel&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;error&#x27;</span>,</span><br><span class="line">      ...allDependencies,</span><br><span class="line">      <span class="string">&#x27;--cwd&#x27;</span>,</span><br><span class="line">      root,</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">const</span> child = spawn(command, args, &#123; <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span> &#125;)</span><br><span class="line">    child.on(<span class="string">&#x27;close&#x27;</span>, resolve) <span class="comment">// 安装成功后触发resolve</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>deleteFolder: 递归删除文件、文件夹，入参是 path 文件路径</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteFolder</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> files = []</span><br><span class="line">  <span class="keyword">if</span> (fs.existsSync(path)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!fs.statSync(path).isDirectory()) &#123;</span><br><span class="line">      <span class="comment">// path是文件，直接删除</span></span><br><span class="line">      fs.unlinkSync(path)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 删除文件夹</span></span><br><span class="line">      files = fs.readdirSync(path)</span><br><span class="line">      files.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> curPath = path + <span class="string">&#x27;/&#x27;</span> + file</span><br><span class="line">        deleteFolder(curPath)</span><br><span class="line">      &#125;)</span><br><span class="line">      fs.rmdirSync(path)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="wokoo-template-编写"><a href="#wokoo-template-编写" class="headerlink" title="wokoo-template 编写"></a>wokoo-template 编写</h2><ul>
+<li>分为 vue-template 和 react-template</li>
+<li>vue-template 和 react-template 分别对应 webpack 配置的一个 vue 或 react 基础项目</li>
+<li>使用 ejs 模板，实现 wokoo-scripts 注入变量</li>
+</ul>
+<p>template 相对来说比较简单，使用 webpack+vue 或 react 分别搭建了一个轻量级项目。</p>
+<p>具体代码可看 👉<a target="_blank" rel="noopener" href="https://github.com/kinyaying/wokoo/tree/master/packages/wokoo-template">wokoo/wokoo-template</a></p>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>在执行<code>lerna publish</code>之前，先看下自己的项目下用到的文件或文件夹是否在 package.json <code>files</code>字段中。只有在 files 中的文件或文件夹才会真正的被发布上去。</p>
+<ol>
+<li>在 wokoo-scripts 的 package.json 的<code>files</code>字段中增加”modifyTemplate.js”</li>
+<li>在 wokoo-template 的 package.json 的<code>files</code>字段中增加”react-template”, “vue-template”,”public”,”webpack.config.js”,”.gitignore”</li>
+</ol>
+<p>我之前就忘记往 files 字段添加，导致 publish 上去后发现丢文件了。具有问题可阅读：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/27049192/npm-publish-isnt-including-all-my-files">https://stackoverflow.com/questions/27049192/npm-publish-isnt-including-all-my-files</a></p>
+<p>最后一步就大功告成了！🎉</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna publish</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i wokoo -g</span><br><span class="line">wokoo my-app</span><br></pre></td></tr></table></figure>
+
+<p>具体使用过程可以阅读<a target="_blank" rel="noopener" href="https://juejin.cn/post/6922815205575491597">油猴脚手架 wokoo 使用说明</a></p>
+<p>都读到这里了，给你鼓个掌吧 👏👏👏</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/node/" rel="tag"># node</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A1%E2%80%94%E2%80%94ES6%E5%9F%BA%E7%A1%80/" rel="prev" title="前端面试必知必会1——ES6基础">
+      <i class="fa fa-chevron-left"></i> 前端面试必知必会1——ES6基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/09/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%88%E5%AE%9E%E6%88%98%E7%AF%87%EF%BC%89/" rel="next" title="快速上手油猴插件开发（实战篇）">
+      快速上手油猴插件开发（实战篇） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6-amp-wokoo-%E8%84%9A%E6%89%8B%E6%9E%B6%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">油猴插件 &amp; wokoo 脚手架使用说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">手把手教搭建过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wokoo-scripts-%E7%BC%96%E5%86%99"><span class="nav-number">3.</span> <span class="nav-text">wokoo-scripts 编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wokoo-template-%E7%BC%96%E5%86%99"><span class="nav-number">4.</span> <span class="nav-text">wokoo-template 编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B8%83"><span class="nav-number">5.</span> <span class="nav-text">发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">使用</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="前端小叶子"
+      src="data:image/jpg;base64,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">
+  <p class="site-author-name" itemprop="name">前端小叶子</p>
+  <div class="site-description" itemprop="description">因上努力，果上随缘。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kinyaying" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kinyaying" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kinyaying@gmail.com" title="E-Mail → mailto:kinyaying@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.cn/user/1011206430400600" title="掘  金 → https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;1011206430400600" rel="noopener" target="_blank"><i class="fa fa-fw fa-question-circle fa-fw"></i>掘  金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/jade-66-17-18" title="知  乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;jade-66-17-18" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe fa-fw"></i>知  乎</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端小叶子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
