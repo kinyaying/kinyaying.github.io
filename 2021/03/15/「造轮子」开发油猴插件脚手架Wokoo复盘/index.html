@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+<style>
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+</style>
+<script src="/lib/font/iconfont.js"></script>
+  <meta name="description" content="一、项目简介：这篇文件介绍的是油猴插件脚手架Wokoo的开发过程与复盘。Wokoo是我开发的脚手架，用来快速起一个基础项目用于油猴插件的开发。  Wokoo的npm地址：wokoo Wokoo的github地址：wokoo  (如果觉得不错，请点小星星) Wokoo脚手架开发的油猴插件有： 知乎目录 划词搜索   Wokoo使用说明文档 👉 5分钟上手开发浏览器插件——油猴脚手架wokoo(使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端花园">
+<meta property="og:url" content="http://example.com/2021/03/15/%E3%80%8C%E9%80%A0%E8%BD%AE%E5%AD%90%E3%80%8D%E5%BC%80%E5%8F%91%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6Wokoo%E5%A4%8D%E7%9B%98/index.html">
+<meta property="og:site_name" content="前端花园">
+<meta property="og:description" content="一、项目简介：这篇文件介绍的是油猴插件脚手架Wokoo的开发过程与复盘。Wokoo是我开发的脚手架，用来快速起一个基础项目用于油猴插件的开发。  Wokoo的npm地址：wokoo Wokoo的github地址：wokoo  (如果觉得不错，请点小星星) Wokoo脚手架开发的油猴插件有： 知乎目录 划词搜索   Wokoo使用说明文档 👉 5分钟上手开发浏览器插件——油猴脚手架wokoo(使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/546d2d1512d04635b77e4db04d267ad4~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf77f0701b274c7483a0d6aaba207640~tplv-k3u1fbpfcp-watermark.image?imageslim">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/666e725ea331445387a7f8ac8f76b106~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6b207eeeac1459889c3094468bc0892~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/811cad2db5cb4332bfec83ea697aa2a2~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f8e6a5a044f4f2980febedf066bbcd1~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1c6afc5b4cb4494b72c0d7b685f5579~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7ce3b03a5434e2aac0a911940d01a0d~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba9ac0c0e6d14367bcd51b3aff3a9e2b~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e2da6218f824bc7917a43b107362899~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="article:published_time" content="2021-03-15T13:48:47.480Z">
+<meta property="article:modified_time" content="2021-03-15T13:48:47.480Z">
+<meta property="article:author" content="前端小叶子">
+<meta property="article:tag" content="js,javascript, node.js, vue, webpack, react, css, es6">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/546d2d1512d04635b77e4db04d267ad4~tplv-k3u1fbpfcp-watermark.image">
+
+<link rel="canonical" href="http://example.com/2021/03/15/%E3%80%8C%E9%80%A0%E8%BD%AE%E5%AD%90%E3%80%8D%E5%BC%80%E5%8F%91%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6Wokoo%E5%A4%8D%E7%9B%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 前端花园</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端花园</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/15/%E3%80%8C%E9%80%A0%E8%BD%AE%E5%AD%90%E3%80%8D%E5%BC%80%E5%8F%91%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6Wokoo%E5%A4%8D%E7%9B%98/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="data:image/jpg;base64,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">
+      <meta itemprop="name" content="前端小叶子">
+      <meta itemprop="description" content="因上努力，果上随缘。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端花园">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-cornflower"></use>
+            </svg>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-cornflower"></use>
+          </svg>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-15 13:48:47" itemprop="dateCreated datePublished" datetime="2021-03-15T13:48:47+00:00">2021-03-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、项目简介："><a href="#一、项目简介：" class="headerlink" title="一、项目简介："></a>一、项目简介：</h1><p>这篇文件介绍的是油猴插件脚手架Wokoo的开发过程与复盘。Wokoo是我开发的脚手架，用来快速起一个基础项目用于<code>油猴插件</code>的开发。</p>
+<ol>
+<li>Wokoo的npm地址：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/wokoo">wokoo</a></li>
+<li>Wokoo的github地址：<a target="_blank" rel="noopener" href="https://github.com/kinyaying/wokoo">wokoo</a>  (如果觉得不错，请点小星星)</li>
+<li>Wokoo脚手架开发的油猴插件有：<ul>
+<li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/421238-zhihu-helper">知乎目录</a></li>
+<li><a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/421189-movesearch">划词搜索</a></li>
+</ul>
+</li>
+<li>Wokoo使用说明文档 👉 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6922815205575491597">5分钟上手开发浏览器插件——油猴脚手架wokoo(使用篇)</a></li>
+<li>不了解什么是油猴插件？戳这里 👉  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/99390731">Chrome 插件大杀器：「油猴」Tampermonkey 使用详解</a></li>
+</ol>
+<p>在这个项目中我扮演了项目的<code>产品经理</code>，<code>开发主R</code>，<code>运营官</code> 这几个角色。从头到尾负责开发一个开源项目，让我有了满满的成就感。</p>
+<p>回想当初想做Wokoo脚手架的初衷，只是因为自己想写一个油猴插件，发现比较麻烦，自己也趟了一些坑。我就觉得写一个脚手架，能够一键生成基础的油猴项目很有意义。完成Wokoo脚手架的开发后，我在某技术群中分享了这篇文章，被该圈里的大佬邀请做一次分享。于是我又增加了<a target="_blank" rel="noopener" href="https://juejin.cn/post/6925605904561750030">使用Wokoo进行项目实战的案例</a>。然后又指导群里成员完成从零上手，实现一个油猴插件的开发。</p>
+<p>整个过程在当初只是一个小小的idea，在逐步升级打怪的过程中，我把当初的小想法变成了一个正式的开源项目。这次经历让我得到很多成长，包括技术、沟通、合作等方面。感谢这次经历~ 🎉</p>
+<h1 id="二、项目背景："><a href="#二、项目背景：" class="headerlink" title="二、项目背景："></a>二、项目背景：</h1><h2 id="开发Wokoo脚手架初衷"><a href="#开发Wokoo脚手架初衷" class="headerlink" title="开发Wokoo脚手架初衷"></a>开发Wokoo脚手架初衷</h2><p>一开始我想做一个给团队内部使用的浏览器插件。进行技术选型时发现开发油猴插件开发最省时省力，而且不用审核上线迅速，是最佳选择。</p>
+<p>开发过程遇到一些坑：</p>
+<ol>
+<li><p>油猴插件本质上是嵌入一段js代码到当前html中。所以很多油猴插件都直接使用jQuery进行开发。这对于我们习惯使用了Vue、React等框架的rd来说会不适应，尤其是插件涉及到页面组件开发，使用jQuery有点痛苦。<strong>这就是第一个痛点：要配置vue或react基础项目</strong></p>
+</li>
+<li><p>所以我就考虑用vue-cli起一个vue项目来完成插件开发。项目创建完成后，我又发现要配置油猴脚本。下面这个编辑器里的代码就是要配置的油猴脚本，里面的注释都是有含义的，比如<code>@match</code>  指定某些域名下开启此插件，<code>// @match http://*/*</code>  表示只能在http协议的网页中使用。默认配置的就是http协议，但是现在的网页都升级到https了，如果不修改此条配置，你会发现插件根本跑不起来。👇</p>
+</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/546d2d1512d04635b77e4db04d267ad4~tplv-k3u1fbpfcp-watermark.image" alt="屏幕快照 2021-03-15 下午9.30.21.png"></p>
+<p>   <strong>第二个痛点：要阅读油猴脚本的文档，理解里面的注释内容</strong></p>
+<ol start="3">
+<li>使用vue开发的项目能够通过<code>localhost:8080</code>访问，但是怎么把项目和油猴插件结合起来，实现一边开发项目，一边实时调试插件？总不能一边开发，一边<code>npm run build</code>构建出包，再把构建结果复制到油猴插件的编辑器中吧？<strong>第三个痛点：如何实现边开发边展示插件效果？</strong></li>
+</ol>
+<h2 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h2><p>总结下，我想实现一个针对开发油猴插件的脚手架，满足如下功能：</p>
+<ol>
+<li>输入一个命令行生成一个基础项目</li>
+<li>项目中包含基础的油猴脚本配置</li>
+<li>提供方案，让油猴插件能边开发，边调试</li>
+</ol>
+<h2 id="解决的痛点"><a href="#解决的痛点" class="headerlink" title="解决的痛点"></a>解决的痛点</h2><p>wokoo脚手架就是为了满足上业务场景，解决我在开发油猴插件时遇到的3个痛点。</p>
+<ol>
+<li><p>一键式创建基础的油猴插件项目，可选模板有:</p>
+<p>[ ] vue</p>
+<p>[ ] react</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>基础项目中的tampermonkey.js文件中满足油猴插件的基础配置，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         my-plugin</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author</span></span><br><span class="line"><span class="comment">// @match        https://*/*</span></span><br><span class="line"><span class="comment">// @match        http://*/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>开发者直接复制这段代码到油猴插件编辑器就行，解决上面的第二个痛点。</p>
+<p>当然开发者在开发过程中是要做到阅读 <a target="_blank" rel="noopener" href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">tampermonkey官网文档 </a>的，wokoo脚手架提供的基础文档配置，目的是降低油猴插件的开发难度。</p>
+</li>
+<li><p>tampermonkey.js中写的js脚本，将油猴插件加载的js文件打到本地用webpack起的服务上，实现边开发边调试。解决上面的第三个痛点。</p>
+</li>
+</ol>
+<h1 id="三、实践过程："><a href="#三、实践过程：" class="headerlink" title="三、实践过程："></a>三、实践过程：</h1><h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul>
+<li>参考了<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">create-react-app</a>的设计思路，将<code>wokoo-scripts</code>和<code>wokoo-template</code>部分解耦，拆分成两个包单独管理，有利于未来的功能拓展。比如未来要新增一个模板是基于jquery的，只需要拓展wokoo-template部分即可。</li>
+<li>monorepo方案管理代码，使用lerna进行包管理。</li>
+</ul>
+<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><p>这张图是Wokoo的架构设计图，Wokoo使用monorepo方案管理代码，在一个git仓库中维护<code>wokoo-scripts</code>和<code>wokoo-template</code>两个模块。使用lerna进行包管理。</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf77f0701b274c7483a0d6aaba207640~tplv-k3u1fbpfcp-watermark.image?imageslim"></p>
+<h2 id="思路整理"><a href="#思路整理" class="headerlink" title="思路整理"></a>思路整理</h2><p>我要实现的功能如下：</p>
+<ol>
+<li><p>安装wokoo，执行<code>npm i wokoo -g</code>后在npm的全局目录下安装wokoo</p>
+</li>
+<li><p>执行命令<code>wokoo my-app</code>，弹出要求用户选择模板的提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? which template do you prefer? (Use arrow keys)</span><br><span class="line">❯ vue</span><br><span class="line">  react</span><br></pre></td></tr></table></figure></li>
+<li><p>选择模板后，创建一个基础项目，项目内容包括：1. 配置好的vue或react项目，2. <code>tampermonkey.js</code> 文件，内部是配置好的基础油猴脚本。</p>
+</li>
+</ol>
+<p>模仿<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">cra</a>的实现思路，我将wokoo拆分成两个部分，<code>wokoo-scripts</code>和<code>wokoo-template</code>。</p>
+<ul>
+<li><code>wokoo-scripts</code>负责命令行的交互，从npm上拉取<code>wokoo-template</code>到生成的基础项目my-app中。</li>
+<li><code>wokoo-template</code>提供两套模板，分别是轻量级配置的vue和react基础项目。还提供<code>tampermonkey.js</code> 文件</li>
+</ul>
+<p>整个项目的工作流入下👇：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/666e725ea331445387a7f8ac8f76b106~tplv-k3u1fbpfcp-watermark.image"></p>
+<h3 id="wokoo-scripts"><a href="#wokoo-scripts" class="headerlink" title="wokoo-scripts"></a>wokoo-scripts</h3><p>目录介绍：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── bin</span><br><span class="line">│   └── www    					提供给npm的入口文件</span><br><span class="line">├── index.js						主程序，提供命令行交互功能</span><br><span class="line">├── modifyTemplate.js 	替换模板中的ejs语法</span><br><span class="line">├── package-lock.json</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+
+<p>代码流程图：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6b207eeeac1459889c3094468bc0892~tplv-k3u1fbpfcp-watermark.image" alt="流程图.png"></p>
+<p>图中介绍了<code>wokoo-scripts</code>各个方法的调用顺序： init -&gt; createApp -&gt;run-&gt;modifyTemplate。以及各方法实现的功能。</p>
+<h3 id="wokoo-template"><a href="#wokoo-template" class="headerlink" title="wokoo-template"></a>wokoo-template</h3><p>目录介绍：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── favicon.ico</span><br><span class="line">│   ├── icon.jpg</span><br><span class="line">│   └── index.html							html文件</span><br><span class="line">├── react-template							react模板路径</span><br><span class="line">│   ├── README.md</span><br><span class="line">│   ├── src</span><br><span class="line">│   │   ├── app.js							</span><br><span class="line">│   │   ├── app.less</span><br><span class="line">│   │   └── index.js						入口文件</span><br><span class="line">│   ├── tampermonkey.js					油猴脚本配置</span><br><span class="line">│   ├── template.json						react中依赖的库文件</span><br><span class="line">│   └── webpack.config.base.js	对应react项目的webpack配置</span><br><span class="line">├── vue-template								和react的项目结构类似</span><br><span class="line">│   ├── ...				</span><br><span class="line">└── webpack.config.js						公共的webpack配置</span><br></pre></td></tr></table></figure>
+
+<p><code>wokoo-template</code>提供基础项目的模板：</p>
+<ul>
+<li><p>分为vue-template和react-template</p>
+</li>
+<li><p>vue-template和react-template分别对应webpack配置的一个vue或react基础项目</p>
+</li>
+<li><p>使用ejs模板，实现wokoo-scripts注入变量</p>
+</li>
+<li><p>tampermonkey.js 文件是油猴插件的配置文件，需要将此文件内的代码复制到油猴插件的编辑框中。如下是tampermonkey.js文件的内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         &lt;%=projectName%&gt;</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      &lt;%=version%&gt;</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author</span></span><br><span class="line"><span class="comment">// @match        https://*/*</span></span><br><span class="line"><span class="comment">// @match        http://*/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>此文件中被注释掉的<code>//@xxx </code>都有含义，可以对应着 <a target="_blank" rel="noopener" href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">tampermonkey开发文档 </a> 理解。</p>
+<ul>
+<li><p><code>@name</code>  脚本的名字，最后会被替换成项目名</p>
+</li>
+<li><p><code>@namespace</code> 可以写自己的域名,当自己把脚本分享后,用户可以直接通过这儿找到你的具体功能实现</p>
+</li>
+<li><p><code>@description</code>  插件描述</p>
+</li>
+<li><p><code>@match</code>  指定某些域名下开启此插件，默认配了两条，<code>// @match        https://*/*</code>和<code>// @match        https://*/*</code>  表示在所有域名下都开启。</p>
+</li>
+</ul>
+<p>详细的开发过程可以阅读文章：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6925613440752943112">wokoo脚手架（搭建篇）</a></p>
+<h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><ol>
+<li><p>创建基础项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx wokoo my-app</span><br></pre></td></tr></table></figure></li>
+<li><p>起服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure></li>
+<li><p>复制tampermonkey.js内容到<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴插件编辑器</a>，注意：要复制全部内容，包括注释部分。（此步骤默认你已经安装了油猴插件，没安装的话就安装下 👉<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf?hl=zh-CN">油猴插件安装地址</a>）</p>
+</li>
+</ol>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/811cad2db5cb4332bfec83ea697aa2a2~tplv-k3u1fbpfcp-watermark.image" alt="屏幕快照 2021-03-15 下午9.30.21.png"></p>
+<ol start="4">
+<li>打开某网页，你能看到一只的猴子🐒，代表流程已跑通，你只需开发自己的业务代码即可。</li>
+</ol>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f8e6a5a044f4f2980febedf066bbcd1~tplv-k3u1fbpfcp-watermark.image" alt="demo2.gif"></p>
+<h2 id="开发中遇到的问题及解决方案"><a href="#开发中遇到的问题及解决方案" class="headerlink" title="开发中遇到的问题及解决方案"></a>开发中遇到的问题及解决方案</h2><p><strong>问题1</strong></p>
+<p>油猴插件的本质是往页面中注入一段js脚本，要注意避免和原始网页之间的冲突。拿知乎举例子，</p>
+<ol>
+<li>使用wokoo脚手架创建的项目的根节点id = root ，而知乎根节点网页中已有一个div节点id=root，命名重复了。</li>
+<li>不光根节点id的命名要注意避免和宿主网页中的元素重复，还要wokoo创建的项目A和项目B的根节点id不同。因为用户可能同时使用多个油猴插件，比如「划词搜索」和「知乎目录」一起用，这就要确保两个插件的根节点id是不一样的。</li>
+</ol>
+<p><strong>解决方式</strong></p>
+<p>将wokoo-template中的根节点根据<code>wokooApp-$&#123;项目名&#125;-$&#123;时间戳&#125;</code>的规则进行命名，避免冲突。</p>
+<p><strong>问题2</strong></p>
+<p>有的网页安全策略做的比较好，比如知乎使用了csp内容安全策略，阻止加载非指定域名的js脚本。</p>
+<p>结合实际情况来看，比如我们已经使用wokoo初始化一个项目my-app，并完成了<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴脚本</a>的配置，打开知乎发现右上角没有出现猴子logo，并且控制台报错。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1c6afc5b4cb4494b72c0d7b685f5579~tplv-k3u1fbpfcp-zoom-1.image"></p>
+<p>再看请求的html资源的响应头，可以发现多了一条<code>content-security-policy</code>规则。也就是说知乎使用了csp内容安全策略，通过<code>content-security-policy</code>中的<code>script-src</code>字段可知，知乎只允许加载指定域名的js。具体情况可阅读 👉 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP">内容安全策略( CSP )</a></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7ce3b03a5434e2aac0a911940d01a0d~tplv-k3u1fbpfcp-zoom-1.image"></p>
+<p>而将tampermonkey.js文件拷贝到<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴插件编辑器</a>时，有下面一段代码👇</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>因为我们在调试的时候为了保证实时查看插件效果，往页面的html拼了一个js文件上去，而该文件指向webpack起的服务：<code>http://localhost:8080/app.bundle.js</code>。这不是知乎指定的域名，当然被拦截了。</p>
+<p><strong>解决方式</strong></p>
+<p>怎么办呢？嘿嘿，魔高一尺道高一丈，wokoo脚手架当然给出了解决方案。</p>
+<ol>
+<li><p>开发阶段，安装插件<a target="_blank" rel="noopener" href="https://chrome.pictureknow.com/extension?id=5b80153e8db143afa59310bc0f282f1f">Disable Content-Security-Policy</a>, 在调试知乎页面时开启插件，自动把html页面的<code>content-security-policy</code>给设置为空。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba9ac0c0e6d14367bcd51b3aff3a9e2b~tplv-k3u1fbpfcp-zoom-1.image" alt="截图"></p>
+</li>
+<li><p>上线到<a target="_blank" rel="noopener" href="https://greasyfork.org/">油猴市场</a>时，将构建后的脚本复制到油猴插件编辑器中，避免使用cdn的方式部署。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e2da6218f824bc7917a43b107362899~tplv-k3u1fbpfcp-zoom-1.image" alt="zhihu-tampermonkey"></p>
+</li>
+</ol>
+<ul>
+<li><p>注意，编辑框内对代码有最大限制，如果app.bundle.js大小超过最大限制，要进行拆包处理。</p>
+<p>拆包步骤：</p>
+<ul>
+<li><p>油猴编辑器内的配置代码，增加两行。此处我用react举例，把react通过静态资源链接的方式引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; @require https:&#x2F;&#x2F;unpkg.com&#x2F;react@17&#x2F;umd&#x2F;react.production.min.js</span><br><span class="line">&#x2F;&#x2F; @require https:&#x2F;&#x2F;unpkg.com&#x2F;react-dom@17&#x2F;umd&#x2F;react-dom.production.min.js</span><br></pre></td></tr></table></figure></li>
+<li><p>修改webpack.config.base.js的entry字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    app: &#39;&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">    vendor: [</span><br><span class="line">      &#x2F;&#x2F; 将react和react-dom这些单独打包出来，减小打包文件体积</span><br><span class="line">      &#39;react&#39;,</span><br><span class="line">      &#39;react-dom&#39;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>重新构建代码，把代码复制到编辑框中。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>具体的wokoo使用方式我有写专门的文档：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6922815205575491597">5分钟上手开发浏览器插件——油猴脚手架wokoo(使用篇)</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6925605904561750030/">快速上手油猴插件开发（实战篇）</a></p>
+<h1 id="四、总结思考："><a href="#四、总结思考：" class="headerlink" title="四、总结思考："></a>四、总结思考：</h1><h2 id="技术上收获"><a href="#技术上收获" class="headerlink" title="技术上收获"></a>技术上收获</h2><ol>
+<li>为了把脚手架写的专业一点，我去研究了create-react-app的源码，看大佬写的代码真的是佩服，自己以后在写代码时也要多考虑组织结构，逻辑解耦。</li>
+<li>使用monorepo方案，一个git仓库管理多个库文件（包括<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/wokoo">wokoo-script</a>和<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/wokoon-template">wokoo-template</a>，发现真香👍。 解决了开发多个相关联的库时，需要切换不同库的仓库，代码等问题，保证工作流的连续。</li>
+</ol>
+<p>总之，在搞技术的道路上还是一句话：「纸上得来终觉浅，绝知此事要躬行」。</p>
+<h2 id="思维上收获"><a href="#思维上收获" class="headerlink" title="思维上收获"></a>思维上收获</h2><ol>
+<li><p>我意识到做一件事情，小到一次分享，一篇文章，大到一个开源项目，一个产品，最根本的出发点应该是「更好的服务产品的使用方」。只有服务好使用方，你做的事情才能发挥最大价值。</p>
+<blockquote>
+<p>比如当初在群里分享利用Wokoo脚手架开发插件「划词搜索」时，发现总是有人问我一些简单的问题，我当时就想文档里明明写了啊，后来再次读那段内容时，我发现我是站在开发者的角度去写文档，而没有站在使用者的角度写。</p>
+</blockquote>
+</li>
+<li><p>任何事情，一开始看可能觉得难度巨大，但是拆解成一件件小的事情后就会觉得不是那么困难。就像<code>Wokoo脚手架</code>，也是被拆分成多个步骤完成：</p>
+<ul>
+<li>开发脚手架</li>
+<li>编写使用文档</li>
+<li>写油猴插件实战案例</li>
+</ul>
+<p>所以遇到事情先拆解，拆分成几个小步骤来完成。不要一看到大项目就畏难就觉得搞不定。</p>
+</li>
+</ol>
+<h1 id="五、往期文章"><a href="#五、往期文章" class="headerlink" title="五、往期文章"></a>五、往期文章</h1><p>除了油猴脚手架wokoo，我还造了其他轮子🎉🎉：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6917256394743742472">shero-cli: 自动化管理github博客</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6907563804780036104">tapable可视化工具</a></p>
+</li>
+</ul>
+<p>欢迎大家在搞技术的路上一起升级打怪造轮子~</p>
+<p>——</p>
+<p>感谢你的阅读😊，希望这篇文章对你有所帮助。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/15/1%20copy%204/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/15/1%20copy/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">一、项目简介：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">二、项目背景：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91Wokoo%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%9D%E8%A1%B7"><span class="nav-number">2.1.</span> <span class="nav-text">开发Wokoo脚手架初衷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF"><span class="nav-number">2.2.</span> <span class="nav-text">业务场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E7%9A%84%E7%97%9B%E7%82%B9"><span class="nav-number">2.3.</span> <span class="nav-text">解决的痛点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E8%B7%B5%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">三、实践过程：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">技术选型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="nav-number">3.2.</span> <span class="nav-text">开发过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">思路整理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wokoo-scripts"><span class="nav-number">3.3.1.</span> <span class="nav-text">wokoo-scripts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wokoo-template"><span class="nav-number">3.3.2.</span> <span class="nav-text">wokoo-template</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="nav-number">3.4.</span> <span class="nav-text">成果展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.5.</span> <span class="nav-text">开发中遇到的问题及解决方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93%E6%80%9D%E8%80%83%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">四、总结思考：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E4%B8%8A%E6%94%B6%E8%8E%B7"><span class="nav-number">4.1.</span> <span class="nav-text">技术上收获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E7%BB%B4%E4%B8%8A%E6%94%B6%E8%8E%B7"><span class="nav-number">4.2.</span> <span class="nav-text">思维上收获</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%BE%80%E6%9C%9F%E6%96%87%E7%AB%A0"><span class="nav-number">5.</span> <span class="nav-text">五、往期文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="前端小叶子"
+      src="data:image/jpg;base64,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">
+  <p class="site-author-name" itemprop="name">前端小叶子</p>
+  <div class="site-description" itemprop="description">因上努力，果上随缘。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kinyaying" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kinyaying" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kinyaying@gmail.com" title="E-Mail → mailto:kinyaying@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.cn/user/1011206430400600" title="掘  金 → https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;1011206430400600" rel="noopener" target="_blank"><i class="fa fa-fw fa-question-circle fa-fw"></i>掘  金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/jade-66-17-18" title="知  乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;jade-66-17-18" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe fa-fw"></i>知  乎</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端小叶子</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

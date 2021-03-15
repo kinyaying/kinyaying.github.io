@@ -2,22 +2,22 @@
 <search>
   <entry>
     <title></title>
-    <url>/2021/03/11/1%20copy%203/</url>
+    <url>/2021/03/15/1%20copy%203/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>/2021/03/11/1%20copy%204/</url>
+    <url>/2021/03/15/1%20copy%204/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>/2021/03/11/1%20copy%205/</url>
+    <url>/2021/03/15/1%20copy%205/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>/2021/03/11/1%20copy/</url>
+    <url>/2021/03/15/1%20copy/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -790,6 +790,203 @@
       <tags>
         <tag>算法</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/03/15/%E3%80%8C%E9%80%A0%E8%BD%AE%E5%AD%90%E3%80%8D%E5%BC%80%E5%8F%91%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6Wokoo%E5%A4%8D%E7%9B%98/</url>
+    <content><![CDATA[<h1 id="一、项目简介："><a href="#一、项目简介：" class="headerlink" title="一、项目简介："></a>一、项目简介：</h1><p>这篇文件介绍的是油猴插件脚手架Wokoo的开发过程与复盘。Wokoo是我开发的脚手架，用来快速起一个基础项目用于<code>油猴插件</code>的开发。</p>
+<ol>
+<li>Wokoo的npm地址：<a href="https://www.npmjs.com/package/wokoo">wokoo</a></li>
+<li>Wokoo的github地址：<a href="https://github.com/kinyaying/wokoo">wokoo</a>  (如果觉得不错，请点小星星)</li>
+<li>Wokoo脚手架开发的油猴插件有：<ul>
+<li><a href="https://greasyfork.org/zh-CN/scripts/421238-zhihu-helper">知乎目录</a></li>
+<li><a href="https://greasyfork.org/zh-CN/scripts/421189-movesearch">划词搜索</a></li>
+</ul>
+</li>
+<li>Wokoo使用说明文档 👉 <a href="https://juejin.cn/post/6922815205575491597">5分钟上手开发浏览器插件——油猴脚手架wokoo(使用篇)</a></li>
+<li>不了解什么是油猴插件？戳这里 👉  <a href="https://zhuanlan.zhihu.com/p/99390731">Chrome 插件大杀器：「油猴」Tampermonkey 使用详解</a></li>
+</ol>
+<p>在这个项目中我扮演了项目的<code>产品经理</code>，<code>开发主R</code>，<code>运营官</code> 这几个角色。从头到尾负责开发一个开源项目，让我有了满满的成就感。</p>
+<p>回想当初想做Wokoo脚手架的初衷，只是因为自己想写一个油猴插件，发现比较麻烦，自己也趟了一些坑。我就觉得写一个脚手架，能够一键生成基础的油猴项目很有意义。完成Wokoo脚手架的开发后，我在某技术群中分享了这篇文章，被该圈里的大佬邀请做一次分享。于是我又增加了<a href="https://juejin.cn/post/6925605904561750030">使用Wokoo进行项目实战的案例</a>。然后又指导群里成员完成从零上手，实现一个油猴插件的开发。</p>
+<p>整个过程在当初只是一个小小的idea，在逐步升级打怪的过程中，我把当初的小想法变成了一个正式的开源项目。这次经历让我得到很多成长，包括技术、沟通、合作等方面。感谢这次经历~ 🎉</p>
+<h1 id="二、项目背景："><a href="#二、项目背景：" class="headerlink" title="二、项目背景："></a>二、项目背景：</h1><h2 id="开发Wokoo脚手架初衷"><a href="#开发Wokoo脚手架初衷" class="headerlink" title="开发Wokoo脚手架初衷"></a>开发Wokoo脚手架初衷</h2><p>一开始我想做一个给团队内部使用的浏览器插件。进行技术选型时发现开发油猴插件开发最省时省力，而且不用审核上线迅速，是最佳选择。</p>
+<p>开发过程遇到一些坑：</p>
+<ol>
+<li><p>油猴插件本质上是嵌入一段js代码到当前html中。所以很多油猴插件都直接使用jQuery进行开发。这对于我们习惯使用了Vue、React等框架的rd来说会不适应，尤其是插件涉及到页面组件开发，使用jQuery有点痛苦。<strong>这就是第一个痛点：要配置vue或react基础项目</strong></p>
+</li>
+<li><p>所以我就考虑用vue-cli起一个vue项目来完成插件开发。项目创建完成后，我又发现要配置油猴脚本。下面这个编辑器里的代码就是要配置的油猴脚本，里面的注释都是有含义的，比如<code>@match</code>  指定某些域名下开启此插件，<code>// @match http://*/*</code>  表示只能在http协议的网页中使用。默认配置的就是http协议，但是现在的网页都升级到https了，如果不修改此条配置，你会发现插件根本跑不起来。👇</p>
+</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/546d2d1512d04635b77e4db04d267ad4~tplv-k3u1fbpfcp-watermark.image" alt="屏幕快照 2021-03-15 下午9.30.21.png"></p>
+<p>   <strong>第二个痛点：要阅读油猴脚本的文档，理解里面的注释内容</strong></p>
+<ol start="3">
+<li>使用vue开发的项目能够通过<code>localhost:8080</code>访问，但是怎么把项目和油猴插件结合起来，实现一边开发项目，一边实时调试插件？总不能一边开发，一边<code>npm run build</code>构建出包，再把构建结果复制到油猴插件的编辑器中吧？<strong>第三个痛点：如何实现边开发边展示插件效果？</strong></li>
+</ol>
+<h2 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h2><p>总结下，我想实现一个针对开发油猴插件的脚手架，满足如下功能：</p>
+<ol>
+<li>输入一个命令行生成一个基础项目</li>
+<li>项目中包含基础的油猴脚本配置</li>
+<li>提供方案，让油猴插件能边开发，边调试</li>
+</ol>
+<h2 id="解决的痛点"><a href="#解决的痛点" class="headerlink" title="解决的痛点"></a>解决的痛点</h2><p>wokoo脚手架就是为了满足上业务场景，解决我在开发油猴插件时遇到的3个痛点。</p>
+<ol>
+<li><p>一键式创建基础的油猴插件项目，可选模板有:</p>
+<p>[ ] vue</p>
+<p>[ ] react</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>基础项目中的tampermonkey.js文件中满足油猴插件的基础配置，例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         my-plugin</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author</span></span><br><span class="line"><span class="comment">// @match        https://*/*</span></span><br><span class="line"><span class="comment">// @match        http://*/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>开发者直接复制这段代码到油猴插件编辑器就行，解决上面的第二个痛点。</p>
+<p>当然开发者在开发过程中是要做到阅读 <a href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">tampermonkey官网文档 </a>的，wokoo脚手架提供的基础文档配置，目的是降低油猴插件的开发难度。</p>
+</li>
+<li><p>tampermonkey.js中写的js脚本，将油猴插件加载的js文件打到本地用webpack起的服务上，实现边开发边调试。解决上面的第三个痛点。</p>
+</li>
+</ol>
+<h1 id="三、实践过程："><a href="#三、实践过程：" class="headerlink" title="三、实践过程："></a>三、实践过程：</h1><h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul>
+<li>参考了<a href="https://github.com/facebook/create-react-app">create-react-app</a>的设计思路，将<code>wokoo-scripts</code>和<code>wokoo-template</code>部分解耦，拆分成两个包单独管理，有利于未来的功能拓展。比如未来要新增一个模板是基于jquery的，只需要拓展wokoo-template部分即可。</li>
+<li>monorepo方案管理代码，使用lerna进行包管理。</li>
+</ul>
+<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><p>这张图是Wokoo的架构设计图，Wokoo使用monorepo方案管理代码，在一个git仓库中维护<code>wokoo-scripts</code>和<code>wokoo-template</code>两个模块。使用lerna进行包管理。</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf77f0701b274c7483a0d6aaba207640~tplv-k3u1fbpfcp-watermark.image?imageslim"></p>
+<h2 id="思路整理"><a href="#思路整理" class="headerlink" title="思路整理"></a>思路整理</h2><p>我要实现的功能如下：</p>
+<ol>
+<li><p>安装wokoo，执行<code>npm i wokoo -g</code>后在npm的全局目录下安装wokoo</p>
+</li>
+<li><p>执行命令<code>wokoo my-app</code>，弹出要求用户选择模板的提示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">? which template do you prefer? (Use arrow keys)</span><br><span class="line">❯ vue</span><br><span class="line">  react</span><br></pre></td></tr></table></figure></li>
+<li><p>选择模板后，创建一个基础项目，项目内容包括：1. 配置好的vue或react项目，2. <code>tampermonkey.js</code> 文件，内部是配置好的基础油猴脚本。</p>
+</li>
+</ol>
+<p>模仿<a href="https://github.com/facebook/create-react-app">cra</a>的实现思路，我将wokoo拆分成两个部分，<code>wokoo-scripts</code>和<code>wokoo-template</code>。</p>
+<ul>
+<li><code>wokoo-scripts</code>负责命令行的交互，从npm上拉取<code>wokoo-template</code>到生成的基础项目my-app中。</li>
+<li><code>wokoo-template</code>提供两套模板，分别是轻量级配置的vue和react基础项目。还提供<code>tampermonkey.js</code> 文件</li>
+</ul>
+<p>整个项目的工作流入下👇：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/666e725ea331445387a7f8ac8f76b106~tplv-k3u1fbpfcp-watermark.image"></p>
+<h3 id="wokoo-scripts"><a href="#wokoo-scripts" class="headerlink" title="wokoo-scripts"></a>wokoo-scripts</h3><p>目录介绍：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── bin</span><br><span class="line">│   └── www    					提供给npm的入口文件</span><br><span class="line">├── index.js						主程序，提供命令行交互功能</span><br><span class="line">├── modifyTemplate.js 	替换模板中的ejs语法</span><br><span class="line">├── package-lock.json</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+
+<p>代码流程图：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6b207eeeac1459889c3094468bc0892~tplv-k3u1fbpfcp-watermark.image" alt="流程图.png"></p>
+<p>图中介绍了<code>wokoo-scripts</code>各个方法的调用顺序： init -&gt; createApp -&gt;run-&gt;modifyTemplate。以及各方法实现的功能。</p>
+<h3 id="wokoo-template"><a href="#wokoo-template" class="headerlink" title="wokoo-template"></a>wokoo-template</h3><p>目录介绍：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── favicon.ico</span><br><span class="line">│   ├── icon.jpg</span><br><span class="line">│   └── index.html							html文件</span><br><span class="line">├── react-template							react模板路径</span><br><span class="line">│   ├── README.md</span><br><span class="line">│   ├── src</span><br><span class="line">│   │   ├── app.js							</span><br><span class="line">│   │   ├── app.less</span><br><span class="line">│   │   └── index.js						入口文件</span><br><span class="line">│   ├── tampermonkey.js					油猴脚本配置</span><br><span class="line">│   ├── template.json						react中依赖的库文件</span><br><span class="line">│   └── webpack.config.base.js	对应react项目的webpack配置</span><br><span class="line">├── vue-template								和react的项目结构类似</span><br><span class="line">│   ├── ...				</span><br><span class="line">└── webpack.config.js						公共的webpack配置</span><br></pre></td></tr></table></figure>
+
+<p><code>wokoo-template</code>提供基础项目的模板：</p>
+<ul>
+<li><p>分为vue-template和react-template</p>
+</li>
+<li><p>vue-template和react-template分别对应webpack配置的一个vue或react基础项目</p>
+</li>
+<li><p>使用ejs模板，实现wokoo-scripts注入变量</p>
+</li>
+<li><p>tampermonkey.js 文件是油猴插件的配置文件，需要将此文件内的代码复制到油猴插件的编辑框中。如下是tampermonkey.js文件的内容：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         &lt;%=projectName%&gt;</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      &lt;%=version%&gt;</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author</span></span><br><span class="line"><span class="comment">// @match        https://*/*</span></span><br><span class="line"><span class="comment">// @match        http://*/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>此文件中被注释掉的<code>//@xxx </code>都有含义，可以对应着 <a href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">tampermonkey开发文档 </a> 理解。</p>
+<ul>
+<li><p><code>@name</code>  脚本的名字，最后会被替换成项目名</p>
+</li>
+<li><p><code>@namespace</code> 可以写自己的域名,当自己把脚本分享后,用户可以直接通过这儿找到你的具体功能实现</p>
+</li>
+<li><p><code>@description</code>  插件描述</p>
+</li>
+<li><p><code>@match</code>  指定某些域名下开启此插件，默认配了两条，<code>// @match        https://*/*</code>和<code>// @match        https://*/*</code>  表示在所有域名下都开启。</p>
+</li>
+</ul>
+<p>详细的开发过程可以阅读文章：<a href="https://juejin.cn/post/6925613440752943112">wokoo脚手架（搭建篇）</a></p>
+<h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><ol>
+<li><p>创建基础项目</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npx wokoo my-app</span><br></pre></td></tr></table></figure></li>
+<li><p>起服务</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure></li>
+<li><p>复制tampermonkey.js内容到<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴插件编辑器</a>，注意：要复制全部内容，包括注释部分。（此步骤默认你已经安装了油猴插件，没安装的话就安装下 👉<a href="https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf?hl=zh-CN">油猴插件安装地址</a>）</p>
+</li>
+</ol>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/811cad2db5cb4332bfec83ea697aa2a2~tplv-k3u1fbpfcp-watermark.image" alt="屏幕快照 2021-03-15 下午9.30.21.png"></p>
+<ol start="4">
+<li>打开某网页，你能看到一只的猴子🐒，代表流程已跑通，你只需开发自己的业务代码即可。</li>
+</ol>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f8e6a5a044f4f2980febedf066bbcd1~tplv-k3u1fbpfcp-watermark.image" alt="demo2.gif"></p>
+<h2 id="开发中遇到的问题及解决方案"><a href="#开发中遇到的问题及解决方案" class="headerlink" title="开发中遇到的问题及解决方案"></a>开发中遇到的问题及解决方案</h2><p><strong>问题1</strong></p>
+<p>油猴插件的本质是往页面中注入一段js脚本，要注意避免和原始网页之间的冲突。拿知乎举例子，</p>
+<ol>
+<li>使用wokoo脚手架创建的项目的根节点id = root ，而知乎根节点网页中已有一个div节点id=root，命名重复了。</li>
+<li>不光根节点id的命名要注意避免和宿主网页中的元素重复，还要wokoo创建的项目A和项目B的根节点id不同。因为用户可能同时使用多个油猴插件，比如「划词搜索」和「知乎目录」一起用，这就要确保两个插件的根节点id是不一样的。</li>
+</ol>
+<p><strong>解决方式</strong></p>
+<p>将wokoo-template中的根节点根据<code>wokooApp-$&#123;项目名&#125;-$&#123;时间戳&#125;</code>的规则进行命名，避免冲突。</p>
+<p><strong>问题2</strong></p>
+<p>有的网页安全策略做的比较好，比如知乎使用了csp内容安全策略，阻止加载非指定域名的js脚本。</p>
+<p>结合实际情况来看，比如我们已经使用wokoo初始化一个项目my-app，并完成了<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴脚本</a>的配置，打开知乎发现右上角没有出现猴子logo，并且控制台报错。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1c6afc5b4cb4494b72c0d7b685f5579~tplv-k3u1fbpfcp-zoom-1.image"></p>
+<p>再看请求的html资源的响应头，可以发现多了一条<code>content-security-policy</code>规则。也就是说知乎使用了csp内容安全策略，通过<code>content-security-policy</code>中的<code>script-src</code>字段可知，知乎只允许加载指定域名的js。具体情况可阅读 👉 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP">内容安全策略( CSP )</a></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7ce3b03a5434e2aac0a911940d01a0d~tplv-k3u1fbpfcp-zoom-1.image"></p>
+<p>而将tampermonkey.js文件拷贝到<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴插件编辑器</a>时，有下面一段代码👇</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>因为我们在调试的时候为了保证实时查看插件效果，往页面的html拼了一个js文件上去，而该文件指向webpack起的服务：<code>http://localhost:8080/app.bundle.js</code>。这不是知乎指定的域名，当然被拦截了。</p>
+<p><strong>解决方式</strong></p>
+<p>怎么办呢？嘿嘿，魔高一尺道高一丈，wokoo脚手架当然给出了解决方案。</p>
+<ol>
+<li><p>开发阶段，安装插件<a href="https://chrome.pictureknow.com/extension?id=5b80153e8db143afa59310bc0f282f1f">Disable Content-Security-Policy</a>, 在调试知乎页面时开启插件，自动把html页面的<code>content-security-policy</code>给设置为空。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba9ac0c0e6d14367bcd51b3aff3a9e2b~tplv-k3u1fbpfcp-zoom-1.image" alt="截图"></p>
+</li>
+<li><p>上线到<a href="https://greasyfork.org/">油猴市场</a>时，将构建后的脚本复制到油猴插件编辑器中，避免使用cdn的方式部署。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e2da6218f824bc7917a43b107362899~tplv-k3u1fbpfcp-zoom-1.image" alt="zhihu-tampermonkey"></p>
+</li>
+</ol>
+<ul>
+<li><p>注意，编辑框内对代码有最大限制，如果app.bundle.js大小超过最大限制，要进行拆包处理。</p>
+<p>拆包步骤：</p>
+<ul>
+<li><p>油猴编辑器内的配置代码，增加两行。此处我用react举例，把react通过静态资源链接的方式引入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; @require https:&#x2F;&#x2F;unpkg.com&#x2F;react@17&#x2F;umd&#x2F;react.production.min.js</span><br><span class="line">&#x2F;&#x2F; @require https:&#x2F;&#x2F;unpkg.com&#x2F;react-dom@17&#x2F;umd&#x2F;react-dom.production.min.js</span><br></pre></td></tr></table></figure></li>
+<li><p>修改webpack.config.base.js的entry字段</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    app: &#39;&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">    vendor: [</span><br><span class="line">      &#x2F;&#x2F; 将react和react-dom这些单独打包出来，减小打包文件体积</span><br><span class="line">      &#39;react&#39;,</span><br><span class="line">      &#39;react-dom&#39;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>重新构建代码，把代码复制到编辑框中。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>具体的wokoo使用方式我有写专门的文档：</p>
+<p><a href="https://juejin.cn/post/6922815205575491597">5分钟上手开发浏览器插件——油猴脚手架wokoo(使用篇)</a></p>
+<p><a href="https://juejin.cn/post/6925605904561750030/">快速上手油猴插件开发（实战篇）</a></p>
+<h1 id="四、总结思考："><a href="#四、总结思考：" class="headerlink" title="四、总结思考："></a>四、总结思考：</h1><h2 id="技术上收获"><a href="#技术上收获" class="headerlink" title="技术上收获"></a>技术上收获</h2><ol>
+<li>为了把脚手架写的专业一点，我去研究了create-react-app的源码，看大佬写的代码真的是佩服，自己以后在写代码时也要多考虑组织结构，逻辑解耦。</li>
+<li>使用monorepo方案，一个git仓库管理多个库文件（包括<a href="https://www.npmjs.com/package/wokoo">wokoo-script</a>和<a href="https://www.npmjs.com/package/wokoon-template">wokoo-template</a>，发现真香👍。 解决了开发多个相关联的库时，需要切换不同库的仓库，代码等问题，保证工作流的连续。</li>
+</ol>
+<p>总之，在搞技术的道路上还是一句话：「纸上得来终觉浅，绝知此事要躬行」。</p>
+<h2 id="思维上收获"><a href="#思维上收获" class="headerlink" title="思维上收获"></a>思维上收获</h2><ol>
+<li><p>我意识到做一件事情，小到一次分享，一篇文章，大到一个开源项目，一个产品，最根本的出发点应该是「更好的服务产品的使用方」。只有服务好使用方，你做的事情才能发挥最大价值。</p>
+<blockquote>
+<p>比如当初在群里分享利用Wokoo脚手架开发插件「划词搜索」时，发现总是有人问我一些简单的问题，我当时就想文档里明明写了啊，后来再次读那段内容时，我发现我是站在开发者的角度去写文档，而没有站在使用者的角度写。</p>
+</blockquote>
+</li>
+<li><p>任何事情，一开始看可能觉得难度巨大，但是拆解成一件件小的事情后就会觉得不是那么困难。就像<code>Wokoo脚手架</code>，也是被拆分成多个步骤完成：</p>
+<ul>
+<li>开发脚手架</li>
+<li>编写使用文档</li>
+<li>写油猴插件实战案例</li>
+</ul>
+<p>所以遇到事情先拆解，拆分成几个小步骤来完成。不要一看到大项目就畏难就觉得搞不定。</p>
+</li>
+</ol>
+<h1 id="五、往期文章"><a href="#五、往期文章" class="headerlink" title="五、往期文章"></a>五、往期文章</h1><p>除了油猴脚手架wokoo，我还造了其他轮子🎉🎉：</p>
+<ul>
+<li><p><a href="https://juejin.cn/post/6917256394743742472">shero-cli: 自动化管理github博客</a></p>
+</li>
+<li><p><a href="https://juejin.cn/post/6907563804780036104">tapable可视化工具</a></p>
+</li>
+</ul>
+<p>欢迎大家在搞技术的路上一起升级打怪造轮子~</p>
+<p>——</p>
+<p>感谢你的阅读😊，希望这篇文章对你有所帮助。</p>
+]]></content>
   </entry>
   <entry>
     <title>快速上手油猴插件开发（实战篇）</title>
