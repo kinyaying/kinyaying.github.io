@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>5分钟上手开发浏览器插件——油猴脚手架wokoo(使用篇)</title>
-    <url>/2021/02/12/5%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%E5%BC%80%E5%8F%91%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E2%80%94%E2%80%94%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%89%8B%E6%9E%B6wokoo(%E4%BD%BF%E7%94%A8%E7%AF%87)/</url>
+    <url>/5%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%E5%BC%80%E5%8F%91%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E2%80%94%E2%80%94%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%89%8B%E6%9E%B6wokoo(%E4%BD%BF%E7%94%A8%E7%AF%87)/</url>
     <content><![CDATA[<h2 id="油猴插件是什么？"><a href="#油猴插件是什么？" class="headerlink" title="油猴插件是什么？"></a>油猴插件是什么？</h2><p>油猴插件(Tampermonkey) 是一款免费的浏览器扩展和最为流行的用户脚本管理器，它适用于 Chrome, Edge, Safari等多个浏览器。油猴脚本本质上是在网页上插入一段 JavaScript(JS) 代码，开发者在代码中编写内容，开发插件。此外，它还提供Userscript Header和Application Programming Interface给开发者，用来实现原生 JS 无法实现的功能。</p>
 <span id="more"></span>
 <p>油猴插件的开发文档请看这里 👉 [<a href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">油猴插件开发文档</a>]</p>
@@ -133,7 +133,7 @@
   </entry>
   <entry>
     <title>【译】五大原则写出优雅易维护的vue代码</title>
-    <url>/2021/02/09/%5B%E8%AF%91%5D5%E5%A4%A7%E5%8E%9F%E5%88%99%E5%86%99%E5%87%BA%E4%BC%98%E9%9B%85%E6%98%93%E7%BB%B4%E6%8A%A4%E7%9A%84vue%E4%BB%A3%E7%A0%81/</url>
+    <url>/%5B%E8%AF%91%5D5%E5%A4%A7%E5%8E%9F%E5%88%99%E5%86%99%E5%87%BA%E4%BC%98%E9%9B%85%E6%98%93%E7%BB%B4%E6%8A%A4%E7%9A%84vue%E4%BB%A3%E7%A0%81/</url>
     <content><![CDATA[<blockquote>
 <p>本文翻译自：<a href="https://betterprogramming.pub/5-principles-for-writing-clean-and-maintainable-vue-js-code-35dfcf5ef08c">https://betterprogramming.pub/5-principles-for-writing-clean-and-maintainable-vue-js-code-35dfcf5ef08c</a></p>
 </blockquote>
@@ -275,7 +275,7 @@
   </entry>
   <entry>
     <title>cookie、session和jwt</title>
-    <url>/2021/02/09/cookie%E3%80%81session%E5%92%8Cjwt/</url>
+    <url>/cookie%E3%80%81session%E5%92%8Cjwt/</url>
     <content><![CDATA[<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ee0f3f7310542f6bace07526605f510~tplv-k3u1fbpfcp-watermark.image"></p>
 <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><h2 id="1-为什么会出现-cookie"><a href="#1-为什么会出现-cookie" class="headerlink" title="1. 为什么会出现 cookie?"></a>1. 为什么会出现 cookie?</h2><p>http 是无状态的协议，导致请求不知道是哪个用户操作的。cookie 的出现就是为了解决 http 请求无状态和服务端要知道请求来源之间的矛盾。</p>
 <p>cookie 会根据服务端发送的响应报文中的 <code>set-cookie</code> 字段信息，通知客户端保存 cookie。下次客户端发送请求时就会携带 cookie，服务端收到请求，根据 cookie 和服务器的记录进行比对，找到之前的状态。</p>
@@ -350,7 +350,7 @@
   </entry>
   <entry>
     <title>create-react-app核心源码解读</title>
-    <url>/2021/02/12/create-react-app%E6%A0%B8%E5%BF%83%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</url>
+    <url>/create-react-app%E6%A0%B8%E5%BF%83%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/</url>
     <content><![CDATA[<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/da2ddd71d01541f8a8c78bf01d9e249c~tplv-k3u1fbpfcp-watermark.image"></p>
 <p><code>create-react-app</code>是大家常用的用来创建react项目的脚手架，它的设计理念和实现思路值的我们学习。我研究了一下<code>create-react-app</code>源码，并把它的核心功能模块梳理出来。</p>
 <p>下面是这篇文章的主要内容:</p>
@@ -571,7 +571,7 @@
   </entry>
   <entry>
     <title>tapable可视化工具</title>
-    <url>/2021/02/09/tapable%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/</url>
+    <url>/tapable%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/</url>
     <content><![CDATA[<h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>webpack 中的发布订阅模式是使用 <code>tapable</code> 实现的。<code>tapable</code> 比 node 自带的 <code>evevnEmitter</code> 功能更加强大，表现在 1. 一次发布能触发多个订阅钩子； 2. 事件流种类更多，分为 bail，basic, loop, waterfall。当然，学习难度也更高。我开发这个工具的目的是想将 tabable 代码转换成流程图，更直观的了解对应的 <code>tabable</code> 执行流程。</p>
 <span id="more"></span>
 
@@ -638,7 +638,7 @@
   </entry>
   <entry>
     <title>wokoo脚手架（搭建篇）</title>
-    <url>/2021/02/09/wokoo%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%88%E6%90%AD%E5%BB%BA%E7%AF%87%EF%BC%89/</url>
+    <url>/wokoo%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%88%E6%90%AD%E5%BB%BA%E7%AF%87%EF%BC%89/</url>
     <content><![CDATA[<h2 id="油猴插件-amp-wokoo-脚手架使用说明"><a href="#油猴插件-amp-wokoo-脚手架使用说明" class="headerlink" title="油猴插件 &amp; wokoo 脚手架使用说明"></a>油猴插件 &amp; wokoo 脚手架使用说明</h2><p>一款油猴插件的脚手架。如果直接开发油猴插件，开发者需要费时搭建 vue 或 react 基础项目，还需要对油猴脚本区域做对应的配置，开发体验差。</p>
 <p>wokoo 可以一键式生成基础项目，并且提供基础 Tampermonkey 配置。主要提供的功能有：</p>
 <ul>
@@ -785,7 +785,7 @@
   </entry>
   <entry>
     <title>从源码角度理解npm</title>
-    <url>/2021/02/12/%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3npm%E5%B9%B2%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
+    <url>/%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3npm%E5%B9%B2%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
     <content><![CDATA[<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4d8c3afabef14766adf570beb5a06e75~tplv-k3u1fbpfcp-watermark.image"></p>
 <p>我在整理npm相关知识时，发现有些问题比较困惑，网上也没有从源码层面解释npm的文章，所以我去看了源码来解决我的困惑。为了加深理解，我把源码里的重点内容整理出来，希望大家在读完后也能够对npm有更深的理解。</p>
 <span id="more"></span>
@@ -881,7 +881,7 @@
   </entry>
   <entry>
     <title>前端面试必知必会1——ES6基础</title>
-    <url>/2021/02/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A1%E2%80%94%E2%80%94ES6%E5%9F%BA%E7%A1%80/</url>
+    <url>/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A1%E2%80%94%E2%80%94ES6%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="1-symbol"><a href="#1-symbol" class="headerlink" title="1. symbol"></a>1. symbol</h1><h3 id="Symbol-的基本用法"><a href="#Symbol-的基本用法" class="headerlink" title="Symbol 的基本用法"></a>Symbol 的基本用法</h3><p>Symbol 能够创建独一无二的类型</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>(<span class="string">&#x27;kin&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">&#x27;kin&#x27;</span>)</span><br><span class="line">s1 === s2 <span class="comment">// 结果是false</span></span><br></pre></td></tr></table></figure>
 
@@ -1041,7 +1041,7 @@
   </entry>
   <entry>
     <title>图解koa2核心原理</title>
-    <url>/2021/02/12/%E5%9B%BE%E8%A7%A3koa2%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/</url>
+    <url>/%E5%9B%BE%E8%A7%A3koa2%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<p>koa是经常使用的node端框架，它封装了一系列node方法，通过它的api让写服务变得更加方便。而且相比express，koa支持promise写法，更加符合现在的前端代码编写习惯，代码可读性更强。koa相比express更加短小，更多的功能是通过插件的形式实现的，它的设计思路很值得我们参考。</p>
 <p>本篇文章将koa的逻辑用流程图表示，让我们理解起来更加简单。</p>
 <span id="more"></span>
@@ -1108,7 +1108,7 @@
   </entry>
   <entry>
     <title>有限状态机实现JSX词法分析</title>
-    <url>/2021/02/09/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E5%AE%9E%E7%8E%B0JSX%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/</url>
+    <url>/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E5%AE%9E%E7%8E%B0JSX%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p>词法分析和语法分析是代码中非常底层的知识，在代码的编译、构建的过程中扮演了重要的角色。<br>词法分析是指把代码片段逐个单词的读取，根据分词规则转化成一个个 token。每个 token 有对这段单词的类型和内容进行描述。最后将这些 token 收集成 tokens 返回回来。目前常用的 jsx 词法解析器是<a href="https://github.com/jquery/esprima/blob/master/src/jsx-parser.ts">esprima</a> 。</p>
 <p>为了掌握 jsx 词法解析，我也实现了简易版的 jsx 词法解析器。</p>
 <p><strong>代码仓库：<a href="https://github.com/kinyaying/tokenizer">jsx-tokenizer</a></strong></p>
@@ -1150,7 +1150,7 @@
   </entry>
   <entry>
     <title>自动化管理github博客——shero-cli</title>
-    <url>/2021/02/09/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86github%E5%8D%9A%E5%AE%A2%E2%80%94%E2%80%94shero-cli/</url>
+    <url>/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86github%E5%8D%9A%E5%AE%A2%E2%80%94%E2%80%94shero-cli/</url>
     <content><![CDATA[<h1 id="shero-cli-是什么？"><a href="#shero-cli-是什么？" class="headerlink" title="shero-cli 是什么？"></a>shero-cli 是什么？</h1><p>很多程序员平时喜欢使用 git 的 issue 来编写博客，因为 issue 里的 comment 部分能够提供一个作者和读者之间沟通讨论的平台。但是使用 issue 编写博客的话，涉及到博客内容和 issue 直接的关系需要维护，作者需要自己维护一个博客仓库，然后在博客完成后再复制到 issue。<br>为了让利用 github 的 issue 来开发博客变得更加愉快，就开发了 shero-cli 这款工具。主要提供的功能有：</p>
 <ul>
 <li>命令行式创建博客</li>
@@ -1200,7 +1200,7 @@
   </entry>
   <entry>
     <title>解析 Vue3.0 的 dom-diff 核心算法——最长递增子序列</title>
-    <url>/2021/02/09/%E8%A7%A3%E6%9E%90Vue3.0%E7%9A%84dom-diff%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/</url>
+    <url>/%E8%A7%A3%E6%9E%90Vue3.0%E7%9A%84dom-diff%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/</url>
     <content><![CDATA[<h1 id="一、基础背景"><a href="#一、基础背景" class="headerlink" title="一、基础背景"></a>一、基础背景</h1><p>去年 Vue3.0 正式版本推出，受到很多人的追捧。vue3.0 中也对 dom-diff 算法进行了优化，其中就用到了 <strong>「最长递增子序列」</strong>。</p>
 <p>先简要介绍下基础背景。我们在 vue 开发项目的时候，常用模板或者 jsx 语法来编写 DOM。实际上我们编写的代码会被<code>@vue/compiler-dom</code>转化为虚拟 DOM 节点，即 Virtual DOM，之后再将虚拟 DOM 节点渲染成实际的 DOM 节点，Virtual DOM 也会被组织成树形结构，即 Virtual DOM 树。类似如下所示 👇🏽：<br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/78240500087d4536b74286e30aff5b4c~tplv-k3u1fbpfcp-watermark.image"></p>
 <span id="more"></span>
@@ -1288,7 +1288,7 @@
   </entry>
   <entry>
     <title>开发油猴脚手架wokoo复盘</title>
-    <url>/2021/02/12/%E5%BC%80%E5%8F%91%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6Wokoo%E5%A4%8D%E7%9B%98/</url>
+    <url>/%E5%BC%80%E5%8F%91%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6Wokoo%E5%A4%8D%E7%9B%98/</url>
     <content><![CDATA[<h1 id="一、项目简介："><a href="#一、项目简介：" class="headerlink" title="一、项目简介："></a>一、项目简介：</h1><p>这篇文件介绍的是油猴插件脚手架Wokoo的开发过程与复盘。Wokoo是我开发的脚手架，用来快速起一个基础项目用于<code>油猴插件</code>的开发。</p>
 <ol>
 <li>Wokoo的npm地址：<a href="https://www.npmjs.com/package/wokoo">wokoo</a></li>
@@ -1489,7 +1489,7 @@
   </entry>
   <entry>
     <title>快速上手油猴插件开发（实战篇）</title>
-    <url>/2021/02/09/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%88%E5%AE%9E%E6%88%98%E7%AF%87%EF%BC%89/</url>
+    <url>/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%88%E5%AE%9E%E6%88%98%E7%AF%87%EF%BC%89/</url>
     <content><![CDATA[<p>这篇文章你能够学习到：</p>
 <ol>
 <li>快速使用油猴插件进行浏览器插件开发</li>
