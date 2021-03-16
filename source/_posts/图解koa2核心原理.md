@@ -1,7 +1,7 @@
 koa是经常使用的node端框架，它封装了一系列node方法，通过它的api让写服务变得更加方便。而且相比express，koa支持promise写法，更加符合现在的前端代码编写习惯，代码可读性更强。koa相比express更加短小，更多的功能是通过插件的形式实现的，它的设计思路很值得我们参考。
 
 本篇文章将koa的逻辑用流程图表示，让我们理解起来更加简单。
-
+<!-- more -->
 # 代码结构
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ae9cf32b2dd9416087eb83164269820e~tplv-k3u1fbpfcp-watermark.image)
 

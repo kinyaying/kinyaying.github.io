@@ -3,7 +3,7 @@
 ## 油猴插件是什么？
 
 油猴插件(Tampermonkey) 是一款免费的浏览器扩展和最为流行的用户脚本管理器，它适用于 Chrome, Edge, Safari等多个浏览器。油猴脚本本质上是在网页上插入一段 JavaScript(JS) 代码，开发者在代码中编写内容，开发插件。此外，它还提供Userscript Header和Application Programming Interface给开发者，用来实现原生 JS 无法实现的功能。
-
+<!-- more -->
 油猴插件的开发文档请看这里 👉 [[油猴插件开发文档](https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg)]
 
 ## 为什么要开发wokoo脚手架

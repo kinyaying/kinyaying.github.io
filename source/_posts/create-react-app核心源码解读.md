@@ -8,7 +8,7 @@
 2. 介绍create-react-app的流程，从全局上看create-react-app是怎么创建react项目的
 3. 详细的分析create-react-app的3个核心模块的实现
 4. 总结
-
+<!-- more -->
 # create-react-app快速入门
 
 1. 使用create-react-app创建项目my-app：

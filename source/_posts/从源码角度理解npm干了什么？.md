@@ -1,7 +1,7 @@
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4d8c3afabef14766adf570beb5a06e75~tplv-k3u1fbpfcp-watermark.image)
 
 我在整理npm相关知识时，发现有些问题比较困惑，网上也没有从源码层面解释npm的文章，所以我去看了源码来解决我的困惑。为了加深理解，我把源码里的重点内容整理出来，希望大家在读完后也能够对npm有更深的理解。
-
+<!-- more -->
 ## 什么是npm
 
 npm全称_node package manager_，[维基百科关于Node.js](https://zh.wikipedia.org/zh-hans/Node.js#)的介绍中指明[npm](https://zh.wikipedia.org/zh-hans/Node.js#npm)是Node.js附带的包管理器。下载安装node时会附加安装了npm。npm是一个命令行工具，用于从NPM Registry中下载、安装Node.js程序，同时解决依赖问题。npm提高了开发的速度，因为它能够负责第三方Node.js程序的安装与管理。
