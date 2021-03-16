@@ -1,3 +1,13 @@
+---
+title: 从源码角度理解npm
+date: 2021-02-12 13:58:06
+tags: node
+keywords:
+  - npm源码
+  - nodejs
+---
+
+
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4d8c3afabef14766adf570beb5a06e75~tplv-k3u1fbpfcp-watermark.image)
 
 我在整理npm相关知识时，发现有些问题比较困惑，网上也没有从源码层面解释npm的文章，所以我去看了源码来解决我的困惑。为了加深理解，我把源码里的重点内容整理出来，希望大家在读完后也能够对npm有更深的理解。

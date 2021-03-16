@@ -1,3 +1,12 @@
+---
+title: create-react-app核心源码解读
+date: 2021-02-12 13:58:06
+tags: node
+keywords:
+  - create-react-app源码
+  - nodejs
+---
+
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/da2ddd71d01541f8a8c78bf01d9e249c~tplv-k3u1fbpfcp-watermark.image)
 
 `create-react-app`是大家常用的用来创建react项目的脚手架，它的设计理念和实现思路值的我们学习。我研究了一下`create-react-app`源码，并把它的核心功能模块梳理出来。
