@@ -209,11 +209,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href=""></use>
+              <use xlink:href="#icon-029-flower"></use>
             </svg>
             <a href="/2021/03/16/5%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%E5%BC%80%E5%8F%91%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E2%80%94%E2%80%94%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%89%8B%E6%9E%B6wokoo(%E4%BD%BF%E7%94%A8%E7%AF%87)/" class="post-title-link" itemprop="url">未命名</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href=""></use>
+            <use xlink:href="#icon-029-flower"></use>
           </svg>
         </h2>
 
@@ -224,7 +224,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-16 03:40:18" itemprop="dateCreated datePublished" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+              <time title="创建时间：2021-03-16 03:43:25" itemprop="dateCreated datePublished" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
             </span>
 
           
@@ -239,128 +239,14 @@
 
       
           <h1 id="5分钟上手开发浏览器插件——油猴脚手架wokoo-使用篇"><a href="#5分钟上手开发浏览器插件——油猴脚手架wokoo-使用篇" class="headerlink" title="5分钟上手开发浏览器插件——油猴脚手架wokoo(使用篇)"></a>5分钟上手开发浏览器插件——油猴脚手架wokoo(使用篇)</h1><h2 id="油猴插件是什么？"><a href="#油猴插件是什么？" class="headerlink" title="油猴插件是什么？"></a>油猴插件是什么？</h2><p>油猴插件(Tampermonkey) 是一款免费的浏览器扩展和最为流行的用户脚本管理器，它适用于 Chrome, Edge, Safari等多个浏览器。油猴脚本本质上是在网页上插入一段 JavaScript(JS) 代码，开发者在代码中编写内容，开发插件。此外，它还提供Userscript Header和Application Programming Interface给开发者，用来实现原生 JS 无法实现的功能。</p>
-<p>油猴插件的开发文档请看这里 👉 [<a target="_blank" rel="noopener" href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">油猴插件开发文档</a>]</p>
-<h2 id="为什么要开发wokoo脚手架"><a href="#为什么要开发wokoo脚手架" class="headerlink" title="为什么要开发wokoo脚手架"></a>为什么要开发wokoo脚手架</h2><p>油猴插件的基本原理是支持用户使用js编写脚本代码，再在网页的环境上下文运行。</p>
-<p>在油猴插件生成的基础项目中，可以看到什么都没有配置，它只支持原生js开发。这对于我们熟悉vue或react的FEer来说影响效率。我们需要自己搭建一个基础的项目工程，进行开发。还要配置油猴脚本内容，确保油猴插件引入了我们开发的js代码，比较麻烦。而wokoo则是为了解决这个问题。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/88f5eca70aa145feb6ca36b90c04665d~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<p>先介绍下wokoo脚手架的成果：</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/kinyaying/wokoo">wokoo脚手架github仓库</a></p>
-<p>安装油猴插件：<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf?hl=zh-CN">油猴插件安装地址</a></p>
-<p>安装demo插件: <a target="_blank" rel="noopener" href="https://greasyfork.org/zh-CN/scripts/420327-wokoo-demo">wokoo-demo</a> （详细安装过程可查看 ➡️ <a target="_blank" rel="noopener" href="https://github.com/kinyaying/wokoo/tree/master/example/wokoo-demo">wokoo-demo/readme</a>）</p>
-<p>安装完成后的效果如下：</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0e978d446a66435b9cf1f9b30eee979d~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<h2 id="wokoo是什么"><a href="#wokoo是什么" class="headerlink" title="wokoo是什么"></a>wokoo是什么</h2><p>一款油猴插件的脚手架。如果直接开发油猴插件，开发者需要费时搭建vue或react基础项目，还需要对油猴脚本区域做对应的配置，开发体验差。</p>
-<p>wokoo可以一键式生成基础项目，并且提供基础Tampermonkey配置。</p>
-<p>主要提供的功能有：</p>
-<ul>
-<li>命令行式创建脚手架初始项目</li>
-<li>根据用户选择，生成vue、react的基本项目</li>
-<li>tampermonkey.txt 文件中提供Tampermonkey配置</li>
-</ul>
-<h2 id="项目设计图"><a href="#项目设计图" class="headerlink" title="项目设计图"></a>项目设计图</h2><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf77f0701b274c7483a0d6aaba207640~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<p>wokoo脚手架的设计参考了<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">create-react-app</a>，我也曾经写过一篇分析cra源码的文章，感兴趣的同学可以阅读这篇👉<a target="_blank" rel="noopener" href="https://juejin.cn/post/6916531902773985294">create-react-app核心源码解读</a>。</p>
-<p>wokoo主要使用lerna进行包管理，在packages里维护了两个模块：wokoo-scripts 和 wokoo-template。</p>
-<p><strong>wokoo-scripts</strong>：</p>
-<p>分析终端用户输入的命令行，根据用户输入的选项生成对应的初始化项目</p>
-<p><strong>wokoo-template</strong>：项目模板</p>
-<ul>
-<li>分为vue和react</li>
-<li>支持基础的webpack配置</li>
-<li>tampermonkey.txt 文件中是油猴编辑器内容，用户不必自己编写油猴脚本的配置。并且此处做了优化，在tampermonkey.txt中使用动态引入js脚本的方案，而不是@require引入js文件方式，解决开发时静态资源缓存问题。</li>
-</ul>
-<p>wokoo工作流如下图👇：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/666e725ea331445387a7f8ac8f76b106~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<h2 id="wokoo脚手架使用"><a href="#wokoo脚手架使用" class="headerlink" title="wokoo脚手架使用"></a>wokoo脚手架使用</h2><ol>
-<li>安装 </li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i wokoo -g</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li> 创建my-plugin项目</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wokoo my-plugin</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>选择框架：控制台出现提示 ➡️ which template do you prefer?</li>
-</ol>
-<p>[ ] vue</p>
-<p>[ ] react</p>
-<ol start="4">
-<li><p> 选择完毕后自动初始化项目</p>
-</li>
-<li><p>cd my-plugin 能够看到生成的原始项目</p>
-</li>
-</ol>
-<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md </span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── public                    静态文件</span><br><span class="line">│   ├── favicon.ico</span><br><span class="line">│   ├── icon.jpg</span><br><span class="line">│   └── index.html            html文件</span><br><span class="line">├── src</span><br><span class="line">│   ├── app.less</span><br><span class="line">│   ├── app.js</span><br><span class="line">│   └── index.js             项目入口</span><br><span class="line">├── tampermonkey.txt         油猴脚本入口文件</span><br><span class="line">├── webpack.config.base.js</span><br><span class="line">└── webpack.config.js        webpack 配置</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p>此处展示的是react项目的目录结构，vue项目的结构类似，不再展示。</p>
-<p>其中<code>tampermonkey.txt</code>文件内是油猴脚本配置，需要将里面的内容复制到Tampermonkey编辑器里。</p>
-<h2 id="开发-amp-调试"><a href="#开发-amp-调试" class="headerlink" title="开发&amp;调试"></a>开发&amp;调试</h2><ol>
-<li>启动 </li>
-</ol>
-<p>进入项目目录后，在命令行中输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>打开浏览器，输入<code>localhost:8080</code>，查看页面展示是否正常。</p>
-</li>
-<li><p>打开油猴插件编辑界面，将 <code>tampermonkey.txt</code> 里的内容复制到编辑框中，保存。（此步骤默认你已经安装了油猴插件，没安装的话就安装下 👉<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf?hl=zh-CN">油猴插件安装地址</a>）</p>
-</li>
-</ol>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/05cb9892e1bd42f4bd12e36f39e185a2~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3160f3a1c95147ed8fd8d598b9b1966d~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<p><code>tampermonkey.txt</code> 中的js逻辑是给html拼上script标签来获取外部js文件，在开发过程中不要担心缓存问题，开发完代码后能直接在浏览器看到最新的效果。</p>
-<ol start="4">
-<li>打开任意一个网页，比如<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></li>
-</ol>
-<ul>
-<li>查看油猴 icon 是否有一个 1 的数字标志，如果有说明油猴脚本已经成功激活</li>
-<li>网页的右上角会出现一只猴子，说明代码已经跑通</li>
-</ul>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4304f711784a440db86d03f237f0b81a~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<ol start="5">
-<li>接下来可以修改业务代码进行自定义的插件开发啦~ 🎊🎊</li>
-</ol>
-<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>执行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<h2 id="发布插件到油猴市场"><a href="#发布插件到油猴市场" class="headerlink" title="发布插件到油猴市场"></a>发布插件到油猴市场</h2><p>发布油猴市场的优点是不用审核，即发即用，非常方便。</p>
-<ol>
-<li>将<code>/dist/app.bundle.js</code> 文件部署到 cdn 上，获取到对应 url。</li>
-</ol>
-<p>注意：</p>
-<ul>
-<li><p>js文件可放到 github 上，如果托管到 github 上最好做 cdn 加速</p>
-</li>
-<li><p>如果没有cdn服务器可跳过此步骤，在步骤4直接将app.bundle.js复制到油猴脚本编辑器中</p>
-</li>
-</ul>
-<ol start="2">
-<li><p>登录<a target="_blank" rel="noopener" href="https://greasyfork.org/">油猴市场</a>，谷歌账号或 github 账号都可使用。</p>
-</li>
-<li><p>点击账号名称，再点击「发布你编写的脚本」<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/abcdfbc992fb4fd69a2178ca94876071~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fb025dd64bc643a48858a875f9c70fdc~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-</li>
-<li><p>进入编辑页，将 <code>tampermonkey.txt</code> 里的内容复制到编辑框中</p>
-</li>
-</ol>
-<p>注意：</p>
-<ul>
-<li><p>步骤1中如果托管了cdn，需要将代码中的<code>localhost:8080</code>网址替换成静态资源 url</p>
-</li>
-<li><p>步骤1中没有托管cdn，则将<code>/dist/app.bundle.js</code>文件里的内容复制到下图红框位置</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7aaced8f163842af9e165b7a98388198~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-</li>
-</ul>
-<ol start="5">
-<li>点击 「发布脚本」即可</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6916531902773985294">create-react-app核心源码解读</a></p>
-<p><a target="_blank" rel="noopener" href="https://sleazyfork.org/zh-CN/scripts?page=1">油猴市场</a> </p>
-<p><a target="_blank" rel="noopener" href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">油猴插件开发文档</a></p>
-<p>——</p>
-<p>未来wokoo脚手架也会持续更新，如果有相关问题或建议可以在github上提issue或者联系我 email: <a href="mailto:kinyaying@gamil.com">kinyaying@gamil.com</a>。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/16/5%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%E5%BC%80%E5%8F%91%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E2%80%94%E2%80%94%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%89%8B%E6%9E%B6wokoo(%E4%BD%BF%E7%94%A8%E7%AF%87)/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -393,11 +279,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-flower5"></use>
+              <use xlink:href="#icon-flower11"></use>
             </svg>
             <a href="/2021/03/16/create-react-app%E6%A0%B8%E5%BF%83%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="post-title-link" itemprop="url">未命名</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-flower5"></use>
+            <use xlink:href="#icon-flower11"></use>
           </svg>
         </h2>
 
@@ -408,7 +294,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-16 03:40:18" itemprop="dateCreated datePublished" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+              <time title="创建时间：2021-03-16 03:43:25" itemprop="dateCreated datePublished" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
             </span>
 
           
@@ -426,212 +312,21 @@
 <p><code>create-react-app</code>是大家常用的用来创建react项目的脚手架，它的设计理念和实现思路值的我们学习。我研究了一下<code>create-react-app</code>源码，并把它的核心功能模块梳理出来。</p>
 <p>下面是这篇文章的主要内容:</p>
 <ol>
-<li>简单介绍create-react-app的使用</li>
-<li>介绍create-react-app的流程，从全局上看create-react-app是怎么创建react项目的</li>
-<li>详细的分析create-react-app的3个核心模块的实现</li>
-<li>总结</li>
-</ol>
-<h1 id="create-react-app快速入门"><a href="#create-react-app快速入门" class="headerlink" title="create-react-app快速入门"></a>create-react-app快速入门</h1><ol>
-<li>使用create-react-app创建项目my-app：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app my-app</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>进入 my-app 文件夹，执行 <code>npm start</code> 启动项目</li>
-</ol>
-<p>默认阅读这篇文章的同学都是接触过create-react-app的人，所以不对如何使用create-react-app进行深入介绍，如果想了解详细情况请阅读官网文档（<a target="_blank" rel="noopener" href="https://emojipedia.org/backhand-index-pointing-right/">👉</a> <a target="_blank" rel="noopener" href="https://www.html.cn/create-react-app/docs/documentation-intro/">create-react-app</a>）。</p>
-<h2 id="必备知识"><a href="#必备知识" class="headerlink" title="必备知识"></a>必备知识</h2><p>为了更好的了解create-react-app内部的实现原理，我们需要掌握以下这几个知识点：</p>
-<h3 id="1-monorepo管理"><a href="#1-monorepo管理" class="headerlink" title="1. monorepo管理"></a>1. monorepo管理</h3><p><strong>概念</strong></p>
-<p>Monorepo 是管理项目代码的一个方案，即在一个项目仓库(repo)中管理多个模块/包(package)。Monorepo的优势在于一个仓库维护多个模块，能够统一工作流，代码共享。</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4af42f39751a4f02b6205e8b8cebcace~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>create-react-app使用Monorepo方案在packages下维护了11个包。这些包互相之间有一定的联系，放在一个仓库中维护方便代码管理。此思路也值的我们在工作中学习运用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── babel-plugin-named-asset-import</span><br><span class="line">├── babel-preset-react-app</span><br><span class="line">├── confusing-browser-globals</span><br><span class="line">├── cra-template</span><br><span class="line">├── cra-template-typescript</span><br><span class="line">├── create-react-app</span><br><span class="line">├── eslint-config-react-app</span><br><span class="line">├── react-app-polyfill</span><br><span class="line">├── react-dev-utils</span><br><span class="line">├── react-error-overlay</span><br><span class="line">└── react-scripts</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用</strong></p>
-<p>我们可以用lerna或yarn workspace实现Monorepo方案，此处介绍lerna构建基础Monorepo仓库过程：</p>
-<ol>
-<li>进入项目目录，创建一个 lerna 管理的仓库</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna init</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>增加一个 packages</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna create my-package</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>发布包。提示输入新版本并更新所有在 github 和 npm的包。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lerna publish</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>把packages下所有包的依赖安装到根 node_modules。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lerna bootstrap</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>详细使用文档请查看：<a target="_blank" rel="noopener" href="https://emojipedia.org/backhand-index-pointing-right/">👉</a> <a target="_blank" rel="noopener" href="https://lerna.js.org/">lerna官网</a></p>
-<h3 id="2-node必备模块"><a href="#2-node必备模块" class="headerlink" title="2. node必备模块"></a>2. node必备模块</h3><p><strong>commander</strong></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md">commander</a> 是一个完整的node.js命令行解决方案，封装了获取命令行指令</p>
-<ul>
-<li><code>.version</code>方法可以设置版本，其默认选项为-V和–version</li>
-<li>通过<code>.arguments</code>可以为最顶层命令指定参数，对子命令而言，参数都包括在command调用之中了。尖括表示必填（eg. ），而方括号（eg. [optional]）则代表选填。</li>
-<li>通过<code>.usage</code>选项可以修改帮助信息的首行提示</li>
-</ul>
-<p>如下demo表示，运行create-react-app myApp op1，其中myApp是必须要写的，op1可不写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const chalk &#x3D; require(&#39;chalk&#39;);</span><br><span class="line">const &#123;Command&#125; &#x3D; require(&#39;commander&#39;);</span><br><span class="line">new Command(&#39;create-react-app&#39;)</span><br><span class="line">    .version(&#39;1.0.0&#39;)</span><br><span class="line">    .arguments(&#39; [optional]&#39;)</span><br><span class="line">    .usage(&#96;$&#123;chalk.green(&#39;&#39;)&#125; [optional]&#96;)</span><br><span class="line">    .action((must,optional,...args) &#x3D;&gt; &#123;</span><br><span class="line">       console.log(must,optional,args);</span><br><span class="line">    &#125;)</span><br><span class="line">    .parse(process.argv);</span><br></pre></td></tr></table></figure>
-
-<p><strong>cross-spawn</strong></p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/cross-spawn">cross-spawn</a>是node的spawn和spawnSync的跨平台解决方案</p>
+<li><p>简单介绍create-react-app的使用</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://nodejs.org/dist/latest-v15.x/docs/api/child_process.html">inherit</a>表示将相应的stdio流传给父进程或从父进程传入</p>
+<li><p>介绍create-react-app的流程，从全局上看create-react-app是怎么创建react项目的</p>
 </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const spawn &#x3D; require(&#39;cross-spawn&#39;);</span><br><span class="line">const child &#x3D; spawn(&#39;node&#39;, [&#39;script.js&#39;,&#39;one&#39;,&#39;two&#39;,&#39;three&#39;], &#123; stdio: &#39;inherit&#39; &#125;);</span><br><span class="line">child.on(&#39;close&#39;,()&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#39;child is done!&#39;);</span><br><span class="line">&#125;);</span><br><span class="line">const result &#x3D; spawn.sync(&#39;node&#39;, [&#39;script.js&#39;,&#39;one&#39;,&#39;two&#39;,&#39;three&#39;], &#123; stdio: &#39;inherit&#39; &#125;);</span><br><span class="line">console.log(result);</span><br></pre></td></tr></table></figure>
-
-<h2 id="create-react-app各模块介绍"><a href="#create-react-app各模块介绍" class="headerlink" title="create-react-app各模块介绍"></a>create-react-app各模块介绍</h2><p>create-react-app的实现过程可以用下面的流程图<a target="_blank" rel="noopener" href="https://emojipedia.org/backhand-index-pointing-down/">👇</a>表示，最重要的是 <code>create-react-app</code>，<code>react-scripts</code>和<code>cra-template</code>这三个模块。</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b72f051e6fb0499e9f9b69f1cc31d320~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<p>梳理一下流程：</p>
-<ol>
-<li><p>命令行输入<code>npx create-react-app my-app</code></p>
+<li><p>详细的分析create-react-app的3个核心模块的实现</p>
 </li>
-<li><p>调用<code>create-react-app</code>模块，</p>
-<ul>
-<li><p>创建<code>my-app</code>文件夹</p>
-</li>
-<li><p>写入<code>package.json</code></p>
-</li>
-<li><p>安装<code>react</code>, <code>react-dom</code>, <code>cra-template</code>, <code>react-scripts</code> 这四个模块</p>
-</li>
-<li><p>调用react-scripts的init.js</p>
-</li>
-</ul>
-</li>
-<li><p>调用<code>react-scripts</code>的init.js</p>
-<ul>
-<li>根据<code>cra-template/template.json</code>和 <code>my-app/package.json</code>合并出新的package.json</li>
-<li>复制<code>cra-template/template</code>里的内容到my-app下</li>
-<li>安装项目依赖</li>
-<li>移除<code>cra-template</code></li>
-</ul>
-</li>
-<li><p>得到目标文件夹 my-app。其中<code>package.json</code>的scripts脚本命令调用了react-scripts模块<code>bin/react-scripts</code>文件。</p>
-</li>
-</ol>
-<p>下面重点介绍 <code>create-react-app</code>，<code>react-scripts</code>和<code>cra-template</code>这三个模块的具体实现。</p>
-<h2 id="create-react-app核心模块实现"><a href="#create-react-app核心模块实现" class="headerlink" title="create-react-app核心模块实现"></a>create-react-app核心模块实现</h2><h3 id="create-react-app"><a href="#create-react-app" class="headerlink" title="create-react-app"></a>create-react-app</h3><p><strong>1. 主要功能</strong></p>
-<p><code>create-react-app</code>包是入口，用户在命令行输入<code>npx create-react-app my-app</code>会执行</p>
-<ul>
-<li>和用户交互，获取项目名 my-app</li>
-<li>创建my-app文件夹，安装<code>react</code>, <code>react-dom</code>, <code>cra-template</code>, <code>react-scripts</code> 这四个模块</li>
-<li>调用<code>react-scripts/init.js</code></li>
-</ul>
-<p><strong>2.</strong> <strong>核心代码</strong></p>
-<p>此处根据源码整理的逻辑图，方便大家阅读，</p>
-<p><strong>3. 简化版实现</strong></p>
-<p>为了便于理解，将上述逻辑简化了一下，实现了个简易版。项目地址：</p>
-<p>可以通过npm i min-create-react-app -g 试用此模块。</p>
-<h3 id="react-scripts"><a href="#react-scripts" class="headerlink" title="react-scripts"></a>react-scripts</h3><p><strong>1. 主要功能</strong></p>
-<ul>
-<li>复制cra-template到目标文件夹</li>
-<li>提供webpack的功能</li>
-</ul>
-<p><strong>2. 实现思路</strong></p>
-<p>2.1 复制cra-template到目标文件夹</p>
-<p>2.2 提供scripts命令: </p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc90879e190947abba5c4e354257946e~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<p>关键代码：</p>
-<ol>
-<li>package.json中bin字段指向./bin/react-scripts.js说明命令行中执行react-scripts xxx 命令会执行此文件。</li>
-</ol>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/23221adbd1074e24853cb35013c88944~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<ol start="2">
-<li>./bin/react-scripts.js 中第27行和31行说明实际上执行的是对应的build.js、eject.js、start.js和test.js这四个文件。</li>
-</ol>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7d11e5ee6c254dbbbe3726864330227e~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<ol start="3">
-<li>react-scripts start命令</li>
-</ol>
-<ul>
-<li><ol>
-<li>设置process.env.NODE_ENV = ‘development’</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>获取webpack配置文件config/webpackDevServer.config.js</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>调用react-dev-utils/WebpackDevServerUtils/createCompiler生成compiler</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>调用/config/webpackDevServer.config.js生成serverConfig</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>启动WebpackDevServer服务</li>
-</ol>
-</li>
-<li><ol start="6">
-<li>启动浏览器，打开项目页面</li>
-</ol>
-</li>
-</ul>
-<ol start="4">
-<li>build命令</li>
-</ol>
-<ul>
-<li><ol>
-<li>设置process.env.NODE_ENV = ‘production’;</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>获取webpack配置文件</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>清空build目录</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>拷贝public目录下的文件到build目录</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>创建compiler并调用run方法进行编译</li>
-</ol>
-</li>
-</ul>
-<p>react的webpack配置文件做了很多优化配置，值的我们学习：<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/config/webpack.config.js">github.com/facebook/cr…</a></p>
-<h3 id="cra-template"><a href="#cra-template" class="headerlink" title="cra-template"></a>cra-template</h3><p><strong>1. 目录结构</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── package.json</span><br><span class="line">├── template</span><br><span class="line">│   ├── README.md</span><br><span class="line">│   ├── gitignore</span><br><span class="line">│   ├── public</span><br><span class="line">│   │   ├── favicon.ico</span><br><span class="line">│   │   ├── index.html</span><br><span class="line">│   │   ├── logo192.png</span><br><span class="line">│   │   ├── logo512.png</span><br><span class="line">│   │   ├── manifest.json</span><br><span class="line">│   │   └── robots.txt</span><br><span class="line">│   └── src</span><br><span class="line">│       ├── App.css</span><br><span class="line">│       ├── App.js</span><br><span class="line">│       ├── App.test.js</span><br><span class="line">│       ├── index.css</span><br><span class="line">│       ├── index.js</span><br><span class="line">│       ├── logo.svg</span><br><span class="line">│       ├── reportWebVitals.js</span><br><span class="line">│       └── setupTests.js</span><br><span class="line">└── template.json</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>2. 主要功能</strong></p>
-<p>cra-template放的是react基础项目模板，会被拷贝到目标文件夹成为基础项目文件。</p>
-<ul>
-<li>public中存放静态资源</li>
-<li>src中存放.js和.css文件</li>
-<li>template.json中有此模板依赖的package，react-scripts在复制模板到目标文件夹时会将template.json和原package.json文件合并生成新的package.json</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此，create-react-app的核心代码已经介绍完毕。</p>
-<p>通过这篇文章，我们了解到以下几点：</p>
-<ol>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">create-react-app</a> 采用Monorepo方案，在一个仓库里管理create-react-app,react-scripts和cra-template等多个包，实现工作流和代码共享；</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">create-react-app</a> 项目中，create-react-app包是入口，实现了读取命令行中的项目名，创建项目文件夹，安装react, react-dom, cra-template, react-scripts 这四个模块，最后调用react-scripts的init.js</p>
-</li>
-<li><p>react-scripts提供两块功能，一是复制cra-template到目标文件夹，二是提供webpack的功能</p>
-</li>
-<li><p>cra-template放的是react基础项目模板，会被拷贝到目标文件夹成为基础项目文件</p>
-</li>
-</ol>
-<p>希望这篇文章能够对你有所帮助。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">facebook/create-react-app</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.html.cn/create-react-app/docs/documentation-intro/">create-react-app官网文档</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/vivotech/p/11316961.html">基于 Lerna 管理 packages 的 Monorepo 项目最佳实践</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qiwoo_weekly/article/details/112000852">使用 MonoRepo 管理前端项目</a></p>
-
+<li><p>总结</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/16/create-react-app%E6%A0%B8%E5%BF%83%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -664,11 +359,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-cornflower"></use>
+              <use xlink:href="#icon-flower10"></use>
             </svg>
             <a href="/2021/03/16/%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3npm%E5%B9%B2%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/" class="post-title-link" itemprop="url">未命名</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-cornflower"></use>
+            <use xlink:href="#icon-flower10"></use>
           </svg>
         </h2>
 
@@ -679,7 +374,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-16 03:40:18" itemprop="dateCreated datePublished" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+              <time title="创建时间：2021-03-16 03:43:25" itemprop="dateCreated datePublished" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
             </span>
 
           
@@ -695,92 +390,14 @@
       
           <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4d8c3afabef14766adf570beb5a06e75~tplv-k3u1fbpfcp-watermark.image"></p>
 <p>我在整理npm相关知识时，发现有些问题比较困惑，网上也没有从源码层面解释npm的文章，所以我去看了源码来解决我的困惑。为了加深理解，我把源码里的重点内容整理出来，希望大家在读完后也能够对npm有更深的理解。</p>
-<h2 id="什么是npm"><a href="#什么是npm" class="headerlink" title="什么是npm"></a>什么是npm</h2><p>npm全称_node package manager_，<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/Node.js#">维基百科关于Node.js</a>的介绍中指明<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/Node.js#npm">npm</a>是Node.js附带的包管理器。下载安装node时会附加安装了npm。npm是一个命令行工具，用于从NPM Registry中下载、安装Node.js程序，同时解决依赖问题。npm提高了开发的速度，因为它能够负责第三方Node.js程序的安装与管理。</p>
-<p><a target="_blank" rel="noopener" href="https://emojipedia.org/backhand-index-pointing-right/">👉</a> <a target="_blank" rel="noopener" href="https://docs.npmjs.com/about-npm/">npm官网文档</a></p>
-<p><a target="_blank" rel="noopener" href="https://emojipedia.org/backhand-index-pointing-right/">👉</a> <a target="_blank" rel="noopener" href="https://github.com/npm/cli">npm git仓库</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>npm是Node.js附带的包管理器，也就是说安装node完后，自动安装npm。</p>
-<ul>
-<li><p>node可在官网下载指定版本安装 <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">node官网</a></p>
-</li>
-<li><p>如果是mac电脑，也可以使用homebrew安装。打开终端，在命令行中输入</p>
-<p>brew install node</p>
-</li>
-</ul>
-<p>下载node包打开后也能看到里面默认带了npm和npx</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb1953197a2b4519a056f4049ca038ee~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在开发代码阶段，我们时常要使用到 npm：</p>
-<ul>
-<li>在初始化项目时，我们会使用<code>npm init -y</code> 命令来生成<code>package.json</code>文件</li>
-<li>然后再<code>npm install &lt;packageName&gt;</code>安装模块</li>
-<li>开发代码完成后需要在package.json中配置scripts字段start，再通过<code>npm run start</code>执行代码</li>
-</ul>
-<p><strong>那么实际上执行npm命令的调用关系是什么？实际是执行哪个脚本呢？</strong></p>
-<p>我们可以在终端任意路径下输入<code>which npm</code>查看npm执行文件所在的位置，结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; &#x2F;usr&#x2F;local&#x2F;bin&#x2F;npm</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p>可知npm命令实际上是执行的是/usr/local/bin/npm文件。继续输入<code>ll /usr/local/bin/npm</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; lrwxr-xr-x 1 kin admin 46B 4 7 2020 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;npm -&gt; &#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules&#x2F;npm&#x2F;bin&#x2F;npm-cli.js</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p>也就是说_/usr/local/bin/npm_是个软链，实际执行的是_/usr/local/lib/node_modules/npm/bin/npm-cli.js_文件</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b37ae13045e04038b7e3cd98946410cf~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<h2 id="如何调试npm源码"><a href="#如何调试npm源码" class="headerlink" title="如何调试npm源码"></a>如何调试npm源码</h2><p>首先去 <a target="_blank" rel="noopener" href="https://github.com/npm/cli">npm的git仓库</a>把代码拉取到本地，开始调试源码。</p>
-<p>这里介绍一个比较取巧的方式调试，先确认一下你使用的IDE是VSCode。</p>
-<ol>
-<li>在项目根路径的package.json中给scripts字段添加一行命令<a target="_blank" rel="noopener" href="https://emojipedia.org/backhand-index-pointing-down/">👇</a></li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;debugger&quot;: &quot;node .&#x2F;bin&#x2F;npm-cli.js install moment&quot;,</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p>解释一下，因为npm本质上就是<code>node ./bin/npm-cli.js</code>，故使用<code>node ./bin/npm-cli.js</code> 替代npm即可。也就是说配置的<code>node ./bin/npm-cli.js install moment</code>等价于 <code>npm install moment</code>。</p>
-<ol start="2">
-<li>点击scripts字段上面的Debug小图标</li>
-</ol>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f24593bd1ab4acdbb629ea6bc480221~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<ol start="3">
-<li>弹窗中选择debugger，进入调试模式</li>
-</ol>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3eab956a25c94db88212a4531184eddb~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><p>这里将从这几个方面分析npm源码：</p>
-<ol>
-<li>整体介绍</li>
-<li>npm常用命令的实现，包括</li>
-</ol>
-<ul>
-<li><code>npm init</code></li>
-<li><code>npm install &lt;packageName&gt;</code></li>
-<li><code>npm run scripts</code></li>
-</ul>
-<h3 id="1-整体介绍"><a href="#1-整体介绍" class="headerlink" title="1. 整体介绍"></a>1. 整体介绍</h3><p>根据上面的分析可知，npm实际执行的文件是/usr/local/lib/node_modules/npm/bin/npm-cli.js，查看npm-cli.js文件的代码可知：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env node </span><br><span class="line">require(&#39;..&#x2F;lib&#x2F;cli.js&#39;)(process)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p>内部实际调用的是/npm/lib/cli.js，核心逻辑在56行，从npm.commands上获取指令所对应的文件，如果存在就执行此文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const impl &#x3D; npm.commands[cmd]</span><br><span class="line">if (impl)</span><br><span class="line">  impl(npm.argv, errorHandler)</span><br><span class="line">else &#123;</span><br><span class="line">  npm.config.set(&#39;usage&#39;, false)</span><br><span class="line">  npm.argv.unshift(cmd)</span><br><span class="line">  npm.commands.help(npm.argv, errorHandler)</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p>也就是说npm run xxx命令最后会执行相对应的文件</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/20a8459002ce459598f49a95ce7c7fd8~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<h3 id="2-npm常用命令的实现"><a href="#2-npm常用命令的实现" class="headerlink" title="2. npm常用命令的实现"></a>2. npm常用命令的实现</h3><p>重点介绍这几个常用命令<code>npm init</code>，<code>npm install &lt;packageName&gt;</code>和 <code>npm run &lt;scripts&gt;</code></p>
-<p><strong>npm init。</strong></p>
-<p>如上分析可知，<code>npm init</code> 会对应执行<a target="_blank" rel="noopener" href="https://github.com/npm/cli/blob/latest/lib/init.js">lib/init.js</a>，核心代码从71行开始，调用initJson()。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">await new Promise((res, rej) &#x3D;&gt; &#123;</span><br><span class="line">    initJson(dir, initFile, npm.config, (er, data) &#x3D;&gt; &#123;</span><br><span class="line">      npm.log.resume()</span><br><span class="line">      npm.log.enableProgress()</span><br><span class="line">      npm.log.silly(&#39;package data&#39;, data)</span><br><span class="line">      if (er &amp;&amp; er.message &#x3D;&#x3D;&#x3D; &#39;canceled&#39;) &#123;</span><br><span class="line">        npm.log.warn(&#39;init&#39;, &#39;canceled&#39;)</span><br><span class="line">        return res()</span><br><span class="line">      &#125;</span><br><span class="line">      if (er)</span><br><span class="line">        rej(er)</span><br><span class="line">      else &#123;</span><br><span class="line">        npm.log.info(&#39;init&#39;, &#39;written successfully&#39;)</span><br><span class="line">        res(data)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p> initJson是本质上调用的是init-package-json 中的init方法。主要做的就是写入package.json文件</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4772ce381e9e49ba8baa182cb001101f~tplv-k3u1fbpfcp-watermark.image" alt="img"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>读完这篇文章，你应该对npm的实现机制有了基本的了解：</p>
-<ol>
-<li><p>npm是node.js附带的包管理器，在安装node时会附带安装上</p>
-</li>
-<li><p>npm本质是一段node脚本，我们执行npm命令其实就是执行<code>node /usr/local/lib/node_modules/npm/bin/npm-cli.js</code></p>
-</li>
-<li><p>最后分享一点阅读源码的心得：</p>
-</li>
-</ol>
-<ul>
-<li>读源码时要抓大放小，先把整体脉络整理出来，在针对各个细节进行分析；</li>
-<li>抓住核心逻辑，读进去还能读出来，就是能表达出源码做了啥；</li>
-<li>进阶段位就是学习源码里的优秀思想，学以致用吧</li>
-</ul>
-<p>—</p>
-<p>希望这篇文章能够给你有所帮助，对文章中的内容有疑问的地方欢迎一起探讨。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/16/%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3npm%E5%B9%B2%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -813,11 +430,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-flower15"></use>
+              <use xlink:href="#icon-flower5"></use>
             </svg>
             <a href="/2021/03/16/%E5%BC%80%E5%8F%91%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6Wokoo%E5%A4%8D%E7%9B%98/" class="post-title-link" itemprop="url">未命名</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-flower15"></use>
+            <use xlink:href="#icon-flower5"></use>
           </svg>
         </h2>
 
@@ -828,7 +445,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-16 03:40:18" itemprop="dateCreated datePublished" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+              <time title="创建时间：2021-03-16 03:43:25" itemprop="dateCreated datePublished" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
             </span>
 
           
@@ -855,186 +472,14 @@
 <li>不了解什么是油猴插件？戳这里 👉  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/99390731">Chrome 插件大杀器：「油猴」Tampermonkey 使用详解</a></li>
 </ol>
 <p>在这个项目中我扮演了项目的<code>产品经理</code>，<code>开发主R</code>，<code>运营官</code> 这几个角色。从头到尾负责开发一个开源项目，让我有了满满的成就感。</p>
-<p>回想当初想做Wokoo脚手架的初衷，只是因为自己想写一个油猴插件，发现比较麻烦，自己也趟了一些坑。我就觉得写一个脚手架，能够一键生成基础的油猴项目很有意义。完成Wokoo脚手架的开发后，我在某技术群中分享了这篇文章，被该圈里的大佬邀请做一次分享。于是我又增加了<a target="_blank" rel="noopener" href="https://juejin.cn/post/6925605904561750030">使用Wokoo进行项目实战的案例</a>。然后又指导群里成员完成从零上手，实现一个油猴插件的开发。</p>
-<p>整个过程在当初只是一个小小的idea，在逐步升级打怪的过程中，我把当初的小想法变成了一个正式的开源项目。这次经历让我得到很多成长，包括技术、沟通、合作等方面。感谢这次经历~ 🎉</p>
-<h1 id="二、项目背景："><a href="#二、项目背景：" class="headerlink" title="二、项目背景："></a>二、项目背景：</h1><h2 id="开发Wokoo脚手架初衷"><a href="#开发Wokoo脚手架初衷" class="headerlink" title="开发Wokoo脚手架初衷"></a>开发Wokoo脚手架初衷</h2><p>一开始我想做一个给团队内部使用的浏览器插件。进行技术选型时发现开发油猴插件开发最省时省力，而且不用审核上线迅速，是最佳选择。</p>
-<p>开发过程遇到一些坑：</p>
-<ol>
-<li><p>油猴插件本质上是嵌入一段js代码到当前html中。所以很多油猴插件都直接使用jQuery进行开发。这对于我们习惯使用了Vue、React等框架的rd来说会不适应，尤其是插件涉及到页面组件开发，使用jQuery有点痛苦。<strong>这就是第一个痛点：要配置vue或react基础项目</strong></p>
-</li>
-<li><p>所以我就考虑用vue-cli起一个vue项目来完成插件开发。项目创建完成后，我又发现要配置油猴脚本。下面这个编辑器里的代码就是要配置的油猴脚本，里面的注释都是有含义的，比如<code>@match</code>  指定某些域名下开启此插件，<code>// @match http://*/*</code>  表示只能在http协议的网页中使用。默认配置的就是http协议，但是现在的网页都升级到https了，如果不修改此条配置，你会发现插件根本跑不起来。👇</p>
-</li>
-</ol>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/546d2d1512d04635b77e4db04d267ad4~tplv-k3u1fbpfcp-watermark.image" alt="屏幕快照 2021-03-15 下午9.30.21.png"></p>
-<p>   <strong>第二个痛点：要阅读油猴脚本的文档，理解里面的注释内容</strong></p>
-<ol start="3">
-<li>使用vue开发的项目能够通过<code>localhost:8080</code>访问，但是怎么把项目和油猴插件结合起来，实现一边开发项目，一边实时调试插件？总不能一边开发，一边<code>npm run build</code>构建出包，再把构建结果复制到油猴插件的编辑器中吧？<strong>第三个痛点：如何实现边开发边展示插件效果？</strong></li>
-</ol>
-<h2 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h2><p>总结下，我想实现一个针对开发油猴插件的脚手架，满足如下功能：</p>
-<ol>
-<li>输入一个命令行生成一个基础项目</li>
-<li>项目中包含基础的油猴脚本配置</li>
-<li>提供方案，让油猴插件能边开发，边调试</li>
-</ol>
-<h2 id="解决的痛点"><a href="#解决的痛点" class="headerlink" title="解决的痛点"></a>解决的痛点</h2><p>wokoo脚手架就是为了满足上业务场景，解决我在开发油猴插件时遇到的3个痛点。</p>
-<ol>
-<li><p>一键式创建基础的油猴插件项目，可选模板有:</p>
-<p>[ ] vue</p>
-<p>[ ] react</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>基础项目中的tampermonkey.js文件中满足油猴插件的基础配置，例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         my-plugin</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author</span></span><br><span class="line"><span class="comment">// @match        https://*/*</span></span><br><span class="line"><span class="comment">// @match        http://*/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
-
-<p>开发者直接复制这段代码到油猴插件编辑器就行，解决上面的第二个痛点。</p>
-<p>当然开发者在开发过程中是要做到阅读 <a target="_blank" rel="noopener" href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">tampermonkey官网文档 </a>的，wokoo脚手架提供的基础文档配置，目的是降低油猴插件的开发难度。</p>
-</li>
-<li><p>tampermonkey.js中写的js脚本，将油猴插件加载的js文件打到本地用webpack起的服务上，实现边开发边调试。解决上面的第三个痛点。</p>
-</li>
-</ol>
-<h1 id="三、实践过程："><a href="#三、实践过程：" class="headerlink" title="三、实践过程："></a>三、实践过程：</h1><h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul>
-<li>参考了<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">create-react-app</a>的设计思路，将<code>wokoo-scripts</code>和<code>wokoo-template</code>部分解耦，拆分成两个包单独管理，有利于未来的功能拓展。比如未来要新增一个模板是基于jquery的，只需要拓展wokoo-template部分即可。</li>
-<li>monorepo方案管理代码，使用lerna进行包管理。</li>
-</ul>
-<h2 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h2><p>这张图是Wokoo的架构设计图，Wokoo使用monorepo方案管理代码，在一个git仓库中维护<code>wokoo-scripts</code>和<code>wokoo-template</code>两个模块。使用lerna进行包管理。</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cf77f0701b274c7483a0d6aaba207640~tplv-k3u1fbpfcp-watermark.image?imageslim"></p>
-<h2 id="思路整理"><a href="#思路整理" class="headerlink" title="思路整理"></a>思路整理</h2><p>我要实现的功能如下：</p>
-<ol>
-<li><p>安装wokoo，执行<code>npm i wokoo -g</code>后在npm的全局目录下安装wokoo</p>
-</li>
-<li><p>执行命令<code>wokoo my-app</code>，弹出要求用户选择模板的提示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? which template do you prefer? (Use arrow keys)</span><br><span class="line">❯ vue</span><br><span class="line">  react</span><br></pre></td></tr></table></figure></li>
-<li><p>选择模板后，创建一个基础项目，项目内容包括：1. 配置好的vue或react项目，2. <code>tampermonkey.js</code> 文件，内部是配置好的基础油猴脚本。</p>
-</li>
-</ol>
-<p>模仿<a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app">cra</a>的实现思路，我将wokoo拆分成两个部分，<code>wokoo-scripts</code>和<code>wokoo-template</code>。</p>
-<ul>
-<li><code>wokoo-scripts</code>负责命令行的交互，从npm上拉取<code>wokoo-template</code>到生成的基础项目my-app中。</li>
-<li><code>wokoo-template</code>提供两套模板，分别是轻量级配置的vue和react基础项目。还提供<code>tampermonkey.js</code> 文件</li>
-</ul>
-<p>整个项目的工作流入下👇：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/666e725ea331445387a7f8ac8f76b106~tplv-k3u1fbpfcp-watermark.image"></p>
-<h3 id="wokoo-scripts"><a href="#wokoo-scripts" class="headerlink" title="wokoo-scripts"></a>wokoo-scripts</h3><p>目录介绍：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── bin</span><br><span class="line">│   └── www    					提供给npm的入口文件</span><br><span class="line">├── index.js						主程序，提供命令行交互功能</span><br><span class="line">├── modifyTemplate.js 	替换模板中的ejs语法</span><br><span class="line">├── package-lock.json</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
-
-<p>代码流程图：</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6b207eeeac1459889c3094468bc0892~tplv-k3u1fbpfcp-watermark.image" alt="流程图.png"></p>
-<p>图中介绍了<code>wokoo-scripts</code>各个方法的调用顺序： init -&gt; createApp -&gt;run-&gt;modifyTemplate。以及各方法实现的功能。</p>
-<h3 id="wokoo-template"><a href="#wokoo-template" class="headerlink" title="wokoo-template"></a>wokoo-template</h3><p>目录介绍：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── favicon.ico</span><br><span class="line">│   ├── icon.jpg</span><br><span class="line">│   └── index.html							html文件</span><br><span class="line">├── react-template							react模板路径</span><br><span class="line">│   ├── README.md</span><br><span class="line">│   ├── src</span><br><span class="line">│   │   ├── app.js							</span><br><span class="line">│   │   ├── app.less</span><br><span class="line">│   │   └── index.js						入口文件</span><br><span class="line">│   ├── tampermonkey.js					油猴脚本配置</span><br><span class="line">│   ├── template.json						react中依赖的库文件</span><br><span class="line">│   └── webpack.config.base.js	对应react项目的webpack配置</span><br><span class="line">├── vue-template								和react的项目结构类似</span><br><span class="line">│   ├── ...				</span><br><span class="line">└── webpack.config.js						公共的webpack配置</span><br></pre></td></tr></table></figure>
-
-<p><code>wokoo-template</code>提供基础项目的模板：</p>
-<ul>
-<li><p>分为vue-template和react-template</p>
-</li>
-<li><p>vue-template和react-template分别对应webpack配置的一个vue或react基础项目</p>
-</li>
-<li><p>使用ejs模板，实现wokoo-scripts注入变量</p>
-</li>
-<li><p>tampermonkey.js 文件是油猴插件的配置文件，需要将此文件内的代码复制到油猴插件的编辑框中。如下是tampermonkey.js文件的内容：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         &lt;%=projectName%&gt;</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      &lt;%=version%&gt;</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author</span></span><br><span class="line"><span class="comment">// @match        https://*/*</span></span><br><span class="line"><span class="comment">// @match        http://*/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>此文件中被注释掉的<code>//@xxx </code>都有含义，可以对应着 <a target="_blank" rel="noopener" href="https://www.tampermonkey.net/documentation.php?version=4.6&ext=dhdg">tampermonkey开发文档 </a> 理解。</p>
-<ul>
-<li><p><code>@name</code>  脚本的名字，最后会被替换成项目名</p>
-</li>
-<li><p><code>@namespace</code> 可以写自己的域名,当自己把脚本分享后,用户可以直接通过这儿找到你的具体功能实现</p>
-</li>
-<li><p><code>@description</code>  插件描述</p>
-</li>
-<li><p><code>@match</code>  指定某些域名下开启此插件，默认配了两条，<code>// @match        https://*/*</code>和<code>// @match        https://*/*</code>  表示在所有域名下都开启。</p>
-</li>
-</ul>
-<p>详细的开发过程可以阅读文章：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6925613440752943112">wokoo脚手架（搭建篇）</a></p>
-<h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><ol>
-<li><p>创建基础项目</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx wokoo my-app</span><br></pre></td></tr></table></figure></li>
-<li><p>起服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure></li>
-<li><p>复制tampermonkey.js内容到<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴插件编辑器</a>，注意：要复制全部内容，包括注释部分。（此步骤默认你已经安装了油猴插件，没安装的话就安装下 👉<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/tampermonkey-beta/gcalenpjmijncebpfijmoaglllgpjagf?hl=zh-CN">油猴插件安装地址</a>）</p>
-</li>
-</ol>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/811cad2db5cb4332bfec83ea697aa2a2~tplv-k3u1fbpfcp-watermark.image" alt="屏幕快照 2021-03-15 下午9.30.21.png"></p>
-<ol start="4">
-<li>打开某网页，你能看到一只的猴子🐒，代表流程已跑通，你只需开发自己的业务代码即可。</li>
-</ol>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f8e6a5a044f4f2980febedf066bbcd1~tplv-k3u1fbpfcp-watermark.image" alt="demo2.gif"></p>
-<h2 id="开发中遇到的问题及解决方案"><a href="#开发中遇到的问题及解决方案" class="headerlink" title="开发中遇到的问题及解决方案"></a>开发中遇到的问题及解决方案</h2><p><strong>问题1</strong></p>
-<p>油猴插件的本质是往页面中注入一段js脚本，要注意避免和原始网页之间的冲突。拿知乎举例子，</p>
-<ol>
-<li>使用wokoo脚手架创建的项目的根节点id = root ，而知乎根节点网页中已有一个div节点id=root，命名重复了。</li>
-<li>不光根节点id的命名要注意避免和宿主网页中的元素重复，还要wokoo创建的项目A和项目B的根节点id不同。因为用户可能同时使用多个油猴插件，比如「划词搜索」和「知乎目录」一起用，这就要确保两个插件的根节点id是不一样的。</li>
-</ol>
-<p><strong>解决方式</strong></p>
-<p>将wokoo-template中的根节点根据<code>wokooApp-$&#123;项目名&#125;-$&#123;时间戳&#125;</code>的规则进行命名，避免冲突。</p>
-<p><strong>问题2</strong></p>
-<p>有的网页安全策略做的比较好，比如知乎使用了csp内容安全策略，阻止加载非指定域名的js脚本。</p>
-<p>结合实际情况来看，比如我们已经使用wokoo初始化一个项目my-app，并完成了<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴脚本</a>的配置，打开知乎发现右上角没有出现猴子logo，并且控制台报错。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1c6afc5b4cb4494b72c0d7b685f5579~tplv-k3u1fbpfcp-zoom-1.image"></p>
-<p>再看请求的html资源的响应头，可以发现多了一条<code>content-security-policy</code>规则。也就是说知乎使用了csp内容安全策略，通过<code>content-security-policy</code>中的<code>script-src</code>字段可知，知乎只允许加载指定域名的js。具体情况可阅读 👉 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP">内容安全策略( CSP )</a></p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7ce3b03a5434e2aac0a911940d01a0d~tplv-k3u1fbpfcp-zoom-1.image"></p>
-<p>而将tampermonkey.js文件拷贝到<a href="chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#url=&nav=new-user-script">油猴插件编辑器</a>时，有下面一段代码👇</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (location.href === <span class="string">&#x27;http://localhost:8080/&#x27;</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">  script.src = <span class="string">&#x27;http://localhost:8080/app.bundle.js&#x27;</span></span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>因为我们在调试的时候为了保证实时查看插件效果，往页面的html拼了一个js文件上去，而该文件指向webpack起的服务：<code>http://localhost:8080/app.bundle.js</code>。这不是知乎指定的域名，当然被拦截了。</p>
-<p><strong>解决方式</strong></p>
-<p>怎么办呢？嘿嘿，魔高一尺道高一丈，wokoo脚手架当然给出了解决方案。</p>
-<ol>
-<li><p>开发阶段，安装插件<a target="_blank" rel="noopener" href="https://chrome.pictureknow.com/extension?id=5b80153e8db143afa59310bc0f282f1f">Disable Content-Security-Policy</a>, 在调试知乎页面时开启插件，自动把html页面的<code>content-security-policy</code>给设置为空。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba9ac0c0e6d14367bcd51b3aff3a9e2b~tplv-k3u1fbpfcp-zoom-1.image" alt="截图"></p>
-</li>
-<li><p>上线到<a target="_blank" rel="noopener" href="https://greasyfork.org/">油猴市场</a>时，将构建后的脚本复制到油猴插件编辑器中，避免使用cdn的方式部署。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e2da6218f824bc7917a43b107362899~tplv-k3u1fbpfcp-zoom-1.image" alt="zhihu-tampermonkey"></p>
-</li>
-</ol>
-<ul>
-<li><p>注意，编辑框内对代码有最大限制，如果app.bundle.js大小超过最大限制，要进行拆包处理。</p>
-<p>拆包步骤：</p>
-<ul>
-<li><p>油猴编辑器内的配置代码，增加两行。此处我用react举例，把react通过静态资源链接的方式引入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; @require https:&#x2F;&#x2F;unpkg.com&#x2F;react@17&#x2F;umd&#x2F;react.production.min.js</span><br><span class="line">&#x2F;&#x2F; @require https:&#x2F;&#x2F;unpkg.com&#x2F;react-dom@17&#x2F;umd&#x2F;react-dom.production.min.js</span><br></pre></td></tr></table></figure></li>
-<li><p>修改webpack.config.base.js的entry字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    app: &#39;&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">    vendor: [</span><br><span class="line">      &#x2F;&#x2F; 将react和react-dom这些单独打包出来，减小打包文件体积</span><br><span class="line">      &#39;react&#39;,</span><br><span class="line">      &#39;react-dom&#39;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>重新构建代码，把代码复制到编辑框中。</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>具体的wokoo使用方式我有写专门的文档：</p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6922815205575491597">5分钟上手开发浏览器插件——油猴脚手架wokoo(使用篇)</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6925605904561750030/">快速上手油猴插件开发（实战篇）</a></p>
-<h1 id="四、总结思考："><a href="#四、总结思考：" class="headerlink" title="四、总结思考："></a>四、总结思考：</h1><h2 id="技术上收获"><a href="#技术上收获" class="headerlink" title="技术上收获"></a>技术上收获</h2><ol>
-<li>为了把脚手架写的专业一点，我去研究了create-react-app的源码，看大佬写的代码真的是佩服，自己以后在写代码时也要多考虑组织结构，逻辑解耦。</li>
-<li>使用monorepo方案，一个git仓库管理多个库文件（包括<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/wokoo">wokoo-script</a>和<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/wokoon-template">wokoo-template</a>，发现真香👍。 解决了开发多个相关联的库时，需要切换不同库的仓库，代码等问题，保证工作流的连续。</li>
-</ol>
-<p>总之，在搞技术的道路上还是一句话：「纸上得来终觉浅，绝知此事要躬行」。</p>
-<h2 id="思维上收获"><a href="#思维上收获" class="headerlink" title="思维上收获"></a>思维上收获</h2><ol>
-<li><p>我意识到做一件事情，小到一次分享，一篇文章，大到一个开源项目，一个产品，最根本的出发点应该是「更好的服务产品的使用方」。只有服务好使用方，你做的事情才能发挥最大价值。</p>
-<blockquote>
-<p>比如当初在群里分享利用Wokoo脚手架开发插件「划词搜索」时，发现总是有人问我一些简单的问题，我当时就想文档里明明写了啊，后来再次读那段内容时，我发现我是站在开发者的角度去写文档，而没有站在使用者的角度写。</p>
-</blockquote>
-</li>
-<li><p>任何事情，一开始看可能觉得难度巨大，但是拆解成一件件小的事情后就会觉得不是那么困难。就像<code>Wokoo脚手架</code>，也是被拆分成多个步骤完成：</p>
-<ul>
-<li>开发脚手架</li>
-<li>编写使用文档</li>
-<li>写油猴插件实战案例</li>
-</ul>
-<p>所以遇到事情先拆解，拆分成几个小步骤来完成。不要一看到大项目就畏难就觉得搞不定。</p>
-</li>
-</ol>
-<h1 id="五、往期文章"><a href="#五、往期文章" class="headerlink" title="五、往期文章"></a>五、往期文章</h1><p>除了油猴脚手架wokoo，我还造了其他轮子🎉🎉：</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6917256394743742472">shero-cli: 自动化管理github博客</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6907563804780036104">tapable可视化工具</a></p>
-</li>
-</ul>
-<p>欢迎大家在搞技术的路上一起升级打怪造轮子~</p>
-<p>——</p>
-<p>感谢你的阅读😊，希望这篇文章对你有所帮助。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/16/%E5%BC%80%E5%8F%91%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6Wokoo%E5%A4%8D%E7%9B%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1067,11 +512,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-flower5"></use>
+              <use xlink:href="#icon-flower2"></use>
             </svg>
             <a href="/2021/03/16/%E5%9B%BE%E8%A7%A3koa2%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">未命名</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-flower5"></use>
+            <use xlink:href="#icon-flower2"></use>
           </svg>
         </h2>
 
@@ -1082,7 +527,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-16 03:40:18" itemprop="dateCreated datePublished" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+              <time title="创建时间：2021-03-16 03:43:25" itemprop="dateCreated datePublished" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
             </span>
 
           
@@ -1098,63 +543,14 @@
       
           <p>koa是经常使用的node端框架，它封装了一系列node方法，通过它的api让写服务变得更加方便。而且相比express，koa支持promise写法，更加符合现在的前端代码编写习惯，代码可读性更强。koa相比express更加短小，更多的功能是通过插件的形式实现的，它的设计思路很值得我们参考。</p>
 <p>本篇文章将koa的逻辑用流程图表示，让我们理解起来更加简单。</p>
-<h1 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h1><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ae9cf32b2dd9416087eb83164269820e~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>koa的代码十分短小精悍，有效的代码文件就lib目录下的4个文件，从package.json里的<code>main</code>字段可知入口文件是<code>lib/application.js</code>。koa的主要功能由application.js提供，context.js，request.js和response.js 这三个文件主要是对原生req和res进行扩展，给koa的请求上下文ctx提供更丰富的功能。</p>
-<h1 id="Koa创建服务"><a href="#Koa创建服务" class="headerlink" title="Koa创建服务"></a>Koa创建服务</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">&#x27;koa&#x27;</span>);</span><br><span class="line"><span class="comment">// 1. 创建koa应用</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="comment">// 2. koa中间件</span></span><br><span class="line">app.use(<span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">  ctx.body = <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 3. 起服务</span></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
-
-<p>如上示例代码，三步就能够起一个简单的koa服务。<a target="_blank" rel="noopener" href="https://github.com/kinyaying/koa-demo/blob/main/demo1.js">👉 demo1</a></p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d9cd91d1c7594d759ad147c7fa7468b4~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>起服务各个步骤的详细解析如下：</p>
-<p><strong>1. new Koa()</strong><br>调用了koa的constructor方法，进行了context、request、response的初始化</p>
-<p><strong>2. app.use()</strong><br>将中间件函数存储在middleware中</p>
-<p><strong>3. app.listen()</strong></p>
-<ul>
-<li>起http服务</li>
-<li>监听请求，如果有请求进来，创建koa的请求上下文ctx，依次调middleware里的中间件函数对请求进行处理。</li>
-</ul>
-<h1 id="中间件原理"><a href="#中间件原理" class="headerlink" title="中间件原理"></a>中间件原理</h1><p>koa的中间件使用的是洋葱模型，具体我们通过下面两个例子深入了解。</p>
-<h3 id="1-koa中间件使用"><a href="#1-koa中间件使用" class="headerlink" title="1. koa中间件使用"></a>1. koa中间件使用</h3><p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d4cb22cf5816444798038a1cee5eb9aa~tplv-k3u1fbpfcp-watermark.image"></p>
-<p><strong>情况一： <code>await next()</code></strong></p>
-<p>koa中间件正常的使用需要在next前加await，这样能确保请求被每一个中间件都处理完再返回响应。<a target="_blank" rel="noopener" href="https://github.com/kinyaying/koa-demo/blob/main/demo2.js">👉 demo2</a><br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7431b034d26541ed85f64f96b3e8833c~tplv-k3u1fbpfcp-watermark.image"></p>
-<p><strong>情况二： 直接<code>next()</code> ，没用<code>await</code></strong></p>
-<p>如果<code>next</code>前没有加<code>await</code>，那么中间件1相当于同步代码，如果中间件2有异步代码，中间件1不会等待中间件2执行完而是直接返回。这样会导致请求没有被后面的中间件处理就返回了，我们在应用中尽量避免此情况。<a target="_blank" rel="noopener" href="https://github.com/kinyaying/koa-demo/blob/main/demo3.js">👉 demo3</a></p>
-<p><strong>小结：</strong></p>
-<p>我们在使用koa中间件时确保使用的规范性，用<code>await next()</code>这种方式，而不是<code>next()</code>这种。因为我们没法确保每个中间件都没有异步代码，使用<code>await next()</code>能等待异步代码执行完毕再往下执行。</p>
-<h3 id="2-koa中间件原理"><a href="#2-koa中间件原理" class="headerlink" title="2. koa中间件原理"></a>2. koa中间件原理</h3><p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6765b516fbb7400299151aac96dbfc96~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>koa中间件是通过<a target="_blank" rel="noopener" href="https://github.com/koajs/compose">koa-compose</a>实现的。为了方便理解，我将compose函数简化一下。</p>
-<p><strong>compose函数简化版</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">middlewares</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// koa 核心代码</span></span><br><span class="line">  <span class="keyword">const</span> dispatch = <span class="function">(<span class="params">i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (i === middlewares.length) <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve()</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(</span><br><span class="line">      middlewares[i](<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        dispatch(i + <span class="number">1</span>) <span class="comment">// 当用户调用next时会取出下一个继续执行</span></span><br><span class="line">      &#125;)</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dispatch(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>compose执行时会先通过<code>dispatch(0)</code>执行middlewares的第一个函数，传入<code>()=&gt;&#123;dispatch(1)&#125;</code>作为next。中间件1运行到next时会触发<code>dispatch(1)</code>的执行。<code>dispatch(1)</code>则会执行中间件2，并且传入<code>()=&gt;&#123;dispatch(2)&#125;</code>作为next。中间件2执行到next()时相当于执行<code>dispatch(2)</code>，从而触发中间件3执行…<br>具体的执行过程可以下载 👉 <a target="_blank" rel="noopener" href="https://github.com/kinyaying/koa-demo/blob/main/compose.js">compose精简版</a>，看简化版compose的运行结果。</p>
-<h1 id="koa上下文-ctx"><a href="#koa上下文-ctx" class="headerlink" title="koa上下文(ctx)"></a>koa上下文(ctx)</h1><p>koa中使用的环境变量是ctx。通过<code>Object.keys(ctx)</code>可知ctx上有 <code>request, response, app, req,  res, originalUrl, state</code>这几个属性。其中ctx.res, ctx.req是原生的请求和响应；ctx.response，ctx.request是针对原生请求的扩展。</p>
-<p>koa要保证不同请求的ctx保持独立，并且将ctx的属性获取代理到response.js和request.js上，简化ctx取值操作。</p>
-<p><strong>1. koa的context实现了不同应用以及不同请求之间的环境隔离</strong><br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a0018165c33749e3a9412d1ebdf3b433~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>如图所示：</p>
-<p>① 每个koa应用都会拥有自己的context, (源码：<a target="_blank" rel="noopener" href="https://github.com/koajs/koa/blob/master/lib/application.js">koa/application.js</a> 59行) 实现应用的隔离。</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b706081401b149a081e7d09ecc9986ef~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>② 每个请求都会通过Object.create()拥有自己的ctx, (源码：<a target="_blank" rel="noopener" href="https://github.com/koajs/koa/blob/master/lib/application.js">koa/application.js</a> 178行) 实现请求的隔离。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8601ffa627734426a11353ceaac7b764~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>通过两次的<code>Object.create</code> koa确保每次请求都能拥有独立的ctx变量，避免不同请求的ctx变量互相污染。</p>
-<p><strong>2. ctx能直接取request或response的值，因为ctx被代理到request.js和response.js上，这给开发带来了便利。</strong></p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cced934c28374cc4b84c436a41cb5d7d~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>我们在编码时可以直接写<code>ctx.path</code>来获取当前请求的路径，这是原生的req不提供的。当从ctx上取属性path时，因为ctx被做了代理，实际上是从<code>cxt.request</code>上取path的（如图上步骤①，对应源码 <a target="_blank" rel="noopener" href="https://github.com/koajs/koa/blob/master/lib/context.js">koa/context.js</a>  253行）。而<code>cxt.request</code>是request.js提供的（如图上步骤②， 对应源码  <a target="_blank" rel="noopener" href="https://github.com/koajs/koa/blob/master/lib/application.js">koa/application.js</a> 179行），它能通过<code>this.req</code>获取到原生req（源码 <a target="_blank" rel="noopener" href="https://github.com/koajs/koa/blob/master/lib/application.js">koa/application.js</a> 182行），然后经过解析处理转化成url返回给 <code>ctx.path</code>。</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dc0ca7edb85647ca93ca0f460fc27c29~tplv-k3u1fbpfcp-watermark.image"></p>
-<p>再举一个例子，当我们写入<code>ctx.body=&#39;ok&#39;</code>时，实际上ctx被代理到<code>ctx.response</code>上，在response.js内通过<code>set body()</code>写入this._body变量。当返回请求时，通过<code>get body()</code>获取并返回this._body。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/879aafcdeb774e48b94b27ac97322fe0~tplv-k3u1fbpfcp-watermark.image"></p>
-<p><strong>小结：</strong> koa将context上的属性代理到request.js和response.js上，通过属性劫持给context扩展了一些新的属性和方法。(源码<a target="_blank" rel="noopener" href="https://github.com/koajs/koa/blob/master/lib/context.js">koa/context.js</a> 199-251行)。我们可以直接从ctx上获取对应的属性和方法，给代码的编写提供了便利。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>希望读完这篇文章能够让你对koa的实现原理有进一步的了解。koa短小精简的代码非常适合阅读。这篇文章主要介绍了：</p>
-<ol>
-<li>koa中间件实现使用了洋葱模型。</li>
-<li>koa每次请求都会创建一个新的请求上下文，保证了context的请求隔离和应用隔离。</li>
-<li>koa将context上的属性代理给response.js和request.js处理，扩展了context功能。</li>
-</ol>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://koa.bootcss.com/">koa官网</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/koajs/koa">koa源码</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/koajs/compose">koa-compose源码</a></p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000019603834">Koa源码浅析</a></p>
-<p>—</p>
-<p>希望这篇文章能够给你有所帮助，对文章中的内容有疑问的地方欢迎一起探讨。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/16/%E5%9B%BE%E8%A7%A3koa2%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1187,11 +583,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-flower15"></use>
+              <use xlink:href="#icon-flower10"></use>
             </svg>
             <a href="/2021/02/09/wokoo%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%88%E6%90%AD%E5%BB%BA%E7%AF%87%EF%BC%89/" class="post-title-link" itemprop="url">wokoo脚手架（搭建篇）</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-flower15"></use>
+            <use xlink:href="#icon-flower10"></use>
           </svg>
         </h2>
 
@@ -1209,7 +605,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 03:40:18" itemprop="dateModified" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+                <time title="修改时间：2021-03-16 03:43:25" itemprop="dateModified" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
               </span>
 
           
@@ -1273,11 +669,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-flower4"></use>
+              <use xlink:href="#icon-flower3"></use>
             </svg>
             <a href="/2021/02/09/cookie%E3%80%81session%E5%92%8Cjwt/" class="post-title-link" itemprop="url">cookie、session和jwt</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-flower4"></use>
+            <use xlink:href="#icon-flower3"></use>
           </svg>
         </h2>
 
@@ -1295,7 +691,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 03:40:18" itemprop="dateModified" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+                <time title="修改时间：2021-03-16 03:43:25" itemprop="dateModified" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
               </span>
 
           
@@ -1352,11 +748,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-030-flower"></use>
+              <use xlink:href="#icon-flower13"></use>
             </svg>
             <a href="/2021/02/09/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%88%E5%AE%9E%E6%88%98%E7%AF%87%EF%BC%89/" class="post-title-link" itemprop="url">快速上手油猴插件开发（实战篇）</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-030-flower"></use>
+            <use xlink:href="#icon-flower13"></use>
           </svg>
         </h2>
 
@@ -1374,7 +770,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 03:40:18" itemprop="dateModified" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+                <time title="修改时间：2021-03-16 03:43:25" itemprop="dateModified" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
               </span>
 
           
@@ -1434,11 +830,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-flower8"></use>
+              <use xlink:href="#icon-030-flower"></use>
             </svg>
             <a href="/2021/02/09/tapable%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">tapable可视化工具</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-flower8"></use>
+            <use xlink:href="#icon-030-flower"></use>
           </svg>
         </h2>
 
@@ -1456,7 +852,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 03:40:18" itemprop="dateModified" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+                <time title="修改时间：2021-03-16 03:43:25" itemprop="dateModified" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
               </span>
 
           
@@ -1511,11 +907,11 @@
         <h2 class="post-title" itemprop="name headline">
           
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-flower2"></use>
+              <use xlink:href="#icon-flower13"></use>
             </svg>
             <a href="/2021/02/09/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E5%AE%9E%E7%8E%B0JSX%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">有限状态机实现JSX词法分析</a>
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-flower2"></use>
+            <use xlink:href="#icon-flower13"></use>
           </svg>
         </h2>
 
@@ -1533,7 +929,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 03:40:18" itemprop="dateModified" datetime="2021-03-16T03:40:18+00:00">2021-03-16</time>
+                <time title="修改时间：2021-03-16 03:43:25" itemprop="dateModified" datetime="2021-03-16T03:43:25+00:00">2021-03-16</time>
               </span>
 
           
