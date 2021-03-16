@@ -28,7 +28,8 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: source/baidu_verify_code-6mg8NCochF.html
+skip_render: source/googleb36ba591d79af1a0.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -110,3 +111,4 @@ search:
   field: post
   format: html
   limit: 10000
+  
